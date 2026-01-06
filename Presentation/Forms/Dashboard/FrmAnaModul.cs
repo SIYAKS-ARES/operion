@@ -106,6 +106,18 @@ namespace operion.Presentation.Forms.Dashboard
         private void btnThemeToggle_Click(object? sender, EventArgs e)
         {
             ThemeManager.ToggleTheme();
+            ApplyTheme();
+        }
+
+        private void btnAiChat_Click(object sender, EventArgs e)
+        {
+            var frm = new operion.Presentation.Forms.Ai.FrmAiChat();
+            frm.Show(); // Modeless dialog (non-blocking) allow usage while chatting
+            // or frm.ShowDialog(); if you want blocking
+        }
+
+        private void ApplyTheme()
+        {
             btnThemeToggle.Text = ThemeManager.IsDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode";
         }
 

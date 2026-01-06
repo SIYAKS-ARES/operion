@@ -17,6 +17,9 @@ namespace operion
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
+            // Global TLS Ayari (TCMB ve AI servisleri icin)
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls13;
+
             // ARM uyumluluk kontrol�
             try
             {

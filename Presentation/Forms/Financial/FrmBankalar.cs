@@ -46,20 +46,19 @@ namespace operion.Presentation.Forms.Financial
                             while (reader.Read())
                             {
                                 dt.Rows.Add(
-                                    reader.IsDBNull(0) ? 0 : reader.GetInt32(0), // BankaID
-                                    reader.IsDBNull(1) ? "" : reader.GetString(1), // BankaAd
-                                    reader.IsDBNull(2) ? "" : reader.GetString(2), // BankaSube
-                                    reader.IsDBNull(3) ? "" : reader.GetString(3), // BankaIl
-                                    reader.IsDBNull(4) ? "" : reader.GetString(4), // BankaIlce
-                                    reader.IsDBNull(5) ? "" : reader.GetString(5), // BankaYetkili
-                                    reader.IsDBNull(6) ? "" : reader.GetString(6), // BankaTelefon
-                                    reader.IsDBNull(7) ? "" : reader.GetString(7), // BankaTarih
-                                    reader.IsDBNull(8) ? "" : reader.GetString(8), // BankaHesapNo
-                                    reader.IsDBNull(9) ? "" : reader.GetString(9), // BankaHesapTuru
-                                    reader.IsDBNull(10) ? "" : reader.GetString(10), // BankaSube (tekrar)
-                                    reader.IsDBNull(11) ? "" : reader.GetString(11), // BankaIBAN
-                                    reader.IsDBNull(12) ? 0 : reader.GetInt32(12), // FirmaID
-                                    reader.IsDBNull(13) ? "" : reader.GetString(13) // FirmaAd
+                                    reader["BankaID"] != DBNull.Value ? Convert.ToInt32(reader["BankaID"]) : 0,
+                                    reader["BankaAd"] != DBNull.Value ? reader["BankaAd"].ToString() : "",
+                                    reader["BankaSube"] != DBNull.Value ? reader["BankaSube"].ToString() : "",
+                                    reader["BankaIBAN"] != DBNull.Value ? reader["BankaIBAN"].ToString() : "",
+                                    reader["BankaHesapNo"] != DBNull.Value ? reader["BankaHesapNo"].ToString() : "",
+                                    reader["BankaYetkili"] != DBNull.Value ? reader["BankaYetkili"].ToString() : "",
+                                    reader["BankaTarih"] != DBNull.Value ? reader["BankaTarih"].ToString() : "",
+                                    reader["BankaHesapTuru"] != DBNull.Value ? reader["BankaHesapTuru"].ToString() : "",
+                                    reader["BankaIl"] != DBNull.Value ? reader["BankaIl"].ToString() : "",
+                                    reader["BankaIlce"] != DBNull.Value ? reader["BankaIlce"].ToString() : "",
+                                    reader["BankaTelefon"] != DBNull.Value ? reader["BankaTelefon"].ToString() : "",
+                                    reader["FirmaID"] != DBNull.Value ? Convert.ToInt32(reader["FirmaID"]) : 0,
+                                    reader["FirmaAd"] != DBNull.Value ? reader["FirmaAd"].ToString() : ""
                                 );
                             }
                         }

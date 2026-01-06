@@ -9,9 +9,23 @@ UI Layer (Windows Forms)
     ↓
 Services Layer (Business Logic)
     ↓
+    ↓
 Data Layer (Entity Framework Core)
     ↓
 Database (SQLite)
+```
+
+### AI RAG Pipeline
+```
+User Query -> FrmAiChat
+    ↓
+RagService (Orchestrator)
+    ↓
+RetrievalService (Hybrid Search + Re-ranking)
+    ↓
+Vector Store (Semantic Kernel Memory) / SQL Database
+    ↓
+LLM (Gemini) -> Answer
 ```
 
 ### Klasör Yapısı
@@ -40,12 +54,20 @@ operion/
 - İş mantığı `Services/` klasöründe ayrılmış
 - Örnekler: `DatabaseService`, `AiService`, `ReportViewerHelper`
 
-### 3. Modern UI Component Pattern
 - Özel kontroller `Design/Controls/` klasöründe
 - Tema yönetimi `ThemeManager` ile merkezi
 - Tasarım sistemi `DesignSystem` ile standartlaştırılmış
 
+### 4. RAG Pattern
+- **Ingestion:** Veri hazırlık (`IngestionService`) -> Chunking -> Embedding -> Storage
+- **Retrieval:** Arama (`RetrievalService`) -> Vector Search -> Re-ranking -> Context Construction
+- **Generation:** Yanıt (`AiService`) -> Prompt Engineering -> LLM -> Response
+- **Safeguard:** Güvenlik (`SqlGenerationService.IsSafeSql`, `TokenUsageService`)
+
 ### 4. Form Pattern
+- **Host:** `FrmAnaModul` (Single Window Container)
+- **Page:** Child formlar (`FrmUrunler`, vb.) - `TopLevel=false`, `Dock=Fill`
+- **Sidebar:** AI Chat (`FrmAiChat`) - Sağ panelde yerleşik
 - Her form için üç dosya:
   - `FrmXxx.cs` - Kod dosyası
   - `FrmXxx.Designer.cs` - Tasarım dosyası

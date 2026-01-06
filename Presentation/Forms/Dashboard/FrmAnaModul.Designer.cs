@@ -36,6 +36,7 @@ namespace operion.Presentation.Forms.Dashboard
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblKullanici = new System.Windows.Forms.Label();
             this.btnThemeToggle = new System.Windows.Forms.Label();
+            this.btnAiChat = new System.Windows.Forms.Label();
             this.menuStrip1 = new ModernMenuStrip();
             this.menuAnaSayfa = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUrunler = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +64,7 @@ namespace operion.Presentation.Forms.Dashboard
             this.panelHeader.Controls.Add(this.pbLogo);
             this.panelHeader.Controls.Add(this.lblTitle);
             this.panelHeader.Controls.Add(this.lblKullanici);
+            this.panelHeader.Controls.Add(this.btnAiChat);
             this.panelHeader.Controls.Add(this.btnThemeToggle);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
@@ -97,11 +99,25 @@ namespace operion.Presentation.Forms.Dashboard
             this.lblKullanici.AutoSize = true;
             this.lblKullanici.Font = DesignSystem.Fonts.Body;
             this.lblKullanici.ForeColor = System.Drawing.Color.White;
-            this.lblKullanici.Location = new System.Drawing.Point(1100, 20);
+            this.lblKullanici.Location = new System.Drawing.Point(980, 20);
             this.lblKullanici.Name = "lblKullanici";
             this.lblKullanici.Size = new System.Drawing.Size(80, 20);
             this.lblKullanici.TabIndex = 2;
             this.lblKullanici.Text = "👤 Kullanıcı";
+            // 
+            // btnAiChat
+            // 
+            this.btnAiChat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAiChat.AutoSize = true;
+            this.btnAiChat.Font = DesignSystem.Fonts.Body;
+            this.btnAiChat.ForeColor = System.Drawing.Color.Goldenrod;
+            this.btnAiChat.Location = new System.Drawing.Point(1080, 20);
+            this.btnAiChat.Name = "btnAiChat";
+            this.btnAiChat.Size = new System.Drawing.Size(100, 20);
+            this.btnAiChat.TabIndex = 4;
+            this.btnAiChat.Text = "🤖 AI Chat";
+            this.btnAiChat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAiChat.Click += new System.EventHandler(this.btnAiChat_Click);
             // 
             // btnThemeToggle
             // 
@@ -138,6 +154,7 @@ namespace operion.Presentation.Forms.Dashboard
             this.menuStrip1.Location = new System.Drawing.Point(0, 60);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1370, 48);
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Top;
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -306,6 +323,7 @@ namespace operion.Presentation.Forms.Dashboard
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblKullanici;
+        private System.Windows.Forms.Label btnAiChat;
         private System.Windows.Forms.Label btnThemeToggle;
         private ModernMenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuAnaSayfa;

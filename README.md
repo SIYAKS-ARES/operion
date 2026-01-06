@@ -52,7 +52,8 @@ operion/
 - **Notlar:** İş notları ve hatırlatıcılar
 - **Personel Yönetimi:** Personel bilgileri ve takibi
 - **Banka Yönetimi:** Banka hesapları ve işlemleri
-- **AI Entegrasyonu:** AI destekli rapor özetleme ve e-posta asistanı (opsiyonel)
+- **AI Asistan (RAG):** Dökümanlarda arama yapabilen ve veritabanı sorgulayabilen ("Stokta ne kadar mal var?") akıllı asistan.
+- **RAG Mimarisi:** Hibrit arama, Re-ranking ve Semantik Chunking özellikleri.
 
 ## Sistem Gereksinimleri
 

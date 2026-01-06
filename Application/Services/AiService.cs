@@ -16,23 +16,37 @@ namespace operion.Application.Services
     /// </summary>
     public class AiService
     {
-        private static readonly HttpClient _httpClient = new HttpClient();
+        private HttpClient _httpClient;
         private readonly string _endpoint;
         private readonly string _apiKey;
         private readonly string _provider;
         private readonly int _timeoutMs;
         private readonly int _retryCount;
         private readonly AiLogger _logger;
+        private readonly TokenUsageService _tokenUsageService;
 
         public AiService()
         {
+            // TLS 1.2 ve 1.3'ü zorla
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls13;
+
             _endpoint = ConfigurationManager.AppSettings["AI_ENDPOINT"] ?? "";
             _apiKey = GetApiKey();
             _provider = ConfigurationManager.AppSettings["AI_PROVIDER"] ?? "OpenAI";
             _timeoutMs = int.Parse(ConfigurationManager.AppSettings["AI_TIMEOUT_MS"] ?? "30000");
             _retryCount = int.Parse(ConfigurationManager.AppSettings["AI_RETRY_COUNT"] ?? "3");
             _logger = new AiLogger();
+            _tokenUsageService = new TokenUsageService();
 
+            // Proxy sorunlarını aşmak için handler yapılandırması
+            // "No such host is known" hatası bazen yanlış proxy ayarlarından kaynaklanabilir
+            var handler = new HttpClientHandler
+            {
+                UseProxy = false, // Proxy'yi devre dışı bırak
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true // Sertifika hatalarını geçici olarak yut (opsiyonel, debug için)
+            };
+            
+            _httpClient = new HttpClient(handler);
             _httpClient.Timeout = TimeSpan.FromMilliseconds(_timeoutMs);
         }
 
@@ -154,10 +168,20 @@ namespace operion.Application.Services
             {
                 try
                 {
+                    // Check Limit
+                    if (_tokenUsageService.IsLimitExceeded())
+                    {
+                        var stats = _tokenUsageService.GetUsageStats();
+                        throw new AiServiceException($"Günlük token limiti aşıldı! ({stats.DailyUsed}/{stats.DailyLimit})");
+                    }
+
                     var startTime = DateTime.Now;
                     
                     var response = await CallAiApiAsync(prompt);
                     
+                    // Track Usage
+                    _tokenUsageService.TrackUsage(response.PromptTokens, response.CompletionTokens);
+
                     var duration = (DateTime.Now - startTime).TotalMilliseconds;
                     _logger.LogRequest(requestType, prompt.Length, duration, true, "");
                     

@@ -48,6 +48,15 @@ namespace operion.Presentation.Forms.Settings
                     this.ClientSize = new System.Drawing.Size(500, 520);
                 }
             }
+            else
+            {
+                // AI Assistant panelini göster (Designer'da gizli kalmış olabilir)
+                if (grpAiAsistan != null)
+                {
+                    grpAiAsistan.Visible = true;
+                    this.ClientSize = new System.Drawing.Size(950, 520);
+                }
+            }
 
             // Varsayılan değerleri ayarla
             if (cmbScenario != null && cmbScenario.Items.Count > 0)
@@ -64,7 +73,7 @@ namespace operion.Presentation.Forms.Settings
             }
         }
 
-        private void Btngonder_Click(object sender, EventArgs e)
+        private async void Btngonder_Click(object sender, EventArgs e)
         {
             try
             {
@@ -99,6 +108,8 @@ namespace operion.Presentation.Forms.Settings
                     return;
                 }
 
+                /* 
+                // Gerçek mail gönderimi (Mock modu için devre dışı bırakıldı)
                 MailMessage message = new MailMessage();
                 SmtpClient istemci = new SmtpClient();
                 
@@ -126,14 +137,22 @@ namespace operion.Presentation.Forms.Settings
                 message.Body = rchmailmesaj.Text;
                 
                 istemci.Send(message);
+                */
+
+                // Mock gönderim simülasyonu
+                await Task.Delay(1000); // 1 saniye bekle
                 
-                MessageBox.Show("E-posta başarıyla gönderildi.", "Başarılı", 
+                MessageBox.Show("E-posta başarıyla gönderildi (Simülasyon).", "Başarılı", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"E-posta gönderme hatası: {ex.Message}", "Hata", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string errorMsg = $"E-posta gönderme hatası: {ex.Message}";
+                if (ex.InnerException != null)
+                {
+                    errorMsg += $"\n\nDetay: {ex.InnerException.Message}";
+                }
+                MessageBox.Show(errorMsg, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

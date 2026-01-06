@@ -4,8 +4,28 @@ using System.Windows.Forms;
 using Microsoft.Data.Sqlite;
 using operion.Application.Services;
 using operion.Presentation.Controls;
+using System.Xml;
+using operion.Core.Models;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Text;
+using System.Globalization;
+using System.Collections.Generic;
+
+using System;
+using System.Data;
+using System.Windows.Forms;
+using Microsoft.Data.Sqlite;
+using operion.Application.Services;
 using operion.Presentation.Controls;
 using System.Xml;
+using operion.Core.Models;
+using System.Net;
+using System.Threading.Tasks;
+using System.Text;
+using System.Globalization;
+using System.Collections.Generic;
+using System.IO;
 
 namespace operion.Presentation.Forms.Dashboard
 {
@@ -19,9 +39,27 @@ namespace operion.Presentation.Forms.Dashboard
             ThemeManager.RegisterForm(this);
         }
 
-        DatabaseService bgl = new DatabaseService();
+        private async void FrmAnaSayfa_Load(object sender, EventArgs e)
+        {
+             await LoadDataAsync();
+        }
 
-        void azalanstoklar()
+        private async Task LoadDataAsync()
+        {
+            // Veritabani islemleri
+            await azalanstoklarAsync();
+            await ajandaAsync();
+            await sonhareketlerAsync();
+            await fihristAsync();
+            
+            // Web islemleri (Parallel ve Exception safe)
+            var t1 = dovizkurlariAsync();
+            var t2 = haberlerAsync();
+            
+            await Task.WhenAll(t1, t2);
+        }
+
+        async Task azalanstoklarAsync()
         {
             try
             {
@@ -31,27 +69,29 @@ namespace operion.Presentation.Forms.Dashboard
 
                 using (var connection = DatabaseService.GetConnection())
                 {
+                    if (connection.State != ConnectionState.Open) await connection.OpenAsync();
+
                     using (var cmd = new SqliteCommand(
                         "SELECT UrunAd,SUM(UrunAdet) AS 'Kalan Stok Sayıları' FROM TBL_URUNLER GROUP BY UrunAd HAVING SUM(UrunAdet) <=20 ORDER BY SUM(UrunAdet)",
                         connection))
                     {
-                        using (var reader = cmd.ExecuteReader())
+                        using (var reader = await cmd.ExecuteReaderAsync())
                         {
-                            while (reader.Read())
+                            while (await reader.ReadAsync())
                             {
                                 dt.Rows.Add(
-                                    reader.IsDBNull(0) ? "" : reader.GetString(0),
-                                    reader.IsDBNull(1) ? 0 : reader.GetInt32(1)
+                                    await reader.IsDBNullAsync(0) ? "" : reader.GetString(0),
+                                    await reader.IsDBNullAsync(1) ? 0 : reader.GetInt32(1)
                                 );
                             }
                         }
                     }
                 }
+                
                 grd_azalanstoklar.DataSource = dt;
                 ModernDataGridViewHelper.ApplyModernStyle(grd_azalanstoklar);
                 ModernDataGridViewHelper.EnableHoverEffect(grd_azalanstoklar);
                 
-                // Boş durum kontrolü
                 if (dt.Rows.Count == 0)
                 {
                     grd_azalanstoklar.DataSource = null;
@@ -64,12 +104,11 @@ namespace operion.Presentation.Forms.Dashboard
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Azalan stoklar yüklenirken hata: {ex.Message}", "Hata",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 System.Diagnostics.Debug.WriteLine($"Azalan stoklar yüklenirken hata: {ex.Message}");
             }
         }
 
-        void ajanda()
+        async Task ajandaAsync()
         {
             try
             {
@@ -80,18 +119,20 @@ namespace operion.Presentation.Forms.Dashboard
 
                 using (var connection = DatabaseService.GetConnection())
                 {
+                    if (connection.State != ConnectionState.Open) await connection.OpenAsync();
+                    
                     using (var cmd = new SqliteCommand(
                         "SELECT NotTarih,NotSaat,NotBaslik FROM TBL_NOTLAR ORDER BY NotID DESC LIMIT 8",
                         connection))
                     {
-                        using (var reader = cmd.ExecuteReader())
+                        using (var reader = await cmd.ExecuteReaderAsync())
                         {
-                            while (reader.Read())
+                            while (await reader.ReadAsync())
                             {
                                 dt.Rows.Add(
-                                    reader.IsDBNull(0) ? "" : reader.GetString(0),
-                                    reader.IsDBNull(1) ? "" : reader.GetString(1),
-                                    reader.IsDBNull(2) ? "" : reader.GetString(2)
+                                    await reader.IsDBNullAsync(0) ? "" : reader.GetString(0),
+                                    await reader.IsDBNullAsync(1) ? "" : reader.GetString(1),
+                                    await reader.IsDBNullAsync(2) ? "" : reader.GetString(2)
                                 );
                             }
                         }
@@ -101,7 +142,6 @@ namespace operion.Presentation.Forms.Dashboard
                 ModernDataGridViewHelper.ApplyModernStyle(grd_ajanda);
                 ModernDataGridViewHelper.EnableHoverEffect(grd_ajanda);
                 
-                // Boş durum kontrolü
                 if (dt.Rows.Count == 0)
                 {
                     grd_ajanda.DataSource = null;
@@ -114,23 +154,24 @@ namespace operion.Presentation.Forms.Dashboard
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ajanda yüklenirken hata: {ex.Message}", "Hata",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 System.Diagnostics.Debug.WriteLine($"Ajanda yüklenirken hata: {ex.Message}");
             }
         }
 
-        void sonhareketler()
+        async Task sonhareketlerAsync()
         {
             try
             {
                 DataTable dt = new DataTable();
                 using (var connection = DatabaseService.GetConnection())
                 {
+                    if (connection.State != ConnectionState.Open) await connection.OpenAsync();
+                    
                     using (var cmd = new SqliteCommand("SELECT * FROM SonFirmaHareketler", connection))
                     {
-                        using (var reader = cmd.ExecuteReader())
+                        using (var reader = await cmd.ExecuteReaderAsync())
                         {
-                            dt.Load(reader);
+                            dt.Load(reader); 
                         }
                     }
                 }
@@ -138,7 +179,6 @@ namespace operion.Presentation.Forms.Dashboard
                 ModernDataGridViewHelper.ApplyModernStyle(grd_firmahareketler);
                 ModernDataGridViewHelper.EnableHoverEffect(grd_firmahareketler);
                 
-                // Boş durum kontrolü
                 if (dt.Rows.Count == 0)
                 {
                     grd_firmahareketler.DataSource = null;
@@ -151,12 +191,11 @@ namespace operion.Presentation.Forms.Dashboard
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Son hareketler yüklenirken hata: {ex.Message}", "Hata",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 System.Diagnostics.Debug.WriteLine($"Son hareketler yüklenirken hata: {ex.Message}");
             }
         }
 
-        void fihrist()
+        async Task fihristAsync()
         {
             try
             {
@@ -166,17 +205,19 @@ namespace operion.Presentation.Forms.Dashboard
 
                 using (var connection = DatabaseService.GetConnection())
                 {
+                    if (connection.State != ConnectionState.Open) await connection.OpenAsync();
+                    
                     using (var cmd = new SqliteCommand(
                         "SELECT DISTINCT FirmaAd,FirmaTelefon1 FROM TBL_FIRMALAR",
                         connection))
                     {
-                        using (var reader = cmd.ExecuteReader())
+                        using (var reader = await cmd.ExecuteReaderAsync())
                         {
-                            while (reader.Read())
+                            while (await reader.ReadAsync())
                             {
                                 dt.Rows.Add(
-                                    reader.IsDBNull(0) ? "" : reader.GetString(0),
-                                    reader.IsDBNull(1) ? "" : reader.GetString(1)
+                                    await reader.IsDBNullAsync(0) ? "" : reader.GetString(0),
+                                    await reader.IsDBNullAsync(1) ? "" : reader.GetString(1)
                                 );
                             }
                         }
@@ -188,204 +229,229 @@ namespace operion.Presentation.Forms.Dashboard
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"İletişim rehberi yüklenirken hata: {ex.Message}", "Hata",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 System.Diagnostics.Debug.WriteLine($"İletişim rehberi yüklenirken hata: {ex.Message}");
             }
         }
 
-        void haberler()
+        async Task haberlerAsync()
         {
-            try
+            await Task.Run(() => 
             {
-                lstbx_haberler.Items.Clear();
-                XmlTextReader xmloku = new XmlTextReader("https://www.hurriyet.com.tr/rss/anasayfa/");
-                while (xmloku.Read())
+                try
                 {
-                    if (xmloku.Name == "title")
-                    {
-                        string title = xmloku.ReadString();
-                        if (!string.IsNullOrEmpty(title))
-                        {
-                            lstbx_haberler.Items.Add(title);
-                        }
-                    }
-                }
-                xmloku.Close();
-                
-                // Boş durum kontrolü
-                if (lstbx_haberler.Items.Count == 0)
-                {
-                    lstbx_haberler.Items.Add("Haber yüklenemedi. İnternet bağlantınızı kontrol edin.");
-                }
-            }
-            catch (Exception ex)
-            {
-                lstbx_haberler.Items.Clear();
-                lstbx_haberler.Items.Add($"Haberler yüklenirken hata: {ex.Message}");
-                lstbx_haberler.Items.Add("İnternet bağlantınızı kontrol edin.");
-                // MessageBox gösterme, ListBox'a mesaj ekle
-            }
-        }
+                    this.Invoke((MethodInvoker)delegate {
+                        lstbx_haberler.Items.Clear();
+                        lstbx_haberler.Items.Add("Haberler yükleniyor...");
+                    });
+                    
+                    // Legacy WebRequest - System Proxy ayarlarini daha iyi kullanir
+                    var xmlStr = FetchXmlString("https://www.hurriyet.com.tr/rss/anasayfa/");
+                    
+                    var newsItems = new List<string>();
 
-        /// <summary>
-        /// TCMB XML'den döviz kurlarını parse edip HTML formatında gösterir
-        /// </summary>
-        void dovizkurlari()
-        {
-            try
-            {
-                XmlTextReader xmloku = new XmlTextReader("https://www.tcmb.gov.tr/kurlar/today.xml");
-                System.Collections.Generic.List<DovizKuru> kurlar = new System.Collections.Generic.List<DovizKuru>();
-                DovizKuru kur = null;
-                string currentElement = "";
-
-                while (xmloku.Read())
-                {
-                    if (xmloku.NodeType == XmlNodeType.Element)
+                    using (var reader = new StringReader(xmlStr))
+                    using (var xmloku = new XmlTextReader(reader))
                     {
-                        currentElement = xmloku.Name;
-                        if (currentElement == "Currency")
+                        while (xmloku.Read())
                         {
-                            kur = new DovizKuru();
-                            if (xmloku.HasAttributes)
+                            if (xmloku.Name == "title")
                             {
-                                kur.Kod = xmloku.GetAttribute("CurrencyCode") ?? "";
+                                string title = xmloku.ReadString();
+                                if (!string.IsNullOrEmpty(title) && !title.Contains("Hürriyet Anasayfa"))
+                                {
+                                    newsItems.Add(title);
+                                }
                             }
                         }
                     }
-                    else if (xmloku.NodeType == XmlNodeType.Text && kur != null)
-                    {
-                        string value = xmloku.Value.Trim();
-                        switch (currentElement)
+
+                    this.Invoke((MethodInvoker)delegate {
+                        lstbx_haberler.Items.Clear();
+                        if (newsItems.Count > 0)
                         {
-                            case "Unit":
-                                if (int.TryParse(value, out int unit))
-                                    kur.Birim = unit;
-                                break;
-                            case "Isim":
-                                kur.Isim = value;
-                                break;
-                            case "ForexBuying":
-                                if (decimal.TryParse(value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal alis))
-                                    kur.Alis = alis;
-                                break;
-                            case "ForexSelling":
-                                if (decimal.TryParse(value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal satis))
-                                    kur.Satis = satis;
-                                break;
-                            case "BanknoteBuying":
-                                if (decimal.TryParse(value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal efektifAlis))
-                                    kur.EfektifAlis = efektifAlis;
-                                break;
-                            case "BanknoteSelling":
-                                if (decimal.TryParse(value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal efektifSatis))
-                                    kur.EfektifSatis = efektifSatis;
-                                break;
+                            foreach (var item in newsItems)
+                            {
+                                lstbx_haberler.Items.Add(item);
+                            }
                         }
-                    }
-                    else if (xmloku.NodeType == XmlNodeType.EndElement && xmloku.Name == "Currency" && kur != null)
-                    {
-                        if (!string.IsNullOrEmpty(kur.Kod) && kur.Kod != "XDR")
+                        else
                         {
-                            kurlar.Add(kur);
+                            lstbx_haberler.Items.Add("Haber listesi boş.");
                         }
-                        kur = null;
-                    }
+                    });
                 }
-                xmloku.Close();
+                catch (Exception ex)
+                {
+                    this.Invoke((MethodInvoker)delegate {
+                        lstbx_haberler.Items.Clear();
+                        lstbx_haberler.Items.Add("Haberler yüklenirken hata oluştu.");
+                        System.Diagnostics.Debug.WriteLine($"Haber hatası: {ex.Message}");
+                    });
+                }
+            });
+        }
 
-                // HTML oluştur
-                string html = GenerateDovizHtml(kurlar);
-                wb_doviz.DocumentText = html;
-            }
-            catch (Exception ex)
+        async Task dovizkurlariAsync()
+        {
+            await Task.Run(() => 
             {
-                string errorHtml = $@"
-                    <html>
-                    <head><meta charset='utf-8'></head>
-                    <body style='font-family: Tahoma; padding: 20px; background-color: #f5f5f5;'>
-                        <h3 style='color: #d32f2f;'>Döviz Kurları Yüklenemedi</h3>
-                        <p>Hata: {ex.Message}</p>
-                        <p>İnternet bağlantınızı kontrol edin.</p>
-                    </body>
-                    </html>";
-                wb_doviz.DocumentText = errorHtml;
-            }
+                try
+                {
+                    string loadingHtml = "<html><body style='font-family:Segoe UI, sans-serif; padding:10px; color:#333;'><h3>Yükleniyor...</h3></body></html>";
+                    this.Invoke((MethodInvoker)delegate {
+                        if (wb_doviz.Document == null) { wb_doviz.DocumentText = loadingHtml; }
+                    });
+
+                    // Legacy WebRequest kullanımı
+                    string xmlStr = FetchXmlString("https://www.tcmb.gov.tr/kurlar/today.xml");
+                    
+                    var kurlar = new List<DovizKuru>();
+                    
+                    using (var reader = new StringReader(xmlStr))
+                    using (var xmloku = new XmlTextReader(reader))
+                    {
+                        DovizKuru kur = null;
+                        string currentElement = "";
+
+                        while (xmloku.Read())
+                        {
+                            if (xmloku.NodeType == XmlNodeType.Element)
+                            {
+                                currentElement = xmloku.Name;
+                                if (currentElement == "Currency")
+                                {
+                                    kur = new DovizKuru();
+                                    if (xmloku.HasAttributes)
+                                    {
+                                        kur.Kod = xmloku.GetAttribute("CurrencyCode") ?? "";
+                                    }
+                                }
+                            }
+                            else if (xmloku.NodeType == XmlNodeType.Text && kur != null)
+                            {
+                                string value = xmloku.Value.Trim();
+                                switch (currentElement)
+                                {
+                                    case "Unit":
+                                        int.TryParse(value, out int unit);
+                                        kur.Birim = unit;
+                                        break;
+                                    case "Isim":
+                                        kur.Isim = value;
+                                        break;
+                                    case "ForexBuying":
+                                        decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal alis);
+                                        kur.Alis = alis;
+                                        break;
+                                    case "ForexSelling":
+                                        decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal satis);
+                                        kur.Satis = satis;
+                                        break;
+                                    case "BanknoteBuying":
+                                        decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal efAlis);
+                                        kur.EfektifAlis = efAlis;
+                                        break;
+                                    case "BanknoteSelling":
+                                        decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal efSatis);
+                                        kur.EfektifSatis = efSatis;
+                                        break;
+                                }
+                            }
+                            else if (xmloku.NodeType == XmlNodeType.EndElement && xmloku.Name == "Currency" && kur != null)
+                            {
+                                if (!string.IsNullOrEmpty(kur.Kod) && kur.Kod != "XDR") 
+                                {
+                                    kurlar.Add(kur);
+                                }
+                                kur = null;
+                            }
+                        }
+                    }
+
+                    string html = GenerateDovizHtml(kurlar);
+                    
+                    this.Invoke((MethodInvoker)delegate {
+                        wb_doviz.DocumentText = html;
+                    });
+                }
+                catch (Exception ex)
+                {
+                    string errorHtml = $"<html><body style='font-family:Segoe UI, sans-serif; padding:10px; color:red;'><h3>Veri Alinamadi</h3><p>{ex.Message}</p></body></html>";
+                    this.Invoke((MethodInvoker)delegate {
+                        wb_doviz.DocumentText = errorHtml;
+                    });
+                     System.Diagnostics.Debug.WriteLine($"Döviz hatası: {ex.Message}");
+                }
+            });
         }
 
-        /// <summary>
-        /// Döviz kurları listesinden HTML tablosu oluşturur
-        /// </summary>
-        string GenerateDovizHtml(System.Collections.Generic.List<DovizKuru> kurlar)
+        private string FetchXmlString(string url)
         {
-            System.Text.StringBuilder html = new System.Text.StringBuilder();
-            html.AppendLine("<html>");
-            html.AppendLine("<head>");
-            html.AppendLine("<meta charset='utf-8'>");
-            html.AppendLine("<style>");
-            html.AppendLine("body { font-family: Tahoma; font-size: 8.25pt; padding: 10px; background-color: #f5f5f5; }");
-            html.AppendLine("table { width: 100%; border-collapse: collapse; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }");
-            html.AppendLine("th { background-color: #2196F3; color: white; padding: 8px; text-align: left; font-weight: bold; }");
-            html.AppendLine("td { padding: 6px; border-bottom: 1px solid #e0e0e0; }");
-            html.AppendLine("tr:hover { background-color: #f0f0f0; }");
-            html.AppendLine("h3 { color: #1976D2; margin-top: 0; }");
-            html.AppendLine("</style>");
-            html.AppendLine("</head>");
-            html.AppendLine("<body>");
-            html.AppendLine("<h3>📊 TCMB Döviz Kurları</h3>");
-            html.AppendLine("<table>");
-            html.AppendLine("<tr>");
-            html.AppendLine("<th>Kod</th>");
-            html.AppendLine("<th>Birim</th>");
-            html.AppendLine("<th>Döviz</th>");
-            html.AppendLine("<th>Alış</th>");
-            html.AppendLine("<th>Satış</th>");
-            html.AppendLine("<th>Efektif Alış</th>");
-            html.AppendLine("<th>Efektif Satış</th>");
-            html.AppendLine("</tr>");
-
-            foreach (var kur in kurlar)
+            // WebRequest kullanımı - HttpClient yerine System.Net stack'ini kullanır
+            // Bu yöntem eski Windows Forms uygulamalarında daha stabildir ve sistem proxy/DNS ayarlarını daha agresif kullanır.
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+            request.Timeout = 30000;
+            request.ReadWriteTimeout = 30000;
+            // Configured in Program.cs
+            // ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13; 
+            
+            // Proxy - Default sistem proxy'sini kullan ama credentials da gönder
+            request.Proxy = WebRequest.DefaultWebProxy;
+            if (request.Proxy != null)
             {
-                html.AppendLine("<tr>");
-                html.AppendLine($"<td><strong>{kur.Kod}</strong></td>");
-                html.AppendLine($"<td>{kur.Birim}</td>");
-                html.AppendLine($"<td>{kur.Isim}</td>");
-                html.AppendLine($"<td>{kur.Alis:F4}</td>");
-                html.AppendLine($"<td>{kur.Satis:F4}</td>");
-                html.AppendLine($"<td>{kur.EfektifAlis:F4}</td>");
-                html.AppendLine($"<td>{kur.EfektifSatis:F4}</td>");
-                html.AppendLine("</tr>");
+                request.Proxy.Credentials = CredentialCache.DefaultCredentials;
             }
 
-            html.AppendLine("</table>");
-            html.AppendLine("</body>");
-            html.AppendLine("</html>");
-            return html.ToString();
+            using (var response = (HttpWebResponse)request.GetResponse())
+            using (var stream = response.GetResponseStream())
+            using (var reader = new StreamReader(stream, Encoding.UTF8))
+            {
+                return reader.ReadToEnd();
+            }
         }
 
-        /// <summary>
-        /// Döviz kuru bilgilerini tutan sınıf
-        /// </summary>
-        class DovizKuru
+        private string GenerateDovizHtml(List<DovizKuru> kurlar)
         {
-            public string Kod { get; set; } = "";
-            public int Birim { get; set; } = 1;
-            public string Isim { get; set; } = "";
-            public decimal Alis { get; set; } = 0;
-            public decimal Satis { get; set; } = 0;
-            public decimal EfektifAlis { get; set; } = 0;
-            public decimal EfektifSatis { get; set; } = 0;
-        }
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<html><head><style>");
+            sb.Append("body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 14px; margin: 0; padding: 10px; background-color: #F3F3F3; }");
+            sb.Append("table { width: 100%; border-collapse: collapse; background-color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }");
+            sb.Append("th { background-color: #0078D4; color: white; text-align: left; padding: 12px; font-weight: 500; }");
+            sb.Append("td { padding: 10px 12px; border-bottom: 1px solid #eee; color: #333; }");
+            sb.Append("tr:last-child td { border-bottom: none; }");
+            sb.Append("tr:hover { background-color: #f8f8f8; }");
+            sb.Append(".currency-code { font-weight: bold; color: #201F1E; }");
+            sb.Append(".rate { text-align: right; font-family: 'Consolas', monospace; color: #005A9E; }");
+            sb.Append("</style></head><body>");
+            
+            sb.Append("<table>");
+            sb.Append("<thead><tr><th>Döviz</th><th>Birim</th><th style='text-align:right'>Alış</th><th style='text-align:right'>Satış</th></tr></thead>");
+            sb.Append("<tbody>");
 
-        private void FrmAnaSayfa_Load(object sender, EventArgs e)
-        {
-            azalanstoklar();
-            ajanda();
-            sonhareketler();
-            fihrist();
-            dovizkurlari();
-            haberler();
+            var priorityCodes = new List<string> { "USD", "EUR", "GBP", "CHF", "CAD", "KWD", "JPY", "SAR" };
+            
+            foreach (var code in priorityCodes)
+            {
+                var kur = kurlar.Find(k => k.Kod == code);
+                if (kur != null)
+                {
+                    sb.Append("<tr>");
+                    sb.Append($"<td class='currency-code'>{kur.Kod} / TRY</td>");
+                    sb.Append($"<td>{kur.Birim}</td>");
+                    sb.Append($"<td class='rate'>{kur.Alis:N4}</td>");
+                    sb.Append($"<td class='rate'>{kur.Satis:N4}</td>");
+                    sb.Append("</tr>");
+                }
+            }
+            
+            sb.Append("</tbody></table>");
+            sb.Append($"<p style='color:#666; font-size:11px; text-align:right; margin-top:5px;'>TCMB Son Güncelleme: {DateTime.Now:dd.MM.yyyy}</p>");
+            sb.Append("</body></html>");
+
+            return sb.ToString();
         }
     }
 }
+
 

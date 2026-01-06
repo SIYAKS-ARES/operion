@@ -93,7 +93,7 @@ namespace operion.Presentation.Forms.Admin
             _fadeInTimer?.Dispose();
         }
 
-        private void BtnGirisYap_Click(object sender, EventArgs e)
+        private async void BtnGirisYap_Click(object sender, EventArgs e)
         {
             // Validasyon
             if (string.IsNullOrWhiteSpace(txtkullanicad.Text))
@@ -116,14 +116,20 @@ namespace operion.Presentation.Forms.Admin
             txtkullanicad.HasError = false;
             txtsifre.HasError = false;
 
-            // Microsoft.Data.Sqlite kullanarak giriş kontrolü
+            // UI'yı bloklamamak için cursor değişimi ve buton disable
+            Cursor = Cursors.WaitCursor;
+            BtnGirisYap.Enabled = false;
+
             try
             {
-                // Önce tablonun var olduğundan emin ol
+                // Verify DB exists asynchronously-ish (EnsureDefaultAdmin is sync but fast usually, or check if we can make it async tasks later)
+                // For now keep EnsureDefaultAdmin sync as it's a schema check.
                 DatabaseService.EnsureDefaultAdmin();
                 
                 using (var connection = DatabaseService.GetConnection())
                 {
+                    await connection.OpenAsync(); // Explicitly open async
+
                     using (var cmd = new SqliteCommand(
                         "SELECT * FROM TBL_ADMIN WHERE KullaniciAd = @p1 AND KullaniciSifre = @p2", 
                         connection))
@@ -131,9 +137,9 @@ namespace operion.Presentation.Forms.Admin
                         cmd.Parameters.AddWithValue("@p1", txtkullanicad.Text);
                         cmd.Parameters.AddWithValue("@p2", txtsifre.Text);
                         
-                        using (var dr = cmd.ExecuteReader())
+                        using (var dr = await cmd.ExecuteReaderAsync())
                         {
-                            if (dr.Read())
+                            if (await dr.ReadAsync())
                             {
                                 FrmAnaModul frmanamodul = new FrmAnaModul();
                                 frmanamodul.kullanici = txtkullanicad.Text;
@@ -159,7 +165,7 @@ namespace operion.Presentation.Forms.Admin
                     try
                     {
                         DatabaseService.EnsureDefaultAdmin();
-                        // Tekrar dene
+                        // Tekrar dene (Async metod olduğu için ve event argümanları aynı olduğundan direkt çağırılabilir)
                         BtnGirisYap_Click(sender, e);
                     }
                     catch (Exception retryEx)
@@ -180,6 +186,11 @@ namespace operion.Presentation.Forms.Admin
             {
                 MessageBox.Show($"Giriş hatası: {ex.Message}", 
                     "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+                BtnGirisYap.Enabled = true;
             }
         }
         

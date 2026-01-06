@@ -86,16 +86,16 @@ namespace operion.Application.Services
                 // HTTP client test (async yapılmadığı için .Result kullanıldı - UI thread'de dikkatli kullanılmalı)
                 using (var client = new HttpClient())
                 {
-                    client.Timeout = TimeSpan.FromSeconds(5);
+                    client.Timeout = TimeSpan.FromSeconds(2);
                     // Basit bir test isteği
                     var response = client.GetAsync("https://httpbin.org/get").Result;
                     return response.IsSuccessStatusCode;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show($"AI servis ARM uyumluluk hatası: {ex.Message}", 
-                    "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Sessizce başarısız ol, kullanıcıyı rahatsız etme
+                // "Sistem Uyumluluk Raporu"nda zaten durum görünüyor
                 return false;
             }
         }

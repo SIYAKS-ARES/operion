@@ -17,35 +17,41 @@ namespace operion.Application.Services
         {
             var sb = new StringBuilder();
             
-            sb.AppendLine("# GÖREV: Ticari Rapor Özetleme");
-            sb.AppendLine();
-            sb.AppendLine("Aşağıdaki rapor verilerini analiz edip Türkçe özet çıkar.");
+            sb.AppendLine("<system_role>");
+            sb.AppendLine("Sen uzman bir iş analistisin. Verilen ticari verileri analiz edip öngörüler sunarsın.");
+            sb.AppendLine("</system_role>");
             sb.AppendLine();
             
-            sb.AppendLine("## RAPOR BİLGİLERİ:");
-            sb.AppendLine($"- Rapor Türü: {context.ReportType}");
-            sb.AppendLine($"- Tarih Aralığı: {context.StartDate:dd.MM.yyyy} - {context.EndDate:dd.MM.yyyy}");
-            
+            sb.AppendLine("<task_context>");
+            sb.AppendLine($"    <report_type>{context.ReportType}</report_type>");
+            sb.AppendLine($"    <date_range>{context.StartDate:dd.MM.yyyy} - {context.EndDate:dd.MM.yyyy}</date_range>");
             if (!string.IsNullOrEmpty(context.FilterInfo))
             {
-                sb.AppendLine($"- Filtreler: {context.FilterInfo}");
+                sb.AppendLine($"    <filters>{context.FilterInfo}</filters>");
             }
-            
+            sb.AppendLine("</task_context>");
             sb.AppendLine();
-            sb.AppendLine("## RAPOR VERİLERİ:");
+            
+            sb.AppendLine("<input_data>");
+            sb.AppendLine("<![CDATA[");
             sb.AppendLine(context.Data);
+            sb.AppendLine("]]>");
+            sb.AppendLine("</input_data>");
             sb.AppendLine();
             
-            sb.AppendLine("## ÇIKTI FORMATI:");
-            sb.AppendLine("1. **Özet (2-5 madde)**: Ana bulguları sayısal metriklerle özetle");
-            sb.AppendLine("2. **Aksiyon Maddeleri (3-7 madde)**: Yapılabilecek somut aksiyonlar");
+            sb.AppendLine("<output_format>");
+            sb.AppendLine("Yanıtını aşağıdaki formatta ver (Parsing için bu yapı zorunludur):");
+            sb.AppendLine("1. **ÖZET (2-5 madde)**: Ana bulguları sayısal metriklerle özetle");
+            sb.AppendLine("2. **AKSİYON MADDELERİ (3-7 madde)**: Yapılabilecek somut aksiyonlar");
+            sb.AppendLine("</output_format>");
             sb.AppendLine();
             
-            sb.AppendLine("## KURALLAR:");
-            sb.AppendLine("- Türkçe yaz, profesyonel dil kullan");
-            sb.AppendLine("- Sayısal değerleri koru (ciro, adet, oran vb.)");
-            sb.AppendLine("- Kısa ve öz ol, gereksiz detay verme");
-            sb.AppendLine("- Maddeleri işaretli liste olarak sun");
+            sb.AppendLine("<instructions>");
+            sb.AppendLine("<instruction>Türkçe yaz, profesyonel dil kullan</instruction>");
+            sb.AppendLine("<instruction>Sayısal değerleri koru (ciro, adet, oran vb.)</instruction>");
+            sb.AppendLine("<instruction>Kısa ve öz ol, gereksiz detay verme</instruction>");
+            sb.AppendLine("<instruction>Maddeleri işaretli liste olarak sun</instruction>");
+            sb.AppendLine("</instructions>");
             
             return sb.ToString();
         }
@@ -57,25 +63,30 @@ namespace operion.Application.Services
         {
             var sb = new StringBuilder();
             
-            sb.AppendLine("# GÖREV: Rapor Özetleme");
-            sb.AppendLine();
-            sb.AppendLine("Aşağıdaki rapor verilerini özetle:");
-            sb.AppendLine();
-            sb.AppendLine(data);
+            sb.AppendLine("<system_role>");
+            sb.AppendLine("Sen yardımcı bir asistansın. Verilen metni özetlersin.");
+            sb.AppendLine("</system_role>");
             sb.AppendLine();
             
+            sb.AppendLine("<input_data>");
+            sb.AppendLine("<![CDATA[");
+            sb.AppendLine(data);
+            sb.AppendLine("]]>");
+            sb.AppendLine("</input_data>");
+            sb.AppendLine();
+            
+            sb.AppendLine("<instructions>");
             if (options.IncludeMetrics)
             {
-                sb.AppendLine("- Önemli metrikleri vurgula (ciro, kar, adet, oran)");
+                sb.AppendLine("<instruction>Önemli metrikleri vurgula (ciro, kar, adet, oran)</instruction>");
             }
-            
             if (options.IncludeActions)
             {
-                sb.AppendLine("- Aksiyon önerileri ekle");
+                sb.AppendLine("<instruction>Aksiyon önerileri ekle</instruction>");
             }
-            
-            sb.AppendLine($"- Maksimum {options.MaxBulletPoints} madde kullan");
-            sb.AppendLine("- Türkçe, iş diline uygun yaz");
+            sb.AppendLine($"<instruction>Maksimum {options.MaxBulletPoints} madde kullan</instruction>");
+            sb.AppendLine("<instruction>Türkçe, iş diline uygun yaz</instruction>");
+            sb.AppendLine("</instructions>");
             
             return sb.ToString();
         }
@@ -87,41 +98,39 @@ namespace operion.Application.Services
         {
             var sb = new StringBuilder();
             
-            sb.AppendLine("# GÖREV: Ticari E-posta Şablonu Üretimi");
-            sb.AppendLine();
-            sb.AppendLine($"## SENARYO: {GetScenarioDescription(context.Scenario)}");
+            sb.AppendLine("<system_role>");
+            sb.AppendLine("Sen profesyonel bir iletişim uzmanısın. Müşteriler için etkili e-posta taslakları hazırlarsın.");
+            sb.AppendLine("</system_role>");
             sb.AppendLine();
             
-            sb.AppendLine("## BAĞLAM:");
-            sb.AppendLine($"- Müşteri: {context.CustomerReference}");
+            sb.AppendLine("<task_context>");
+            sb.AppendLine($"    <scenario>{GetScenarioDescription(context.Scenario)}</scenario>");
+            sb.AppendLine($"    <customer>{context.CustomerReference}</customer>");
             
             if (!string.IsNullOrEmpty(context.ProductsInfo))
             {
-                sb.AppendLine($"- Ürünler: {context.ProductsInfo}");
+                sb.AppendLine($"    <products>{context.ProductsInfo}</products>");
             }
-            
             if (context.Amount > 0)
             {
-                sb.AppendLine($"- Tutar: {context.Amount.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("tr-TR"))} TL");
+                sb.AppendLine($"    <amount>{context.Amount.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("tr-TR"))} TL</amount>");
             }
-            
             if (context.Discount > 0)
             {
-                sb.AppendLine($"- İskonto: %{context.Discount}");
+                sb.AppendLine($"    <discount>%{context.Discount}</discount>");
             }
-            
             if (!string.IsNullOrEmpty(context.DeliveryTerms))
             {
-                sb.AppendLine($"- Teslimat: {context.DeliveryTerms}");
+                sb.AppendLine($"    <delivery>{context.DeliveryTerms}</delivery>");
             }
-            
             if (!string.IsNullOrEmpty(context.AdditionalInfo))
             {
-                sb.AppendLine($"- Ek Bilgi: {context.AdditionalInfo}");
+                sb.AppendLine($"    <additional_info>{context.AdditionalInfo}</additional_info>");
             }
-            
+            sb.AppendLine("</task_context>");
             sb.AppendLine();
-            sb.AppendLine("## ÇIKTI FORMATI:");
+            
+            sb.AppendLine("<output_format>");
             sb.AppendLine("### Konu Satırları (3 alternatif):");
             sb.AppendLine("1. [Konu 1]");
             sb.AppendLine("2. [Konu 2]");
@@ -129,14 +138,16 @@ namespace operion.Application.Services
             sb.AppendLine();
             sb.AppendLine("### E-posta Gövdesi:");
             sb.AppendLine("[E-posta içeriği]");
+            sb.AppendLine("</output_format>");
             sb.AppendLine();
             
-            sb.AppendLine("## KURALLAR:");
-            sb.AppendLine($"- Ton: {GetToneDescription(context.Tone)}");
-            sb.AppendLine($"- Uzunluk: {GetLengthDescription(context.Length)}");
-            sb.AppendLine("- Türkçe, iş yazışmasına uygun");
-            sb.AppendLine("- Profesyonel ancak samimi");
-            sb.AppendLine("- Sayısal değerleri [TUTAR], [ISKONTO] gibi placeholder olarak bırak");
+            sb.AppendLine("<instructions>");
+            sb.AppendLine($"<instruction>Ton: {GetToneDescription(context.Tone)}</instruction>");
+            sb.AppendLine($"<instruction>Uzunluk: {GetLengthDescription(context.Length)}</instruction>");
+            sb.AppendLine("<instruction>Türkçe, iş yazışmasına uygun</instruction>");
+            sb.AppendLine("<instruction>Profesyonel ancak samimi</instruction>");
+            sb.AppendLine("<instruction>Sayısal değerleri [TUTAR], [ISKONTO] gibi placeholder olarak bırak</instruction>");
+            sb.AppendLine("</instructions>");
             
             return sb.ToString();
         }
@@ -148,15 +159,23 @@ namespace operion.Application.Services
         {
             var sb = new StringBuilder();
             
-            sb.AppendLine("# GÖREV: E-posta Yanıt Şablonu");
+            sb.AppendLine("<system_role>");
+            sb.AppendLine("Sen profesyonel bir asistansın. E-postalar için yanıt taslakları oluşturursun.");
+            sb.AppendLine("</system_role>");
             sb.AppendLine();
-            sb.AppendLine("Aşağıdaki e-postaya Türkçe yanıt şablonu oluştur:");
-            sb.AppendLine();
-            sb.AppendLine("## GELEN E-POSTA:");
+            
+            sb.AppendLine("<input_email>");
+            sb.AppendLine("<![CDATA[");
             sb.AppendLine(originalEmail);
+            sb.AppendLine("]]>");
+            sb.AppendLine("</input_email>");
             sb.AppendLine();
-            sb.AppendLine($"Ton: {GetToneDescription(tone)}");
-            sb.AppendLine("Kısa ve öz, profesyonel yanıt ver.");
+            
+            sb.AppendLine("<instructions>");
+            sb.AppendLine($"<instruction>Ton: {GetToneDescription(tone)}</instruction>");
+            sb.AppendLine("<instruction>Kısa ve öz, profesyonel yanıt ver</instruction>");
+            sb.AppendLine("<instruction>Türkçe yaz</instruction>");
+            sb.AppendLine("</instructions>");
             
             return sb.ToString();
         }
@@ -195,6 +214,49 @@ namespace operion.Application.Services
                 EmailLength.Uzun => "Uzun (5-7 paragraf)",
                 _ => "Orta uzunlukta"
             };
+        }
+
+        /// <summary>
+        /// RAG (Retrieval-Augmented Generation) için prompt oluşturur
+        /// </summary>
+        public string BuildRagPrompt(string userQuery, List<string> contextDocs)
+        {
+            var sb = new StringBuilder();
+            
+            sb.AppendLine("<system_role>");
+            sb.AppendLine("Sen Operion Kurumsal Asistanısın. Şirket verilerine ve dökümanlarına erişimin var.");
+            sb.AppendLine("Sadece sana verilen bağlamı (context) kullanarak soruları cevapla. Bilmediğin konularda uydurma.");
+            sb.AppendLine("</system_role>");
+            sb.AppendLine();
+            
+            if (contextDocs != null && contextDocs.Any())
+            {
+                sb.AppendLine("<context>");
+                // CDATA koruması
+                sb.AppendLine("<![CDATA[");
+                foreach (var doc in contextDocs)
+                {
+                    sb.AppendLine($"--- Document ---");
+                    sb.AppendLine(doc);
+                    sb.AppendLine();
+                }
+                sb.AppendLine("]]>");
+                sb.AppendLine("</context>");
+                sb.AppendLine();
+            }
+            
+            sb.AppendLine("<user_query>");
+            sb.AppendLine(userQuery);
+            sb.AppendLine("</user_query>");
+            sb.AppendLine();
+            
+            sb.AppendLine("<instructions>");
+            sb.AppendLine("<instruction>Verilen bağlamdaki bilgileri kullanarak net ve doğru yanıt ver.</instruction>");
+            sb.AppendLine("<instruction>Eğer bağlamda yanıt yoksa 'Bu konuda bilgim yok' de.</instruction>");
+            sb.AppendLine("<instruction>Türkçe ve profesyonel bir dil kullan.</instruction>");
+            sb.AppendLine("</instructions>");
+            
+            return sb.ToString();
         }
     }
 

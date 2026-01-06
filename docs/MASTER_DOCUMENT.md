@@ -593,16 +593,30 @@ Forms (FrmXxx.cs)
 - `DB/TicariOtomasyon_SQLite.sql` - Veritabanı scripti
 - `logo/operion-logo.jpg` - Logo dosyası
 
-### 3.16 AI Entegrasyonu (Opsiyonel)
+### 3.16 AI ve RAG Entegrasyonu (Tamamlandı)
 
-#### AI Servisleri
-- `AiService.cs` - AI servis entegrasyonu (Google Gemini API, OpenAI, Azure OpenAI desteği)
-- `AiLogger.cs` - AI işlem logları
-- `AiRateLimiter.cs` - Rate limiting
-- `AiResponseParser.cs` - Yanıt parsing
-- `PromptBuilder.cs` - Prompt oluşturma
-- `PiiMaskingService.cs` - Kişisel bilgi maskeleme
-- `ReportDataFormatter.cs` - Rapor verisi formatlama (DataTable → structured text)
+#### AI Mimarisi (RAG)
+Proje, kurumsal seviyede **Retrieval-Augmented Generation (RAG)** mimarisine sahiptir.
+- **Infrastructure:** Microsoft Semantic Kernel.
+- **Model:** Google Gemini (Embedding: text-embedding-001, Chat: gemini-1.5-flash).
+- **Storage:** Hibrit yapı (SQLite + In-Memory Vector Store).
+
+#### Temel Özellikler
+1.  **Akıllı Döküman Arama:** Kullanıcı kılavuzları ve yardım dosyaları içinde semantik (anlamsal) arama yapar. "Fatura nasıl kesilir?" sorusunu anlar.
+2.  **Text-to-SQL (Veriyle Sohbet):** Doğal dil sorularını SQL sorgusuna çevirir.
+    *   *Örnek:* "Stokta kaç tane Laptop var?" -> `SELECT SUM(Adet) ...`
+    *   **Güvenlik:** Sadece `SELECT` sorguları çalıştırılır (`IsSafeSql` kontrolü).
+3.  **Hibrit Arama & Re-ranking:** En alakalı sonuçları bulmak için Vektör ve Kelime araması birleştirilir, ardından LLM ile yeniden sıralanır.
+4.  **Maliyet Yönetimi:** `TokenUsageService` ile günlük token limiti (varsayılan 1M) ve kullanım takibi.
+
+#### Dosya Yapısı
+- `RagService.cs`: Ana orkestratör. Kernel yönetimi ve veri ekleme.
+- `RetrievalService.cs`: Arama mantığı (Hybrid Search + Re-ranking).
+- `IngestionService.cs`: Veri içeri alma (Markdown chunking, SQL row serialization).
+- `SqlGenerationService.cs`: Doğal dilden SQL üretimi.
+- `ReRankingService.cs`: Cross-encoder mantığıyla sıralama.
+- `EvaluationService.cs`: RAG başarı metrikleri (Precision/Recall).
+- `FrmAiChat.cs`: Sohbet arayüzü.
 
 #### ARM Uyumluluğu
 - `ARMCompatibilityHelper.cs` - ARM64 desteği

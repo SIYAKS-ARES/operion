@@ -9,6 +9,18 @@
 **Son Güncelleme:** 2026-01-01 (AI Testleri ve Hata Düzeltmeleri Tamamlandı)  
 **Hedef:** 2019 tasarımından 2026 modern tasarımına geçiş
 
+### Currency and News Loading Fix (2026-01-06)
+- **Problem:** `HttpClient.Timeout` exception (10s) on startup.
+- **Fix:** Increased timeout to 30s, implemented shared `HttpClient`, and added robust error handling.
+- **Improvement:** `dovizkurlariAsync` rewritten to parse XML correctly and generate styled HTML.
+- **UI:** Better error feedback in "Döviz Kurları" and "Haberler" tabs.
+
+### RAG ve AI Chat Entegrasyon Projesi
+**Durum:** Tamamlandı (Faz 1-6)
+**Başlangıç:** 2026-01-04
+**Tamamlanma:** 2026-01-06
+**Hedef:** Kurumsal seviyede RAG (Retrieval-Augmented Generation) yetenekleri kazandırmak.
+
 ### İlerleme Durumu
 - **Toplam Form Sayısı:** 21
 - **Modernize Edilen Form:** 21
@@ -114,13 +126,34 @@ Yok (tümü tamamlandı)
 - ✅ **Pencere Yönetimi:** MDI Child formlar için `ThemeManager` içinde `WindowState = Maximized` zorunlu kılındı.
 - ✅ **Dark Mode:** `MdiClient` ve `TextBox` kontrolleri için eksik tema tanımları eklendi.
 - 🚧 **Custom Scrollbar (POC):** `FrmFirmalar` ekranında 30px yüksekliğinde özel `HScrollBar` entegre edildi.
+- ✅ **Theme Switching Optimizasyonu:** `ThemeManager.ApplyTheme` metoduna `SuspendLayout`/`ResumeLayout` eklendi. Bu sayede tema geçişlerinde oluşan görsel bozulmalar (pencere izleri) giderildi.
+- ✅ **FrmNotlar:** "Oluşturan" ve "Hitap" alanları ayrıldı, dikey boşluklar standartlaştırıldı, AutoScroll eklendi.
 
-### Form Layout Standardizasyonu (2026-01-02)
+### Hata Düzeltmeleri ve İyileştirmeler (2026-01-05)
+- ✅ **AI Servis Bağlantısı:** "No such host is known" DNS hatası giderildi. Proxy bypass ve TLS 1.2/1.3 zorlaması eklendi (`AiService.cs`).
+- ✅ **Login Performansı:** `FrmAdmin` giriş işlemi asenkron (`async/await`) hale getirildi, "Wait Cursor" eklendi. UI donması engellendi.
+- ✅ **Rehber Senkronizasyonu:** `FrmRehber` artık aktif (`Activated`) olduğunda verileri otomatik yeniliyor. Yeni eklenen müşteriler anında listede görünüyor.
+- ✅ **Veri Güvenliği Fix:** `AiService` içinde kayıp değişken tanımları restore edildi.
+- ✅ **Dashboard Bağlantı Fix (2026-01-06):** "No such host is known" hatasını kesin çözmek için `FrmAnaSayfa` veri çekme yöntemi `HttpClient` yerine legacy `WebRequest` (OS stack) yapısına geri çevrildi ve `Program.cs` içinde global TLS 1.2/1.3 zorlaması eklendi.
+
+### RAG Implementasyonu (2026-01-06)
+- **Altyapı:** Semantic Kernel + Gemini Embedding + SQLite Vektör Depolama kuruldu.
+- **Ingestion:** Markdown dökümanları ve SQL verileri (Müşteri/Stok) semantik olarak parçalanıp indekslendi.
+- **Retrieval:** Hibrit Arama (Vektör + Keyword) ve Re-ranking (LLM tabanlı sıralama) eklendi.
+- **Text-to-SQL:** Doğal dil sorgularını güvenli SQL'e çeviren `SqlGenerationService` eklendi.
+- **UI:** Ana ekrana "🤖 AI Chat" butonu ve `FrmAiChat` arayüzü eklendi.
+- **Değerlendirme:** Golden Dataset ve metrik ölçüm (Precision/Recall) altyapısı kuruldu.
+- **Maliyet:** Token sayacı ve günlük limit kontrolü (`TokenUsageService`) eklendi.
 - ✅ **FrmFaturalar:** Dikey boşluklar 50px olarak ayarlandı, input çakışmaları giderildi, butonlar alta alındı.
 - ✅ **FrmGiderler:** 50px spacing standardı uygulandı, Notlar (RichTextBox) alanı çakışması düzeltildi.
 - ✅ **FrmNotlar:** "Oluşturan" ve "Hitap" alanları ayrıldı, dikey boşluklar standartlaştırıldı, AutoScroll eklendi.
 
 ## Aktif Kararlar ve Düşünceler
+
+### UI/UX Dönüşümü (Single Window)
+- **Sorun:** MDI pencereleri maksimize edildiğinde Navbar butonlarını gizliyor ve eski bir kullanım hissi veriyor.
+- **Karar:** MDI yapısından **Panel Embedding** yapısına geçiş. Formlar pencere yerine "Sayfa" olarak `pnlMainContent` içinde açılacak.
+- **RAG Entegrasyonu:** AI Asistanı (`FrmAiChat`), ana içeriği kapatmamak için sağ tarafta açılır/kapanır bir **Sidebar (Panel)** olarak tasarlanacak.
 
 ### Tasarım Kararları
 - **Renk Paleti:** Modern Mavi (Microsoft Teams inspired) seçildi

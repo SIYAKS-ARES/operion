@@ -160,38 +160,75 @@ namespace operion.Presentation.Controls
         #region Apply Theme to Controls
 
         /// <summary>
-        /// Forma tema uygular (tüm child control'leri dahil)
+        /// Forma tema uygular (tüm child control'leri dahil) - GÜVENLİ VERSİYON
+        /// </summary>
+        /// <summary>
+        /// Forma tema uygular (tüm child control'leri dahil) - GÜVENLİ VERSİYON
         /// </summary>
         public static void ApplyTheme(Form form)
         {
-            if (form == null) return;
+            if (form == null || form.IsDisposed) return;
 
-            // Form arka planı
-            form.BackColor = DesignSystem.Colors.Background;
-            form.ForeColor = DesignSystem.Colors.Text;
-            if (form.IsMdiChild)
+            try 
             {
-                form.WindowState = FormWindowState.Maximized;
-            }
+                // Layout işlemlerini durdur (performans ve görsel düzgünlük için)
+                form.SuspendLayout();
 
-            // Tüm child control'lere tema uygula
-            ApplyThemeToControls(form.Controls);
+                // Form arka planı
+                form.BackColor = DesignSystem.Colors.Background;
+                form.ForeColor = DesignSystem.Colors.Text;
+                if (form.IsMdiChild)
+                {
+                    form.WindowState = FormWindowState.Maximized;
+                }
+
+                // Tüm child control'lere tema uygula
+                ApplyThemeToControls(form.Controls);
+
+                // Layout işlemlerini devam ettir
+                form.ResumeLayout(false);
+                form.PerformLayout();
+            }
+            catch (Exception ex)
+            {
+                // Kritik hata oluşursa uygulamayı çökertme, logla
+                System.Diagnostics.Debug.WriteLine($"Tema uygulama hatası: {ex.Message}");
+                // Hata durumunda da layout'u serbest bırakmaya çalış
+                try { form.ResumeLayout(false); } catch { }
+            }
         }
 
         /// <summary>
-        /// Control koleksiyonuna tema uygular (recursive)
+        /// Control koleksiyonuna tema uygular (recursive) - GÜVENLİ VERSİYON
         /// </summary>
         private static void ApplyThemeToControls(Control.ControlCollection controls)
         {
-            foreach (Control control in controls)
-            {
-                ApplyThemeToControl(control);
+            if (controls == null) return;
 
-                // Alt kontrollere de uygula
-                if (control.HasChildren)
+            // Koleksiyon modified hatasını önlemek için tersten for döngüsü veya kopya kullan
+            // Bazı kontroller özellik değişince koleksiyonu güncelleyebilir
+            try
+            {
+                for (int i = 0; i < controls.Count; i++)
                 {
-                    ApplyThemeToControls(control.Controls);
+                    // Index out of range koruması
+                    if (i >= controls.Count) break;
+                    
+                    Control control = controls[i];
+                    if (control == null || control.IsDisposed) continue;
+
+                    ApplyThemeToControl(control);
+
+                    // Alt kontrollere de uygula
+                    if (control.HasChildren)
+                    {
+                        ApplyThemeToControls(control.Controls);
+                    }
                 }
+            }
+            catch
+            {
+                // Koleksiyon erişim hatası olursa yut, kritik değil
             }
         }
 
@@ -200,13 +237,17 @@ namespace operion.Presentation.Controls
         /// </summary>
         private static void ApplyThemeToControl(Control control)
         {
-            switch (control)
+            if (control == null || control.IsDisposed) return;
+
+            try
             {
-                case TabPage tabPage:
-                    // TabPage, Panel'den türediği için Panel'den önce kontrol edilmeli
-                    tabPage.BackColor = DesignSystem.Colors.Background;
-                    tabPage.ForeColor = DesignSystem.Colors.Text;
-                    break;
+                switch (control)
+                {
+                    case TabPage tabPage:
+                        // TabPage, Panel'den türediği için Panel'den önce kontrol edilmeli
+                        tabPage.BackColor = DesignSystem.Colors.Background;
+                        tabPage.ForeColor = DesignSystem.Colors.Text;
+                        break;
 
                 case Panel panel:
                     panel.BackColor = DesignSystem.Colors.Surface;
@@ -297,6 +338,11 @@ namespace operion.Presentation.Controls
                         control.BackColor = DesignSystem.Colors.Surface;
                     }
                     break;
+            }
+            }
+            catch
+            {
+                // Kontrol bazlı hataları yut
             }
         }
 

@@ -13,6 +13,12 @@
 - **Entity Framework Core 10.0:** ORM framework
 - **Microsoft.Data.Sqlite 10.0.0:** SQLite provider
 
+### AI ve RAG Stack
+- **Semantic Kernel:** AI Orchestration
+- **Google Gemini API:** Embedding (embedding-001) ve Generation (gemini-1.5-flash)
+- **SQLite VSS / Memory:** Vektör depolama
+- **NUnit:** Otomatik RAG testleri
+
 ### NuGet Paketleri
 
 ```xml
@@ -23,6 +29,8 @@
 - Newtonsoft.Json (13.0.4)
 - System.Configuration.ConfigurationManager (10.0.0)
 - Microsoft.VisualStudio.Services.NuGet.CredentialProvider (0.37.0)
+- Microsoft.SemanticKernel (1.x)
+- Microsoft.SemanticKernel.Connectors.Sqlite (1.x)
 ```
 
 ## Geliştirme Ortamı

@@ -23,7 +23,7 @@ bld/
 [Ll]og/
 [Ll]ogs/
 Logs/
-Reports/
+
 TestResults/
 *.html
 *.log

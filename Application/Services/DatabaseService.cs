@@ -19,27 +19,34 @@ namespace operion.Application.Services
         /// </summary>
         private static string GetSqlScriptPath()
         {
-            // Önce build output dizininde ara
-            string outputPath = Path.Combine(AppContext.BaseDirectory, "DB", "TicariOtomasyon_SQLite.sql");
+            // 1. Önce build output dizininde ara (Infrastructure altinda)
+            string outputPath = Path.Combine(AppContext.BaseDirectory, "Infrastructure", "Data", "DB", "TicariOtomasyon_SQLite.sql");
             if (File.Exists(outputPath))
             {
                 return outputPath;
             }
+
+            // 2. Eski yolda da ara (Geriye donuk uyumluluk veya farkli kopyalama ayarlari icin)
+            string legacyPath = Path.Combine(AppContext.BaseDirectory, "DB", "TicariOtomasyon_SQLite.sql");
+            if (File.Exists(legacyPath))
+            {
+                return legacyPath;
+            }
             
-            // Kaynak dizininde ara (proje kök dizini)
+            // 3. Kaynak dizininde ara (proje kök dizini) - Development ortamı için
             // AppContext.BaseDirectory genellikle bin\Debug\net10.0-windows\ gibi bir yol
-            // Kaynak dizini için 3 seviye yukarı çıkmalıyız
+            // Proje köküne çıkmak için 3-4 seviye yukarı
             string? projectRoot = Directory.GetParent(AppContext.BaseDirectory)?.Parent?.Parent?.Parent?.FullName;
             if (!string.IsNullOrEmpty(projectRoot))
             {
-                string sourcePath = Path.Combine(projectRoot, "operion", "DB", "TicariOtomasyon_SQLite.sql");
+                string sourcePath = Path.Combine(projectRoot, "operion", "Infrastructure", "Data", "DB", "TicariOtomasyon_SQLite.sql");
                 if (File.Exists(sourcePath))
                 {
                     return sourcePath;
                 }
             }
             
-            // Hiçbir yerde bulunamazsa build output yolunu döndür (hata mesajı için)
+            // Bulunamazsa varsayılan olarak output path'i döndür (hata mesajı için)
             return outputPath;
         }
         

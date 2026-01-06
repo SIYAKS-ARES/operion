@@ -20,6 +20,16 @@ namespace operion.Presentation.Forms.Customers
 
         private void FrmRehber_Load(object sender, EventArgs e)
         {
+            LoadData();
+        }
+
+        private void FrmRehber_Activated(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void LoadData()
+        {
             try
             {
                 // Müşteri Bilgileri Getirme

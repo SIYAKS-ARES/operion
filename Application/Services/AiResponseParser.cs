@@ -23,28 +23,38 @@ namespace operion.Application.Services
                 var sections = SplitIntoSections(aiResponse);
                 
                 // Özet maddeleri
-                if (sections.ContainsKey("özet") || sections.ContainsKey("summary"))
+                // Özet maddeleri
+                if (sections.ContainsKey("ÖZET") || sections.ContainsKey("Özet") || sections.ContainsKey("SUMMARY"))
                 {
-                    var summarySection = sections.ContainsKey("özet") ? sections["özet"] : sections["summary"];
+                    var summarySection = sections.ContainsKey("ÖZET") ? sections["ÖZET"] : 
+                                         sections.ContainsKey("Özet") ? sections["Özet"] : sections["SUMMARY"];
                     result.SummaryPoints = ExtractBulletPoints(summarySection);
                 }
                 else
                 {
                     // Başlık yoksa ilk kısmı özet kabul et
-                    var firstPart = aiResponse.Split(new[] { "aksiyon", "action" }, StringSplitOptions.None)[0];
+                    var firstPart = Regex.Split(aiResponse, "aksiyon|action|AKSİYON|ACTION", RegexOptions.IgnoreCase)[0];
                     result.SummaryPoints = ExtractBulletPoints(firstPart);
                 }
                 
                 // Aksiyon maddeleri
-                if (sections.ContainsKey("aksiyon") || sections.ContainsKey("action"))
+                if (sections.ContainsKey("AKSİYON") || sections.ContainsKey("Aksiyon") || 
+                    sections.ContainsKey("AKSİYON MADDELERİ") || sections.ContainsKey("Aksiyon Maddeleri") ||
+                    sections.ContainsKey("ACTION"))
                 {
-                    var actionSection = sections.ContainsKey("aksiyon") ? sections["aksiyon"] : sections["action"];
+                    string actionSection = "";
+                    if (sections.ContainsKey("AKSİYON")) actionSection = sections["AKSİYON"];
+                    else if (sections.ContainsKey("Aksiyon")) actionSection = sections["Aksiyon"];
+                    else if (sections.ContainsKey("AKSİYON MADDELERİ")) actionSection = sections["AKSİYON MADDELERİ"];
+                    else if (sections.ContainsKey("Aksiyon Maddeleri")) actionSection = sections["Aksiyon Maddeleri"];
+                    else actionSection = sections["ACTION"];
+                    
                     result.ActionItems = ExtractBulletPoints(actionSection);
                 }
                 else
                 {
                     // Aksiyon başlığı yoksa ikinci kısmı aksiyon kabul et
-                    var parts = aiResponse.Split(new[] { "aksiyon", "action" }, StringSplitOptions.None);
+                    var parts = Regex.Split(aiResponse, "aksiyon|action|AKSİYON|ACTION", RegexOptions.IgnoreCase);
                     if (parts.Length > 1)
                     {
                         result.ActionItems = ExtractBulletPoints(parts[1]);
@@ -54,6 +64,11 @@ namespace operion.Application.Services
                 // Ham metin
                 result.RawText = aiResponse;
                 result.ParseSuccess = result.SummaryPoints.Count > 0;
+                
+                if (!result.ParseSuccess) 
+                {
+                   result.ErrorMessage = $"No summary points found. Sections found: {string.Join(", ", sections.Keys)}";
+                }
             }
             catch (Exception ex)
             {
@@ -103,13 +118,20 @@ namespace operion.Application.Services
             
             // Başlık pattern'leri: ##, **, veya büyük harf başlık
             // \s yerine space kullanarak newlines'ın başlığa dahil olmasını engelliyoruz
-            var headerPattern = @"(?:##\s*|###\s*|\*\*)?([A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜ ]+):?(?:\*\*)?";
+            // Başlık pattern'leri: ##, **, veya büyük harf başlık
+            // \s yerine space kullanarak newlines'ın başlığa dahil olmasını engelliyoruz
+            // RegexOptions.Singleline kullanmıyoruz, satır satır bakmıyoruz ama tüm metinde arıyoruz
+            
+            // Pattern: (Opsiyonel ##/**) (BAŞLIK) (Opsiyonel :/**) (Satır sonu veya newline)
+            // Not: Regex'i biraz daha esnek yapıyoruz
+            var headerPattern = @"(?:^|[\r\n])\s*(?:##|###|\*\*)?\s*([a-zA-ZçÇğĞıİöÖşŞüÜ][a-zA-ZçÇğĞıİöÖşŞüÜ\s]*?)(?::|\*\*)?\s*(?:$|[\r\n])";
             var matches = Regex.Matches(text, headerPattern);
             
             for (int i = 0; i < matches.Count; i++)
             {
                 var match = matches[i];
-                var title = match.Groups[1].Value.Trim().ToLower(new System.Globalization.CultureInfo("tr-TR"));
+                // Başlığı olduğu gibi al, key olarak kullanırken dikkatli olacağız
+                var title = match.Groups[1].Value.Trim();
                 
                 var startIndex = match.Index + match.Length;
                 var endIndex = (i < matches.Count - 1) ? matches[i + 1].Index : text.Length;

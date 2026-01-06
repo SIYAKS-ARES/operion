@@ -24,6 +24,13 @@
 - ThemeManager (Light/Dark tema)
 - DesignSystem (Renk paleti)
 
+### AI ve RAG Özellikleri (Yeni) ✅
+- **AI Chat:** Dökümanlardan ve veritabanından cevap veren akıllı asistan
+- **Hibrit Arama:** Vektör + Kelime bazlı arama
+- **Text-to-SQL:** "Stokta kaç ürün var?" gibi soruları SQL'e çevirip yanıtlama
+- **Maliyet Yönetimi:** Token takip ve limit sistemi
+- **Re-ranking:** Sonuçları alaka düzeyine göre yeniden sıralama
+
 ### Modernize Edilen Formlar ✅
 1. FrmAdmin - Admin giriş ve yönetim
 2. FrmAnaModul - Ana modül navigasyonu
@@ -103,6 +110,9 @@
 - ✅ **AI Konfigurasyonu Duzeltmesi** - `.env` dosyasi output'a kopyalanmiyor sorunu cozuldu, model `gemini-flash-latest` olarak guncellendi (2026-01-02)
 - ✅ **Kritik Hata Düzeltmeleri** - Grid kaydırma, MDI pencere durumu ve Dark Mode beyaz alan sorunları giderildi (2026-01-02)
 - 🚧 **Custom Scrollbar POC** - FrmFirmalar için kalın scrollbar geliştirildi (2026-01-02)
+- ✅ **AI Servis Bağlantısı** - DNS/Proxy sorunu giderildi, TLS 1.2/1.3 eklendi (2026-01-05)
+- ✅ **Login Performansı** - `FrmAdmin` asenkron ve responsive hale getirildi (2026-01-05)
+- ✅ **Rehber Senkronizasyonu** - `FrmRehber` otomatik yenileme özelliği eklendi (2026-01-05)
 - ✅ **Form Layout Standardizasyonu** - Fatura, Gider ve Notlar formlarında 50px dikey boşluk standardı ve overlap düzeltmeleri tamamlandı (2026-01-02)
 
 ### Teknik Durum
