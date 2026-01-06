@@ -105,7 +105,7 @@ namespace operion.Presentation.Forms.Ai
                         {
                             string summaryPrompt = $"Kullanıcı Sorusu: {userQuery}\n\nVeritabanı Sonucun: {dataResult}\n\nBu sonucu kullanıcıya doğal dilde özetle.";
                             var summary = await _aiService.SummarizeAsync(summaryPrompt);
-                            finalResponse = $"{summary.Content}\n\n[Teknik detay - SQL]:\n{sql}";
+                            finalResponse = summary.Content; // SQL detayını gizledik
                         }
                     }
                 }
@@ -188,6 +188,12 @@ namespace operion.Presentation.Forms.Ai
             {
                if (q.Length < 35)
                   return "Ben Operion Ticari Otomasyon Asistanıyım. Size verilerinizle ilgili yardımcı olmak için buradayım.";
+            }
+
+            if (q.Contains("ne iş yapıyorsun") || q.Contains("ne işe yarıyorsun") || q.Contains("görevin ne") || q.Contains("neler yapabilirsin"))
+            {
+               if (q.Length < 50)
+                  return "Veritabanınızdaki stokları, müşterileri ve faturaları analiz edebilirim. Bana 'Dolar ne kadar?' veya 'En çok satan ürün hangisi?' gibi sorular sorabilirsiniz.";
             }
 
             return null;
