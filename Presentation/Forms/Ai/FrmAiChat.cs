@@ -68,6 +68,16 @@ namespace operion.Presentation.Forms.Ai
             try
             {
                 // 2. Retrieval & Generation Strategy
+                // Önce yerel (hazır) cevapları kontrol et - Hız ve Maliyet için
+                string localResponse = CheckLocalResponses(userQuery);
+                if (!string.IsNullOrEmpty(localResponse))
+                {
+                    // Yerel cevap varsa direkt göster, API'ye gitme
+                     rtbChat.AppendText($"AI:\n{localResponse}\n{new string('-', 30)}\n\n");
+                     rtbChat.ScrollToCaret();
+                     return;
+                }
+
                 var loadingMsg = AppendMessage("AI", "Düşünüyor...", false);
                 
                 string finalResponse = "";
@@ -140,6 +150,47 @@ namespace operion.Presentation.Forms.Ai
             rtbChat.ScrollToCaret();
             
             return sb.ToString(); 
+        }
+
+         /// <summary>
+        /// Basit selamlaşma ve soruları yerel olarak yanıtlar (API tasarrufu ve hız için)
+        /// </summary>
+        private string? CheckLocalResponses(string query)
+        {
+            var q = query.ToLower(new System.Globalization.CultureInfo("tr-TR")).Trim();
+
+            // Sadece selamlaşma ise (örn. uzunluk < 30) cevap ver. 
+            // Uzun cümleler içinde "merhaba" geçiyorsa muhtemelen bir soru cümlesidir.
+            if (q.Length > 40) return null;
+
+            // Tam eşleşmeler veya içerir kontrolleri
+            if (q == "merhaba" || q == "selam" || q.StartsWith("merhaba ") || q.StartsWith("selam "))
+                return "Merhaba! Size nasıl yardımcı olabilirim?";
+
+            if (q.Contains("nasılsın") || q.Contains("nasilsin"))
+                return "Ben bir yapay zeka asistanıyım, her zaman çalışmaya hazırım! Siz nasılsınız?";
+
+            if (q.Contains("günaydın") || q.Contains("gunaydin"))
+                return "Günaydın! Güne başlamak için harika bir zaman.";
+
+            if (q.Contains("iyi akşamlar") || q.Contains("iyi aksamlar"))
+                return "İyi akşamlar. Mesai bitse de ben buradayım.";
+
+            // "Teşekkür" kontrolü - Sadece teşekkür ediyorsa yakala
+            if (q.StartsWith("teşekkür") || q.StartsWith("tesekkur") || q.StartsWith("sağol") || q.StartsWith("sagol"))
+            {
+                 // Eğer "Teşekkürler ama stoklar ne durumda?" giib bir şeyse null dön
+                 if (q.Length < 25)
+                     return "Rica ederim, her zaman yardımcı olmaktan mutluluk duyarım.";
+            }
+
+            if (q.Contains("kimsin") || q.Contains("adın ne") || q.Contains("sen kimsin"))
+            {
+               if (q.Length < 35)
+                  return "Ben Operion Ticari Otomasyon Asistanıyım. Size verilerinizle ilgili yardımcı olmak için buradayım.";
+            }
+
+            return null;
         }
 
         private async void FrmAiChat_Load(object sender, EventArgs e)
