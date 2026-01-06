@@ -114,6 +114,8 @@
 - ✅ **Login Performansı** - `FrmAdmin` asenkron ve responsive hale getirildi (2026-01-05)
 - ✅ **Rehber Senkronizasyonu** - `FrmRehber` otomatik yenileme özelliği eklendi (2026-01-05)
 - ✅ **Form Layout Standardizasyonu** - Fatura, Gider ve Notlar formlarında 50px dikey boşluk standardı ve overlap düzeltmeleri tamamlandı (2026-01-02)
+- ✅ **Single Window Transformation** - MDI yapısı Panel Embedding sistemine çevrildi (2026-01-06)
+- ✅ **AI Sidebar Integration** - `FrmAiChat` sağ panelde entegre edildi ve responsive hale getirildi (2026-01-06)
 
 ### Teknik Durum
 - ✅ Veritabanı yapısı tamamlandı

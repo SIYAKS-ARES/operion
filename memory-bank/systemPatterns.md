@@ -65,9 +65,9 @@ operion/
 - **Safeguard:** Güvenlik (`SqlGenerationService.IsSafeSql`, `TokenUsageService`)
 
 ### 4. Form Pattern
-- **Host:** `FrmAnaModul` (Single Window Container)
-- **Page:** Child formlar (`FrmUrunler`, vb.) - `TopLevel=false`, `Dock=Fill`
-- **Sidebar:** AI Chat (`FrmAiChat`) - Sağ panelde yerleşik
+- **Host:** `FrmAnaModul` (Single Window Host - Panel Embedding)
+- **Page:** Child formlar (`FrmUrunler`, vb.) - `TopLevel=false`, `Dock=Fill`, `FormBorderStyle=None`
+- **Sidebar:** AI Chat (`FrmAiChat`) - Sağ panelde (`pnlAiSidebar`) yerleşik, Collapsible
 - Her form için üç dosya:
   - `FrmXxx.cs` - Kod dosyası
   - `FrmXxx.Designer.cs` - Tasarım dosyası

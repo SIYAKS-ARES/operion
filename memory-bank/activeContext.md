@@ -9,6 +9,12 @@
 **Son Güncelleme:** 2026-01-01 (AI Testleri ve Hata Düzeltmeleri Tamamlandı)  
 **Hedef:** 2019 tasarımından 2026 modern tasarımına geçiş
 
+### Single Window & AI Sidebar (2026-01-06)
+- **MDI Kaldırıldı:** `IsMdiContainer` iptal edildi, yerine Panel Embedding (`ShowFormInPanel`) sistemi getirildi.
+- **AI Sidebar:** `FrmAiChat` sağ tarafta (Dock=Right, 300px) entegre edildi.
+- **Responsiveness:** Dashboard için `AutoScroll` aktif edildi, Sidebar genişliği optimize edildi.
+- **Navigation:** Navbar menüleri artık formları yeni pencere yerine ana panelde açıyor.
+
 ### Currency and News Loading Fix (2026-01-06)
 - **Problem:** `HttpClient.Timeout` exception (10s) on startup.
 - **Fix:** Increased timeout to 30s, implemented shared `HttpClient`, and added robust error handling.

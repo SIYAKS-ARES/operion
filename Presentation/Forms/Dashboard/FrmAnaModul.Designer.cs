@@ -1,5 +1,4 @@
 using operion.Presentation.Controls;
-using operion.Presentation.Controls;
 
 namespace operion.Presentation.Forms.Dashboard
 {
@@ -29,6 +28,33 @@ namespace operion.Presentation.Forms.Dashboard
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.PictureBox pbLogo;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblKullanici;
+        private System.Windows.Forms.Label btnAiChat;
+        private System.Windows.Forms.Label btnThemeToggle;
+        private ModernMenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem menuAnaSayfa;
+        private System.Windows.Forms.ToolStripMenuItem menuUrunler;
+        private System.Windows.Forms.ToolStripMenuItem menuMusteriler;
+        private System.Windows.Forms.ToolStripMenuItem menuFirmalar;
+        private System.Windows.Forms.ToolStripMenuItem menuPersoneller;
+        private System.Windows.Forms.ToolStripMenuItem menuStoklar;
+        private System.Windows.Forms.ToolStripMenuItem menuFaturalar;
+        private System.Windows.Forms.ToolStripMenuItem menuHareketler;
+        private System.Windows.Forms.ToolStripMenuItem menuGiderler;
+        private System.Windows.Forms.ToolStripMenuItem menuBankalar;
+        private System.Windows.Forms.ToolStripMenuItem menuKasa;
+        private System.Windows.Forms.ToolStripMenuItem menuNotlar;
+        private System.Windows.Forms.ToolStripMenuItem menuRehber;
+        private System.Windows.Forms.ToolStripMenuItem menuRaporlar;
+        private System.Windows.Forms.ToolStripMenuItem menuAyarlar;
+        private System.Windows.Forms.Panel pnlMainContent;
+        private System.Windows.Forms.Panel pnlAiSidebar;
+
+        // ... (Existing InitializeComponent code) ...
+
         private void InitializeComponent()
         {
             this.panelHeader = new System.Windows.Forms.Panel();
@@ -53,6 +79,8 @@ namespace operion.Presentation.Forms.Dashboard
             this.menuRehber = new System.Windows.Forms.ToolStripMenuItem();
             this.menuRaporlar = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAyarlar = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlMainContent = new System.Windows.Forms.Panel();
+            this.pnlAiSidebar = new System.Windows.Forms.Panel();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -293,15 +321,33 @@ namespace operion.Presentation.Forms.Dashboard
             this.menuAyarlar.Text = "⚙️ Ayarlar";
             this.menuAyarlar.Click += new System.EventHandler(this.BtnAyarlar_Click);
             // 
+            // pnlAiSidebar
+            // 
+            this.pnlAiSidebar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlAiSidebar.Location = new System.Drawing.Point(1020, 108);
+            this.pnlAiSidebar.Name = "pnlAiSidebar";
+            this.pnlAiSidebar.Size = new System.Drawing.Size(300, 641);
+            this.pnlAiSidebar.TabIndex = 2;
+            this.pnlAiSidebar.Visible = false;
+            // 
+            // pnlMainContent
+            // 
+            this.pnlMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMainContent.Location = new System.Drawing.Point(0, 108);
+            this.pnlMainContent.Name = "pnlMainContent";
+            this.pnlMainContent.Size = new System.Drawing.Size(1020, 641);
+            this.pnlMainContent.TabIndex = 3;
+            // 
             // FrmAnaModul
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = DesignSystem.Colors.Background;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.pnlMainContent);
+            this.Controls.Add(this.pnlAiSidebar);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panelHeader);
-            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmAnaModul";
             this.Text = "operion - Ticari Otomasyon";
@@ -319,28 +365,6 @@ namespace operion.Presentation.Forms.Dashboard
 
         #endregion
 
-        private System.Windows.Forms.Panel panelHeader;
-        private System.Windows.Forms.PictureBox pbLogo;
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label lblKullanici;
-        private System.Windows.Forms.Label btnAiChat;
-        private System.Windows.Forms.Label btnThemeToggle;
-        private ModernMenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem menuAnaSayfa;
-        private System.Windows.Forms.ToolStripMenuItem menuUrunler;
-        private System.Windows.Forms.ToolStripMenuItem menuMusteriler;
-        private System.Windows.Forms.ToolStripMenuItem menuFirmalar;
-        private System.Windows.Forms.ToolStripMenuItem menuPersoneller;
-        private System.Windows.Forms.ToolStripMenuItem menuStoklar;
-        private System.Windows.Forms.ToolStripMenuItem menuFaturalar;
-        private System.Windows.Forms.ToolStripMenuItem menuHareketler;
-        private System.Windows.Forms.ToolStripMenuItem menuGiderler;
-        private System.Windows.Forms.ToolStripMenuItem menuBankalar;
-        private System.Windows.Forms.ToolStripMenuItem menuKasa;
-        private System.Windows.Forms.ToolStripMenuItem menuNotlar;
-        private System.Windows.Forms.ToolStripMenuItem menuRehber;
-        private System.Windows.Forms.ToolStripMenuItem menuRaporlar;
-        private System.Windows.Forms.ToolStripMenuItem menuAyarlar;
     }
 }
 

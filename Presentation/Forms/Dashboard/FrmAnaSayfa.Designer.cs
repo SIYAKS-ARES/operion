@@ -243,6 +243,8 @@ namespace operion.Presentation.Forms.Dashboard
             this.Controls.Add(this.cardAzalanStoklar);
             this.Name = "FrmAnaSayfa";
             this.Text = "Dashboard - operion";
+            this.AutoScroll = true;
+            this.AutoScrollMinSize = new System.Drawing.Size(1300, 600);
             this.Load += new System.EventHandler(this.FrmAnaSayfa_Load);
             this.cardAzalanStoklar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grd_azalanstoklar)).EndInit();

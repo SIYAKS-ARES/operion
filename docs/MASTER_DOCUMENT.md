@@ -3,7 +3,7 @@
 **Proje:** operion (Ticari Otomasyon)  
 **Platform:** .NET 10 Windows Forms  
 **Veritabanı:** SQLite (Entity Framework Core)  
-**Son Güncelleme:** 2026-01-02  
+**Son Güncelleme:** 2026-01-06  
 **Versiyon:** 1.0.0
 
 ---
@@ -795,9 +795,12 @@ Proje, kurumsal seviyede **Retrieval-Augmented Generation (RAG)** mimarisine sah
 - Logo ve başlık alanı (sol üst köşe, 44x44px logo)
 - İkonlu menü öğeleri (emoji ikonlar)
 - Hover efektleri
+- **Single Window Architecture:** MDI yerine Panel Embedding yapısı
+- **Content Panel:** Sayfalar `pnlMainContent` içinde açılır
+- **AI Sidebar:** Sağ tarafta açılır/kapanır akıllı asistan paneli (300px)
+- **Responsive Design:** Dashboard ve içerik `AutoScroll` ile uyumlu
 - User profile alanı (sağ üst köşe)
 - Dark mode toggle butonu (header'da)
-- MDI background modernizasyonu
 - **Navigasyon Bar İyileştirmesi (2026-01-02):** Yükseklik 60px, Bold font, Kalın aktif sayfa vurgusu
 
 **FrmAnaSayfa (Dashboard):**

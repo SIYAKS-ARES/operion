@@ -11,6 +11,7 @@ using operion.Presentation.Forms.Invoices;
 using operion.Presentation.Forms.Financial;
 using operion.Presentation.Forms.Reports;
 using operion.Presentation.Forms.Settings;
+using operion.Presentation.Forms.Ai;
 
 namespace operion.Presentation.Forms.Dashboard
 {
@@ -43,21 +44,61 @@ namespace operion.Presentation.Forms.Dashboard
         private FrmAyarlar? frmayarlar;
         private FrmKasa? frmkasa;
         private FrmAnaSayfa? frmanasayfa;
+        
+        // AI Chat Reference
+        private operion.Presentation.Forms.Ai.FrmAiChat? frmAiChat;
 
         private void FrmAnaModul_Load(object sender, EventArgs e)
         {
             // Kullanıcı bilgisini göster
             UpdateUserInfo();
+
+            // AI Chat'i başlat (Sidebar için)
+            InitAiChat();
             
             // Ana sayfa formunu otomatik aç
             if (frmanasayfa == null || frmanasayfa.IsDisposed)
             {
                 frmanasayfa = new FrmAnaSayfa();
-                frmanasayfa.MdiParent = this;
-                frmanasayfa.WindowState = FormWindowState.Maximized;
-                frmanasayfa.Show();
-                SetActiveMenuItem(menuAnaSayfa);
             }
+            ShowFormInPanel(frmanasayfa);
+            SetActiveMenuItem(menuAnaSayfa);
+        }
+
+        private void InitAiChat()
+        {
+            if (frmAiChat == null || frmAiChat.IsDisposed)
+            {
+                frmAiChat = new operion.Presentation.Forms.Ai.FrmAiChat();
+                frmAiChat.TopLevel = false;
+                frmAiChat.FormBorderStyle = FormBorderStyle.None;
+                frmAiChat.Dock = DockStyle.Fill;
+                
+                // pnlAiSidebar controls must exist in Designer!
+                pnlAiSidebar.Controls.Add(frmAiChat);
+                frmAiChat.Show();
+            }
+        }
+
+        private void btnAiChat_Click(object? sender, EventArgs e)
+        {
+            // Toggle Sidebar
+            pnlAiSidebar.Visible = !pnlAiSidebar.Visible;
+        }
+
+        private void ShowFormInPanel(Form frm)
+        {
+            // Mevcut içeriği temizle
+            pnlMainContent.Controls.Clear();
+
+            // Form ayarları
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+
+            // Panele ekle ve göster
+            pnlMainContent.Controls.Add(frm);
+            frm.Show();
         }
 
         private void SetActiveMenuItem(ToolStripMenuItem activeItem)
@@ -109,30 +150,21 @@ namespace operion.Presentation.Forms.Dashboard
             ApplyTheme();
         }
 
-        private void btnAiChat_Click(object sender, EventArgs e)
-        {
-            var frm = new operion.Presentation.Forms.Ai.FrmAiChat();
-            frm.Show(); // Modeless dialog (non-blocking) allow usage while chatting
-            // or frm.ShowDialog(); if you want blocking
-        }
-
         private void ApplyTheme()
         {
             btnThemeToggle.Text = ThemeManager.IsDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode";
         }
 
-        // TODO: DevExpress XtraBars.ItemClick → MenuStrip/ToolStrip Click event değiştirildi
+        // --- Navigation Handlers ---
+
         private void BtnUrunler_Click(object sender, EventArgs e)
         {
             if (frmurunler == null || frmurunler.IsDisposed)
             {
                 frmurunler = new FrmUrunler();
-                frmurunler.MdiParent = this;
-                frmurunler.WindowState = FormWindowState.Maximized;
-                frmurunler.Show();
             }
+            ShowFormInPanel(frmurunler);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmurunler.BringToFront();
         }
 
         private void BtnMusteriler_Click(object sender, EventArgs e)
@@ -140,12 +172,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmmusteriler == null || frmmusteriler.IsDisposed)
             {
                 frmmusteriler = new FrmMusteriler();
-                frmmusteriler.MdiParent = this;
-                frmmusteriler.WindowState = FormWindowState.Maximized;
-                frmmusteriler.Show();
             }
+            ShowFormInPanel(frmmusteriler);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmmusteriler.BringToFront();
         }
 
         private void BtnFirmalar_Click(object sender, EventArgs e)
@@ -153,12 +182,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmfirmalar == null || frmfirmalar.IsDisposed)
             {
                 frmfirmalar = new FrmFirmalar();
-                frmfirmalar.MdiParent = this;
-                frmfirmalar.WindowState = FormWindowState.Maximized;
-                frmfirmalar.Show();
             }
+            ShowFormInPanel(frmfirmalar);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmfirmalar.BringToFront();
         }
 
         private void BtnPersoneller_Click(object sender, EventArgs e)
@@ -166,12 +192,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmpersoneller == null || frmpersoneller.IsDisposed)
             {
                 frmpersoneller = new FrmPersoneller();
-                frmpersoneller.MdiParent = this;
-                frmpersoneller.WindowState = FormWindowState.Maximized;
-                frmpersoneller.Show();
             }
+            ShowFormInPanel(frmpersoneller);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmpersoneller.BringToFront();
         }
 
         private void BtnRehber_Click(object sender, EventArgs e)
@@ -179,12 +202,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmrehber == null || frmrehber.IsDisposed)
             {
                 frmrehber = new FrmRehber();
-                frmrehber.MdiParent = this;
-                frmrehber.WindowState = FormWindowState.Maximized;
-                frmrehber.Show();
             }
+            ShowFormInPanel(frmrehber);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmrehber.BringToFront();
         }
 
         private void BtnGiderler_Click(object sender, EventArgs e)
@@ -192,12 +212,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmgiderler == null || frmgiderler.IsDisposed)
             {
                 frmgiderler = new FrmGiderler();
-                frmgiderler.MdiParent = this;
-                frmgiderler.WindowState = FormWindowState.Maximized;
-                frmgiderler.Show();
             }
+            ShowFormInPanel(frmgiderler);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmgiderler.BringToFront();
         }
 
         private void BtnBankalar_Click(object sender, EventArgs e)
@@ -205,12 +222,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmbankalar == null || frmbankalar.IsDisposed)
             {
                 frmbankalar = new FrmBankalar();
-                frmbankalar.MdiParent = this;
-                frmbankalar.WindowState = FormWindowState.Maximized;
-                frmbankalar.Show();
             }
+            ShowFormInPanel(frmbankalar);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmbankalar.BringToFront();
         }
 
         private void BtnFaturalar_Click(object sender, EventArgs e)
@@ -218,12 +232,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmfaturalar == null || frmfaturalar.IsDisposed)
             {
                 frmfaturalar = new FrmFaturalar();
-                frmfaturalar.MdiParent = this;
-                frmfaturalar.WindowState = FormWindowState.Maximized;
-                frmfaturalar.Show();
             }
+            ShowFormInPanel(frmfaturalar);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmfaturalar.BringToFront();
         }
 
         private void BtnNotlar_Click(object sender, EventArgs e)
@@ -231,12 +242,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmnotlar == null || frmnotlar.IsDisposed)
             {
                 frmnotlar = new FrmNotlar();
-                frmnotlar.MdiParent = this;
-                frmnotlar.WindowState = FormWindowState.Maximized;
-                frmnotlar.Show();
             }
+            ShowFormInPanel(frmnotlar);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmnotlar.BringToFront();
         }
 
         private void BtnHareketler_Click(object sender, EventArgs e)
@@ -244,12 +252,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmhareketler == null || frmhareketler.IsDisposed)
             {
                 frmhareketler = new FrmHareketler();
-                frmhareketler.MdiParent = this;
-                frmhareketler.WindowState = FormWindowState.Maximized;
-                frmhareketler.Show();
             }
+            ShowFormInPanel(frmhareketler);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmhareketler.BringToFront();
         }
 
         private void BtnRaporlar_Click(object sender, EventArgs e)
@@ -257,12 +262,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmraporlar == null || frmraporlar.IsDisposed)
             {
                 frmraporlar = new FrmRaporlar();
-                frmraporlar.MdiParent = this;
-                frmraporlar.WindowState = FormWindowState.Maximized;
-                frmraporlar.Show();
             }
+            ShowFormInPanel(frmraporlar);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmraporlar.BringToFront();
         }
 
         private void BtnStoklar_Click(object sender, EventArgs e)
@@ -270,12 +272,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmstoklar == null || frmstoklar.IsDisposed)
             {
                 frmstoklar = new FrmStoklar();
-                frmstoklar.MdiParent = this;
-                frmstoklar.WindowState = FormWindowState.Maximized;
-                frmstoklar.Show();
             }
+            ShowFormInPanel(frmstoklar);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmstoklar.BringToFront();
         }
 
         private void BtnAyarlar_Click(object sender, EventArgs e)
@@ -283,12 +282,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmayarlar == null || frmayarlar.IsDisposed)
             {
                 frmayarlar = new FrmAyarlar();
-                frmayarlar.MdiParent = this;
-                frmayarlar.WindowState = FormWindowState.Maximized;
-                frmayarlar.Show();
             }
+            ShowFormInPanel(frmayarlar);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmayarlar.BringToFront();
         }
 
         private void BtnKasa_Click(object sender, EventArgs e)
@@ -296,13 +292,10 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmkasa == null || frmkasa.IsDisposed)
             {
                 frmkasa = new FrmKasa();
-                frmkasa.MdiParent = this;
                 frmkasa.kullanici = kullanici;
-                frmkasa.WindowState = FormWindowState.Maximized;
-                frmkasa.Show();
             }
+            ShowFormInPanel(frmkasa);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmkasa.BringToFront();
         }
 
         private void BtnAnaSayfa_Click(object sender, EventArgs e)
@@ -310,13 +303,9 @@ namespace operion.Presentation.Forms.Dashboard
             if (frmanasayfa == null || frmanasayfa.IsDisposed)
             {
                 frmanasayfa = new FrmAnaSayfa();
-                frmanasayfa.MdiParent = this;
-                frmanasayfa.WindowState = FormWindowState.Maximized;
-                frmanasayfa.Show();
             }
+            ShowFormInPanel(frmanasayfa);
             SetActiveMenuItem((ToolStripMenuItem)sender);
-            frmanasayfa.BringToFront();
         }
     }
 }
-
