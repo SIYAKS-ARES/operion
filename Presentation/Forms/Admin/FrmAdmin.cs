@@ -150,6 +150,7 @@ namespace operion.Presentation.Forms.Admin
                             {
                                 txtsifre.HasError = true;
                                 txtsifre.ErrorMessage = "Kullanıcı adı veya şifre hatalı";
+                                MessageBox.Show("Hatalı kullanıcı adı veya şifre!", "Giriş Hatası", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 txtsifre.SelectAll();
                                 txtsifre.Focus();
                             }
