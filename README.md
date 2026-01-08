@@ -112,6 +112,25 @@ Tek dosya halinde çıktı almak için terminal üzerinden şu komutu kullanabil
 dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None /p:ProductName="operion"
 ```
 
+
+---
+
+## 📂 Proje Yapısı
+
+```
+operion/
+├── Application/    # İş mantığı ve Servisler (AI, Database, vb.)
+├── Data/           # EF Core Context ve Migrations
+├── Models/         # Veritabanı Varlıkları (Entities)
+├── Presentation/   # Formlar ve Kullanıcı Arayüzü
+│   ├── Controls/   # Özel UI Bileşenleri (ModernButton, vb.)
+│   └── Forms/      # Uygulama Ekranları
+├── docs/           # Proje Dokümantasyonu
+├── memory-bank/    # Proje Hafızası ve Bağlam Dosyaları
+├── Releases/       # Derlenmiş sürüm dosyaları (.exe)
+└── DB_Backups/     # Veritabanı yedekleri ve SQL scriptleri
+```
+
 ---
 
 ## Lisans ve Katkı

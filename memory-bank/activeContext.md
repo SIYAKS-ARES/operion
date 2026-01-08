@@ -62,6 +62,13 @@ Yok (tümü tamamlandı)
 
 ## Son Değişiklikler
 
+### Release 1.0.0+3 ve Dokümantasyon (2026-01-08)
+- **Sürüm:** 1.0.0+3 yayınlandı. (Release 1.0.0+3)
+- **Login Feedback:** Hatalı girişlerde kullanıcıya uyarı mesajı (MessageBox) gösterilmesi sağlandı.
+- **Root Cleanup:** Kök dizindeki exe ve sql dosyaları `Releases/` ve `DB_Backups/` klasörlerine taşındı.
+- **README:** Baştan sona modernize edildi, emojilerden arındırıldı ve detaylandırıldı.
+- **Master Doc:** Versiyon ve klasör yapısı güncellendi.
+
 ### Tasarım Sistemi
 - Modern renk paleti uygulandı (Microsoft Blue #0078D4)
 - Light/Dark tema desteği eklendi

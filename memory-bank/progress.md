@@ -122,7 +122,11 @@
 - ✅ **Rendering Fix (WS_EX_COMPOSITED)** - Kaydırma bozulmaları, `ModernPanel` üzerinde `WS_EX_COMPOSITED` stili uygulanarak kök nedenden çözüldü (2026-01-07).
 - ✅ **Main Layout Fix** - Header/Navbar yerleşimi düzeltildi ve `AutoScroll` ile responsive yapı güçlendirildi (2026-01-07).
 - ✅ **FrmAdmin UI Cleanup** - "Kullanıcı Bilgileri" butonu giriş sayfasından kaldırılarak final UI sadeleştirildi (2026-01-07).
-- ✅ **Startup Cleanup** - Uygulama açılışındaki gereksiz uyumluluk mesaj kutuları kaldırıldı (2026-01-07).
+- ✅ **Release 1.0.0+3** - Yayınlandı (2026-01-08)
+- ✅ **Login Feedback** - FrmAdmin giriş hatası uyarısı eklendi (2026-01-08)
+- ✅ **Root Cleanup** - Klasör yapısı düzenlendi (2026-01-08)
+- ✅ **Dokümantasyon** - README ve Master Doc güncellendi (2026-01-08)
+
 
 ### Teknik Durum
 - ✅ Veritabanı yapısı tamamlandı

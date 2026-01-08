@@ -3,7 +3,7 @@
 **Proje:** operion (Ticari Otomasyon)  
 **Platform:** .NET 10 Windows Forms  
 **Veritabanı:** SQLite (Entity Framework Core)  
-**Son Güncelleme:** 2026-01-07  
+**Son Güncelleme:** 2026-01-08  
 **Versiyon:** 1.0.0+3
 
 ---
@@ -329,16 +329,18 @@ Database (SQLite)
 
 ```
 operion/
-├── Classes/          # Form sınıfları (UI Layer)
-├── Models/           # Veri modelleri (Entity Framework)
-├── Services/         # İş mantığı servisleri
-├── Data/             # Veritabanı context ve konfigürasyon
-├── Design/           # Tasarım sistemi ve kontroller
-│   ├── Controls/     # Özel kontroller (ModernButton, ModernTextBox, vb.)
-│   ├── ThemeManager.cs
-│   └── DesignSystem.cs
-├── DB/               # SQL script dosyaları
-└── Properties/       # Uygulama özellikleri ve kaynaklar
+├── Application/    # İş mantığı ve Servisler (AI, Database, vb.)
+├── Data/           # EF Core Context ve Migrations
+├── Models/         # Veritabanı Varlıkları (Entities)
+├── Presentation/   # Formlar ve Kullanıcı Arayüzü
+│   ├── Controls/   # Özel UI Bileşenleri (ModernButton, vb.)
+│   └── Forms/      # Uygulama Ekranları
+├── docs/           # Proje Dokümantasyonu
+├── memory-bank/    # Proje Hafızası ve Bağlam Dosyaları
+├── Releases/       # Derlenmiş sürüm dosyaları (.exe)
+└── DB_Backups/     # Veritabanı yedekleri ve SQL scriptleri
+├── Infrastructure/ # Altyapı ve Harici Servisler
+└── Domain/         # Domain Modelleri ve Varlıklar
 ```
 
 ### 3.3 Tasarım Desenleri
