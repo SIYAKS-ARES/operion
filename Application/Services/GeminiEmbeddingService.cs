@@ -80,8 +80,19 @@ namespace operion.Application.Services
                         return CreateEmptyEmbeddings(batch.Count);
                     }
 
-                    var error = await response.Content.ReadAsStringAsync(cancellationToken);
-                    throw new HttpRequestException($"Gemini Embedding API Error: {response.StatusCode} - {error}");
+                    var errorContent = await response.Content.ReadAsStringAsync(cancellationToken);
+                    
+                    // Try to parse friendly error message
+                    string errorMessage = errorContent;
+                    try 
+                    {
+                        var errorJson = JObject.Parse(errorContent);
+                        var msg = errorJson["error"]?["message"]?.ToString();
+                        if (!string.IsNullOrEmpty(msg)) errorMessage = msg;
+                    }
+                    catch {}
+
+                    throw new HttpRequestException($"Gemini Embedding API Error: {response.StatusCode} - {errorMessage}");
                 }
             }
             catch (Exception ex) when (ex.Message.Contains("429") || ex.Message.Contains("TooManyRequests"))

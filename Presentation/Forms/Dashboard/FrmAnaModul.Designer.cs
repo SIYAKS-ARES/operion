@@ -329,14 +329,13 @@ namespace operion.Presentation.Forms.Dashboard
             this.pnlAiSidebar.Size = new System.Drawing.Size(300, 641);
             this.pnlAiSidebar.TabIndex = 2;
             this.pnlAiSidebar.Visible = false;
-            // 
-            // pnlMainContent
-            // 
             this.pnlMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMainContent.Location = new System.Drawing.Point(0, 108);
             this.pnlMainContent.Name = "pnlMainContent";
             this.pnlMainContent.Size = new System.Drawing.Size(1020, 641);
             this.pnlMainContent.TabIndex = 3;
+            this.pnlMainContent.AutoScroll = true;
+            this.pnlMainContent.AutoScrollMinSize = new System.Drawing.Size(1200, 700);
             // 
             // FrmAnaModul
             // 

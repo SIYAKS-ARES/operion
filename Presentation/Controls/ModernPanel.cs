@@ -112,6 +112,23 @@ namespace operion.Presentation.Controls
             };
         }
 
+        protected override void OnScroll(ScrollEventArgs se)
+        {
+            base.OnScroll(se);
+            // Kaydırma sırasında görüntü bozulmalarını önlemek için tüm paneli yeniden çiz
+            this.Invalidate();
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
+                return cp;
+            }
+        }
+
         #endregion
 
         #region Methods

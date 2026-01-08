@@ -38,7 +38,6 @@ namespace operion.Presentation.Forms.Admin
             this.txtkullanicad = new ModernTextBox();
             this.txtsifre = new ModernTextBox();
             this.BtnGirisYap = new ModernButton();
-            this.BtnKullaniciEkle = new ModernButton();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblThemeToggle = new System.Windows.Forms.Label();
             this.loginCard.SuspendLayout();
@@ -63,7 +62,6 @@ namespace operion.Presentation.Forms.Admin
             this.loginCard.Controls.Add(this.txtkullanicad);
             this.loginCard.Controls.Add(this.txtsifre);
             this.loginCard.Controls.Add(this.BtnGirisYap);
-            this.loginCard.Controls.Add(this.BtnKullaniciEkle);
             // 
             // pbLogo
             // 
@@ -128,20 +126,9 @@ namespace operion.Presentation.Forms.Admin
             this.BtnGirisYap.Text = "Giriş Yap";
             this.BtnGirisYap.UseVisualStyleBackColor = false;
             this.BtnGirisYap.Click += new System.EventHandler(this.BtnGirisYap_Click);
-            // 
-            // BtnKullaniciEkle
-            // 
-            this.BtnKullaniciEkle.ButtonStyle = ButtonStyle.Secondary;
-            this.BtnKullaniciEkle.Location = new System.Drawing.Point(32, 475);
-            this.BtnKullaniciEkle.Name = "BtnKullaniciEkle";
-            this.BtnKullaniciEkle.Size = new System.Drawing.Size(336, 40);
-            this.BtnKullaniciEkle.TabIndex = 6;
-            this.BtnKullaniciEkle.Text = "Kullanıcı Bilgileri";
-            this.BtnKullaniciEkle.UseVisualStyleBackColor = false;
-            this.BtnKullaniciEkle.Click += new System.EventHandler(this.BtnKullaniciEkle_Click);
-            // 
-            // lblVersion
-            // 
+// 
+// lblVersion
+// 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = DesignSystem.Fonts.Small;
             this.lblVersion.ForeColor = DesignSystem.Colors.TextLight;
@@ -197,7 +184,6 @@ namespace operion.Presentation.Forms.Admin
         private ModernTextBox txtkullanicad;
         private ModernTextBox txtsifre;
         private ModernButton BtnGirisYap;
-        private ModernButton BtnKullaniciEkle;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblThemeToggle;
 

@@ -156,15 +156,26 @@ namespace operion.Application.Services
         private string GetApiKey()
         {
             string apiKeyConfig = ConfigurationManager.AppSettings["AI_API_KEY"] ?? "";
+            
             if (apiKeyConfig.StartsWith("ENV:", StringComparison.Ordinal))
             {
                 string envVarName = apiKeyConfig.Substring(4);
-                string envValue = Environment.GetEnvironmentVariable(envVarName);
-                if (!string.IsNullOrEmpty(envValue)) return envValue;
                 
+                // Önce ortam değişkeninden dene
+                string envValue = Environment.GetEnvironmentVariable(envVarName);
+                if (!string.IsNullOrEmpty(envValue))
+                {
+                    return envValue;
+                }
+                
+                // Ortam değişkeni yoksa .env dosyasından oku
                 string envFileValue = ReadFromEnvFile(envVarName);
-                if (!string.IsNullOrEmpty(envFileValue)) return envFileValue;
+                if (!string.IsNullOrEmpty(envFileValue))
+                {
+                    return envFileValue;
+                }
             }
+            
             return apiKeyConfig;
         }
 
@@ -172,21 +183,57 @@ namespace operion.Application.Services
         {
             try
             {
-                string envPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".env");
-                if (File.Exists(envPath))
+                // Uygulama dizininde .env dosyasını ara
+                string[] searchPaths = new[]
                 {
-                    var lines = File.ReadAllLines(envPath);
-                    foreach (var line in lines)
+                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".env"),
+                    Path.Combine(Directory.GetCurrentDirectory(), ".env"),
+                    ".env"
+                };
+
+                foreach (string envPath in searchPaths)
+                {
+                    if (File.Exists(envPath))
                     {
-                        var parts = line.Split('=', 2);
-                        if (parts.Length == 2 && parts[0].Trim() == keyName)
+                        string[] lines = File.ReadAllLines(envPath);
+                        foreach (string line in lines)
                         {
-                            return parts[1].Trim().Trim('"', '\'');
+                            // Boş satırları ve yorumları atla
+                            string trimmedLine = line.Trim();
+                            if (string.IsNullOrEmpty(trimmedLine) || trimmedLine.StartsWith("#"))
+                                continue;
+
+                            // KEY=VALUE formatını parse et
+                            int equalsIndex = trimmedLine.IndexOf('=');
+                            if (equalsIndex > 0)
+                            {
+                                string key = trimmedLine.Substring(0, equalsIndex).Trim();
+                                string value = trimmedLine.Substring(equalsIndex + 1).Trim();
+
+                                // Tırnak işaretlerini kaldır
+                                if (value.StartsWith("\"") && value.EndsWith("\""))
+                                {
+                                    value = value.Substring(1, value.Length - 2);
+                                }
+                                else if (value.StartsWith("'") && value.EndsWith("'"))
+                                {
+                                    value = value.Substring(1, value.Length - 2);
+                                }
+
+                                if (key.Equals(keyName, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    return value;
+                                }
+                            }
                         }
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($".env dosyası okuma hatası: {ex.Message}");
+            }
+
             return "";
         }
     }

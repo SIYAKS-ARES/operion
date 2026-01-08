@@ -4,13 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using operion.Infrastructure.Data;
 
 namespace operion.Application.Services
 {
     public class IngestionService
     {
         private readonly RagService _ragService;
-        private readonly int _chunkSize = 512; // Modest chunk size for better context
+        private readonly int _chunkSize = 512;
         private readonly int _overlap = 50;
 
         public IngestionService(RagService ragService)
@@ -18,80 +19,136 @@ namespace operion.Application.Services
             _ragService = ragService;
         }
 
-        // --- SQL Veri İşleme (Strategy 3.A) ---
-        
-        /// <summary>
-        /// Müşteri verilerini özet metin formatına çevirip indeksler.
-        /// Gerçek uygulamada burası DB'den (Entity Framework) çekilen verilerle çalışır.
-        /// </summary>
-        public async Task<int> IngestCustomerDataAsync(IEnumerable<dynamic> customers)
+        // --- MASTER SYNC METHOD ---
+        public async Task<string> IngestAllAsync()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("Veri senkronizasyonu başladı...");
+
+            // 1. Notlar
+            int notesCount = await IngestNotesAsync();
+            sb.AppendLine($"✅ {notesCount} adet Not işlendi.");
+
+            // 2. Ürünler
+            int productsCount = await IngestProductsAsync();
+            sb.AppendLine($"✅ {productsCount} adet Ürün işlendi.");
+
+            // 3. Müşteriler (Opsiyonel chunks)
+            // int custCount = await IngestCustomersViaDbAsync();
+            // sb.AppendLine($"✅ {custCount} adet Müşteri işlendi.");
+
+            sb.AppendLine("Senkronizasyon tamamlandı.");
+            return sb.ToString();
+        }
+
+        // --- 1. NOTLARIN İŞLENMESİ ---
+        public async Task<int> IngestNotesAsync()
         {
             int count = 0;
-            foreach (var customer in customers)
+            using (var connection = DatabaseService.GetConnection())
             {
-                // Row Serialization Strategy
-                // Format: "Müşteri: {Name}, Şehir: {City}, Bakiye: {Balance}, Son İşlem: {LastDate}"
-                var sb = new StringBuilder();
-                sb.AppendLine($"Müşteri Kaydı: {customer.AdSoyad}");
-                sb.AppendLine($"Firma: {customer.FirmaUnvani}");
-                sb.AppendLine($"İl/İlçe: {customer.Il}/{customer.Ilce}");
-                sb.AppendLine($"Telefon: {customer.Telefon}");
-                sb.AppendLine($"Bakiye: {customer.Bakiye}");
+                // Baglantı zaten açıksa tekrar açmaya gerek yok ama GetConnection yeni açıyor mu kontrol edelim.
+                // DatabaseService.GetConnection() genelde open döner.
                 
-                string serializedText = sb.ToString();
-                string id = $"cust_{customer.Id}";
-                string metadata = $"Type: Customer, ID: {customer.Id}";
+                string query = "SELECT NotID, NotTarih, NotSaat, NotBaslik, NotDetay, NotOlusturan, NotHitap FROM TBL_NOTLAR";
+                
+                using (var command = new Microsoft.Data.Sqlite.SqliteCommand(query, connection))
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var notId = reader["NotID"].ToString();
+                        var notTarih = reader["NotTarih"]?.ToString();
+                        var notSaat = reader["NotSaat"]?.ToString();
+                        var notBaslik = reader["NotBaslik"]?.ToString();
+                        var notDetay = reader["NotDetay"]?.ToString();
+                        var notOlusturan = reader["NotOlusturan"]?.ToString();
+                        var notHitap = reader["NotHitap"]?.ToString();
 
-                await _ragService.SaveInformationAsync(
-                    id: id,
-                    text: serializedText,
-                    title: customer.FirmaUnvani ?? customer.AdSoyad,
-                    additionalMetadata: metadata
-                );
-                count++;
+                        // Format: "Not Başlığı: X, Tarih: Y, Detay: Z"
+                        var sb = new StringBuilder();
+                        sb.AppendLine($"Belge Türü: Ajanda Notu / Toplantı Kaydı");
+                        sb.AppendLine($"Tarih: {notTarih} {notSaat}");
+                        sb.AppendLine($"Konu: {notBaslik}");
+                        sb.AppendLine($"İlgili Kişi: {notHitap}");
+                        sb.AppendLine($"Oluşturan: {notOlusturan}");
+                        sb.AppendLine($"İçerik: {notDetay}");
+
+                        string serializedText = sb.ToString();
+                        string id = $"note_{notId}";
+                        string metadata = $"Type: Note, ID: {notId}, Date: {notTarih}";
+
+                        await _ragService.SaveInformationAsync(
+                            id: id,
+                            text: serializedText,
+                            title: notBaslik ?? "Not",
+                            additionalMetadata: metadata
+                        );
+                        count++;
+                    }
+                }
             }
             return count;
         }
 
-        // --- Döküman İşleme ---
-
-        /// <summary>
-        /// Belirtilen klasördeki tüm desteklenen dosyaları (md, txt) işler.
-        /// </summary>
-        public async Task<int> IngestDirectoryAsync(string directoryPath)
+        // --- 2. ÜRÜNLERİN İŞLENMESİ ---
+        public async Task<int> IngestProductsAsync()
         {
-            if (!Directory.Exists(directoryPath))
+            int count = 0;
+            using (var connection = DatabaseService.GetConnection())
             {
-                throw new DirectoryNotFoundException($"Directory not found: {directoryPath}");
+                string query = "SELECT UrunID, UrunAd, UrunMarka, UrunModel, UrunYil, UrunAdet, UrunSatisFiyat, UrunDetay FROM TBL_URUNLER";
+                
+                using (var command = new Microsoft.Data.Sqlite.SqliteCommand(query, connection))
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var urunId = reader["UrunID"].ToString();
+                        var urunAd = reader["UrunAd"]?.ToString();
+                        var urunMarka = reader["UrunMarka"]?.ToString();
+                        var urunModel = reader["UrunModel"]?.ToString();
+                        var urunYil = reader["UrunYil"]?.ToString();
+                        var urunAdet = reader["UrunAdet"]?.ToString();
+                        var urunSatisFiyat = reader["UrunSatisFiyat"]?.ToString();
+                        var urunDetay = reader["UrunDetay"]?.ToString(); // Önemli kısım
+                        
+                         // Format: "Ürün: X, Marka: Y, Özellikler: Z"
+                        var sb = new StringBuilder();
+                        sb.AppendLine($"Belge Türü: Ürün Kataloğu / Stok Kartı");
+                        sb.AppendLine($"Ürün Adı: {urunAd} {urunMarka} {urunModel}");
+                        sb.AppendLine($"Kategori/Yıl: {urunYil} Model");
+                        sb.AppendLine($"Stok Adedi: {urunAdet}");
+                        sb.AppendLine($"Satış Fiyatı: {urunSatisFiyat}"); // Currency format removed for simplicity or manual add
+                        sb.AppendLine($"Ürün Açıklaması ve Özellikleri: {urunDetay}");
+
+                        string serializedText = sb.ToString();
+                        string id = $"prod_{urunId}";
+                        string metadata = $"Type: Product, ID: {urunId}, Brand: {urunMarka}";
+
+                        await _ragService.SaveInformationAsync(
+                            id: id,
+                            text: serializedText,
+                            title: $"{urunMarka} {urunAd}",
+                            additionalMetadata: metadata
+                        );
+                        count++;
+                    }
+                }
             }
-
-            var files = Directory.GetFiles(directoryPath, "*.*", SearchOption.AllDirectories)
-                .Where(f => f.EndsWith(".md") || f.EndsWith(".txt"))
-                .ToList();
-
-            int totalChunks = 0;
-
-            foreach (var file in files)
-            {
-                totalChunks += await IngestFileAsync(file);
-            }
-
-            return totalChunks;
+            return count;
         }
 
-        /// <summary>
-        /// Tek bir dosyayı okur, parçalar ve RAG servisine kaydeder.
-        /// </summary>
+        // --- HELPER: FILE CHUNKING (Legacy support for files) ---
         public async Task<int> IngestFileAsync(string filePath)
         {
+            if (!File.Exists(filePath)) return 0;
+
             string text = await File.ReadAllTextAsync(filePath);
             string fileName = Path.GetFileName(filePath);
-            string fileId = Convert.ToBase64String(Encoding.UTF8.GetBytes(fileName)); // Simple ID
+            string fileId = Convert.ToBase64String(Encoding.UTF8.GetBytes(fileName));
 
-            // 1. Chunking
             var chunks = RecursiveCharacterTextSplitter(text, _chunkSize, _overlap);
-
-            // 2. Indexing
             int chunkIndex = 0;
             foreach (var chunk in chunks)
             {
@@ -104,44 +161,30 @@ namespace operion.Application.Services
                     title: fileName,
                     additionalMetadata: metadata
                 );
-                
                 chunkIndex++;
             }
-
             return chunks.Count;
         }
 
-        /// <summary>
-        /// Metni özyinelemeli olarak anlamlı parçalara böler.
-        /// (LangChain RecursiveCharacterTextSplitter mantığı)
-        /// </summary>
         private List<string> RecursiveCharacterTextSplitter(string text, int maxTokens, int overlap)
         {
             var chunks = new List<string>();
-            
-            // Ayrıştırıcı öncelik sırası: Paragraf -> Satır -> Cümle -> Kelime -> Karakter
             string[] separators = new[] { "\n\n", "\n", ". ", " ", "" };
-
             SplitRecursively(text, maxTokens, overlap, separators, 0, chunks);
-
             return chunks;
         }
 
         private void SplitRecursively(string text, int maxTokens, int overlap, string[] separators, int separatorIndex, List<string> output)
         {
-            // Token sayımı (yaklaşık: 4 karakter = 1 token)
             int estimatedTokens = text.Length / 4;
-
             if (estimatedTokens <= maxTokens)
             {
                 output.Add(text);
                 return;
             }
 
-            // Separator kalmadıysa mecbur bölüyoruz (veya karakter bazlı bölme)
             if (separatorIndex >= separators.Length)
             {
-                // Basitçe karakter limitine göre böl
                 int charLimit = maxTokens * 4;
                 for (int i = 0; i < text.Length; i += charLimit - overlap)
                 {
@@ -152,56 +195,29 @@ namespace operion.Application.Services
             }
 
             string separator = separators[separatorIndex];
-            string[] splits;
-            
-            if (string.IsNullOrEmpty(separator))
-            {
-                // Karakter bazlı split (son çare)
-                splits = text.ToCharArray().Select(c => c.ToString()).ToArray();
-            }
-            else
-            {
-                // Split ederken separator'ı korumak isteriz ama basitlik için şimdilik kaybedebiliriz
-                // Veya split edip sonuna ekleyebiliriz. C# string.Split separator'ı atar.
-                splits = text.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries);
-            }
+            string[] splits = string.IsNullOrEmpty(separator) 
+                ? text.ToCharArray().Select(c => c.ToString()).ToArray() 
+                : text.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries);
 
             string currentChunk = "";
-            
             foreach (var split in splits)
             {
                 string nextSegment = string.IsNullOrEmpty(currentChunk) ? split : currentChunk + separator + split;
-                int estimate = nextSegment.Length / 4;
-
-                if (estimate > maxTokens)
+                if ((nextSegment.Length / 4) > maxTokens)
                 {
-                    // Mevcut chunk dolu, önce onu kaydet (varsa)
-                    if (!string.IsNullOrEmpty(currentChunk))
-                    {
-                        // recursive call for currentChunk? No, currentChunk is implicitly < maxTokens because we check before adding
-                        output.Add(currentChunk);
-                    }
+                    if (!string.IsNullOrEmpty(currentChunk)) output.Add(currentChunk);
                     
-                    // Yeni parça tek başına bile çok büyükse, onu bir alt seviye separator ile böl
                     if ((split.Length / 4) > maxTokens)
-                    {
                         SplitRecursively(split, maxTokens, overlap, separators, separatorIndex + 1, output);
-                    }
                     else
-                    {
                         currentChunk = split;
-                    }
                 }
                 else
                 {
                     currentChunk = nextSegment;
                 }
             }
-
-            if (!string.IsNullOrEmpty(currentChunk))
-            {
-                output.Add(currentChunk);
-            }
+            if (!string.IsNullOrEmpty(currentChunk)) output.Add(currentChunk);
         }
     }
 }

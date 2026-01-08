@@ -21,6 +21,9 @@ namespace operion.Presentation.Forms.Dashboard
         {
             InitializeComponent();
             
+            // Performans için DoubleBuffered aktif et
+            this.DoubleBuffered = true;
+
             // Tema sistemi başlat
             ThemeManager.Initialize();
             ThemeManager.RegisterForm(this);
@@ -99,6 +102,22 @@ namespace operion.Presentation.Forms.Dashboard
             // Panele ekle ve göster
             pnlMainContent.Controls.Add(frm);
             frm.Show();
+
+            // AI Context Güncelle
+            if (frmAiChat != null && !frmAiChat.IsDisposed)
+            {
+                string contextName = "Genel Bakış";
+                if (frm is FrmUrunler) contextName = "Ürün ve Stok Yönetimi";
+                else if (frm is FrmMusteriler) contextName = "Müşteri Yönetimi";
+                else if (frm is FrmFaturalar) contextName = "Fatura İşlemleri";
+                else if (frm is FrmPersoneller) contextName = "Personel Yönetimi";
+                else if (frm is FrmKasa) contextName = "Kasa ve Finans";
+                else if (frm is FrmGiderler) contextName = "Gider Yönetimi";
+                else if (frm is FrmAnaSayfa) contextName = "Ana Dashboard";
+                else contextName = frm.Text;
+
+                frmAiChat.SetContext(contextName);
+            }
         }
 
         private void SetActiveMenuItem(ToolStripMenuItem activeItem)

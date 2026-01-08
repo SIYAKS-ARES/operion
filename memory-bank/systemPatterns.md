@@ -59,15 +59,16 @@ operion/
 - Tasarım sistemi `DesignSystem` ile standartlaştırılmış
 
 ### 4. RAG Pattern
-- **Ingestion:** Veri hazırlık (`IngestionService`) -> Chunking -> Embedding -> Storage
-- **Retrieval:** Arama (`RetrievalService`) -> Vector Search -> Re-ranking -> Context Construction
-- **Generation:** Yanıt (`AiService`) -> Prompt Engineering -> LLM -> Response
-- **Safeguard:** Güvenlik (`SqlGenerationService.IsSafeSql`, `TokenUsageService`)
+- **Ingestion:** Veri hazırlık (`IngestionService`) -> SQLite ADO.NET Read -> Serialization -> Semantic Kernel Memory Store.
+    - *Tetikleyici:* `FrmAyarlar` içindeki "AI Belleğini Güncelle" butonu üzerinden manuel başlatılır.
+- **Retrieval:** Arama (`RetrievalService`) -> Vector Search -> Re-ranking -> Context Construction.
+- **Generation:** Yanıt (`AiService`) -> Prompt Engineering -> LLM -> Response.
+- **Safeguard:** Güvenlik (`SqlGenerationService.IsSafeSql`, `TokenUsageService`) ve Rate Limit koruması (`GeminiEmbeddingService`).
 
 ### 4. Form Pattern
-- **Host:** `FrmAnaModul` (Single Window Host - Panel Embedding)
-- **Page:** Child formlar (`FrmUrunler`, vb.) - `TopLevel=false`, `Dock=Fill`, `FormBorderStyle=None`
-- **Sidebar:** AI Chat (`FrmAiChat`) - Sağ panelde (`pnlAiSidebar`) yerleşik, Collapsible
+- **Host:** `FrmAnaModul` (Single Window Host - Panel Embedding). Z-order critical: `pnlMainContent` must be added last for proper docking resize.
+- **Page:** Child formlar (`FrmUrunler`, vb.) - `TopLevel=false`, `Dock=Fill`, `FormBorderStyle=None`. Dashboard için `AutoScrollMinSize` (1300x600) uygulanır.
+- **Sidebar:** AI Chat (`FrmAiChat`) - Sağ panelde (`pnlAiSidebar`) yerleşik, Collapsible. Dock=Right.
 - Her form için üç dosya:
   - `FrmXxx.cs` - Kod dosyası
   - `FrmXxx.Designer.cs` - Tasarım dosyası

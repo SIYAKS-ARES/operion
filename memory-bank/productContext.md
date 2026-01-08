@@ -30,6 +30,7 @@ operion, küçük ve orta ölçekli işletmelerin ticari işlemlerini dijitalle�
 4. **Hareket Takibi:** Müşteri ve firma hareketlerinin izlenmesi
 5. **Raporlama:** İş performansının analiz edilmesi
 6. **Gider Yönetimi:** İşletme giderlerinin kaydedilmesi ve takibi
+7. **AI Bellek Yönetimi:** Unutulmaması gereken notların ve ürün detaylarının yapay zekaya öğretilmesi (RAG)
 
 ## Kullanıcı Profili
 

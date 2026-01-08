@@ -3,8 +3,8 @@
 **Proje:** operion (Ticari Otomasyon)  
 **Platform:** .NET 10 Windows Forms  
 **Veritabanı:** SQLite (Entity Framework Core)  
-**Son Güncelleme:** 2026-01-06  
-**Versiyon:** 1.0.0
+**Son Güncelleme:** 2026-01-07  
+**Versiyon:** 1.0.0+3
 
 ---
 
@@ -38,7 +38,7 @@
 **Veritabanı:** SQLite (Entity Framework Core)  
 **Başlangıç Tarihi:** 2019 (Orijinal), 2025 (Modernizasyon)  
 **Durum:** Aktif Geliştirme  
-**Versiyon:** 1.0.0
+**Versiyon:** 1.0.0+3
 
 ### 1.2 Proje Kapsamı
 
@@ -612,7 +612,7 @@ Proje, kurumsal seviyede **Retrieval-Augmented Generation (RAG)** mimarisine sah
 #### Dosya Yapısı
 - `RagService.cs`: Ana orkestratör. Kernel yönetimi ve veri ekleme.
 - `RetrievalService.cs`: Arama mantığı (Hybrid Search + Re-ranking).
-- `IngestionService.cs`: Veri içeri alma (Markdown chunking, SQL row serialization).
+- `IngestionService.cs`: Veri içeri alma. `DatabaseService` üzerinden ADO.NET kullanarak Notlar ve Ürün detaylarını serileştirir. `FrmAyarlar` üzerinden manuel tetiklenir.
 - `SqlGenerationService.cs`: Doğal dilden SQL üretimi.
 - `ReRankingService.cs`: Cross-encoder mantığıyla sıralama.
 - `EvaluationService.cs`: RAG başarı metrikleri (Precision/Recall).
@@ -796,9 +796,9 @@ Proje, kurumsal seviyede **Retrieval-Augmented Generation (RAG)** mimarisine sah
 - İkonlu menü öğeleri (emoji ikonlar)
 - Hover efektleri
 - **Single Window Architecture:** MDI yerine Panel Embedding yapısı
-- **Content Panel:** Sayfalar `pnlMainContent` içinde açılır
-- **AI Sidebar:** Sağ tarafta açılır/kapanır akıllı asistan paneli (300px)
-- **Responsive Design:** Dashboard ve içerik `AutoScroll` ile uyumlu
+- **Content Panel:** Sayfalar `pnlMainContent` içinde açılır (Z-order optimized for Resize)
+- **AI Sidebar:** Sağ tarafta açılır/kapanır akıllı asistan paneli (300px, pushes content)
+- **Responsive Design:** Dashboard ve içerik `AutoScroll` ve `AutoScrollMinSize` ile uyumlu
 - User profile alanı (sağ üst köşe)
 - Dark mode toggle butonu (header'da)
 - **Navigasyon Bar İyileştirmesi (2026-01-02):** Yükseklik 60px, Bold font, Kalın aktif sayfa vurgusu

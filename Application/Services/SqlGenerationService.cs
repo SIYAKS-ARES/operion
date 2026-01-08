@@ -30,6 +30,7 @@ Kurallar:
 4. Tablo ve kolon isimlerini şemaya birebir uygun yaz.
 5. 'SILINDI' kolonu olan tablolarda, silinmiş kayıtları getirme (SILINDI = 0).
 6. Kelime benzerliği gerektiren durumlarda 'LIKE' kullan.
+7. Şemanın sonundaki 'İPUÇLARI VE JOIN KURALLARI' bölümünü mutlaka incele ve karmaşık sorgularda oradaki örnekleri referans al.
 
 Şema:
 {schema}

@@ -12,6 +12,7 @@ namespace operion.Presentation.Forms.Settings
         public FrmNotlar()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
             
             // Tema sistemi
             ThemeManager.RegisterForm(this);

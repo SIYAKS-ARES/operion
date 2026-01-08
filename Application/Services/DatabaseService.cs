@@ -93,11 +93,13 @@ namespace operion.Application.Services
                 Directory.CreateDirectory(dbDir);
             }
 
-            // SQL script dosyası yoksa hata ver
+            // SQL script dosya kontrolü kapalı - Embedded Resource kullanılıyor
+            /* 
             if (!File.Exists(sqlScriptPath))
             {
                 throw new FileNotFoundException($"SQL script dosyası bulunamadı: {sqlScriptPath}");
             }
+            */
 
             // Veritabanı dosyası varsa tabloları ve VIEW'ları kontrol et
             bool dbExists = File.Exists(dbPath);
@@ -131,8 +133,40 @@ namespace operion.Application.Services
             // SQLite dosyası otomatik oluşturulacak (CreateFile gerekmez)
             using (var connection = GetConnection())
             {
-                // SQL script'ini oku ve çalıştır
-                string sqlScript = File.ReadAllText(sqlScriptPath);
+                string sqlScript;
+                
+                // Embedded resource'dan SQL script'ini oku
+                var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                var resourceName = "operion.Infrastructure.Data.DB.TicariOtomasyon_SQLite.sql";
+
+                using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+                {
+                    if (stream == null)
+                    {
+                        // Fallback: Belki namespace farklıdır, tüm kaynakları tara
+                        var resources = assembly.GetManifestResourceNames();
+                        foreach (var resource in resources)
+                        {
+                            if (resource.EndsWith("TicariOtomasyon_SQLite.sql"))
+                            {
+                                using (Stream fallbackStream = assembly.GetManifestResourceStream(resource))
+                                using (StreamReader reader = new StreamReader(fallbackStream))
+                                {
+                                    sqlScript = reader.ReadToEnd();
+                                    goto ScriptLoaded;
+                                }
+                            }
+                        }
+                        throw new FileNotFoundException($"Gömülü SQL script bulunamadı: {resourceName}");
+                    }
+                    
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        sqlScript = reader.ReadToEnd();
+                    }
+                }
+
+            ScriptLoaded:
 
                 // Script'i daha akıllıca parse et - VIEW'lar çok satırlı olabilir
                 // Basit yaklaşım: ';' ile ayır ama çok satırlı komutları koru
@@ -233,6 +267,7 @@ namespace operion.Application.Services
                 // VIEW'ları kontrol et ve eksikse oluştur
                 EnsureViews(connection);
             }
+
         }
 
         /// <summary>

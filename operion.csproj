@@ -34,9 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Infrastructure\Data\DB\TicariOtomasyon_SQLite.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="Infrastructure\Data\DB\TicariOtomasyon_SQLite.sql" />
     <None Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

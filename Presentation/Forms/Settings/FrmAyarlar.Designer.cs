@@ -38,7 +38,7 @@ namespace operion.Presentation.Forms.Settings
             this.grdayarlar.Name = "grdayarlar";
             this.grdayarlar.ReadOnly = true;
             this.grdayarlar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdayarlar.Size = new System.Drawing.Size(900, 561);
+            this.grdayarlar.Size = new System.Drawing.Size(400, 561);
             this.grdayarlar.TabIndex = 1;
             this.grdayarlar.SelectionChanged += new System.EventHandler(this.grdayarlar_SelectionChanged);
             // 
@@ -48,9 +48,9 @@ namespace operion.Presentation.Forms.Settings
             this.pnlAyarlar.Controls.Add(this.txtsifre);
             this.pnlAyarlar.Controls.Add(this.txtkullanicad);
             this.pnlAyarlar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlAyarlar.Location = new System.Drawing.Point(900, 0);
+            this.pnlAyarlar.Location = new System.Drawing.Point(400, 0);
             this.pnlAyarlar.Name = "pnlAyarlar";
-            this.pnlAyarlar.Size = new System.Drawing.Size(470, 561);
+            this.pnlAyarlar.Size = new System.Drawing.Size(970, 561);
             this.pnlAyarlar.TabIndex = 2;
             this.pnlAyarlar.Title = "⚙️ Kullanıcı Ayarları";
             // 

@@ -113,9 +113,16 @@
 - ✅ **AI Servis Bağlantısı** - DNS/Proxy sorunu giderildi, TLS 1.2/1.3 eklendi (2026-01-05)
 - ✅ **Login Performansı** - `FrmAdmin` asenkron ve responsive hale getirildi (2026-01-05)
 - ✅ **Rehber Senkronizasyonu** - `FrmRehber` otomatik yenileme özelliği eklendi (2026-01-05)
+- ✅ **AI Chat Konfigürasyon Fix** - API key okuma hatası `RagService` içinde giderildi, JSON hata mesajları temizlendi, SQL trigger kelimeleri genişletildi (2026-01-07)
 - ✅ **Form Layout Standardizasyonu** - Fatura, Gider ve Notlar formlarında 50px dikey boşluk standardı ve overlap düzeltmeleri tamamlandı (2026-01-02)
 - ✅ **Single Window Transformation** - MDI yapısı Panel Embedding sistemine çevrildi (2026-01-06)
-- ✅ **AI Sidebar Integration** - `FrmAiChat` sağ panelde entegre edildi ve responsive hale getirildi (2026-01-06)
+- ✅ **AI Sidebar Integration** - `FrmAiChat` sağ panelde entegre edildi, Z-order sorunu (üst üste binme) giderilerek "shifting" (yana kayma) davranışı sağlandı (2026-01-06)
+- ✅ **Responsive Dashboard** - `AutoScroll` ve `AutoScrollMinSize` ile düşük çözünürlüklerde veya sidebar açıkken veri erişilebilirliği garanti altına alındı (2026-01-07)
+- ✅ **FrmAyarlar Layout Fix** - Kullanıcı listesi grid genişliği 400px'e düşürüldü, AI Belleği güncelleme butonu hizalandı ve buton çakışması (overlap) `Y=330` konumuna taşınarak giderildi (2026-01-07).
+- ✅ **Rendering Fix (WS_EX_COMPOSITED)** - Kaydırma bozulmaları, `ModernPanel` üzerinde `WS_EX_COMPOSITED` stili uygulanarak kök nedenden çözüldü (2026-01-07).
+- ✅ **Main Layout Fix** - Header/Navbar yerleşimi düzeltildi ve `AutoScroll` ile responsive yapı güçlendirildi (2026-01-07).
+- ✅ **FrmAdmin UI Cleanup** - "Kullanıcı Bilgileri" butonu giriş sayfasından kaldırılarak final UI sadeleştirildi (2026-01-07).
+- ✅ **Startup Cleanup** - Uygulama açılışındaki gereksiz uyumluluk mesaj kutuları kaldırıldı (2026-01-07).
 
 ### Teknik Durum
 - ✅ Veritabanı yapısı tamamlandı

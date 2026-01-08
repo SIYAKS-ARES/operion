@@ -194,18 +194,6 @@ namespace operion.Presentation.Forms.Admin
             }
         }
         
-        private void BtnKullaniciEkle_Click(object sender, EventArgs e)
-        {
-            // Şimdilik basit bir dialog (gelecekte ayrı form yapılabilir)
-            MessageBox.Show(
-                "Kullanıcı ekleme özelliği ayarlar menüsünden yapılabilir.\n\n" +
-                "Varsayılan kullanıcı bilgileri:\n" +
-                "Kullanıcı Adı: admin\n" +
-                "Şifre: admin",
-                "Bilgi",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-        }
 
         private void txtkullanicad_KeyDown(object sender, KeyEventArgs e)
         {

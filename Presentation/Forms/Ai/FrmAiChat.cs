@@ -68,8 +68,9 @@ namespace operion.Presentation.Forms.Ai
             try
             {
                 // 2. Retrieval & Generation Strategy
+                // 2. Retrieval & Generation Strategy
                 // Önce yerel (hazır) cevapları kontrol et - Hız ve Maliyet için
-                string localResponse = CheckLocalResponses(userQuery);
+                string? localResponse = await CheckLocalResponsesAsync(userQuery);
                 if (!string.IsNullOrEmpty(localResponse))
                 {
                     // Yerel cevap varsa direkt göster, API'ye gitme
@@ -83,12 +84,23 @@ namespace operion.Presentation.Forms.Ai
                 string finalResponse = "";
 
                 // STRATEGY: Try SQL for quantitative questions
-                bool trySql = userQuery.ToLower().Contains("kaç") || 
-                              userQuery.ToLower().Contains("listele") || 
-                              userQuery.ToLower().Contains("stok") ||
-                              userQuery.ToLower().Contains("fiyat") ||
-                              userQuery.ToLower().Contains("bakiye") ||
-                              userQuery.ToLower().Contains("toplam");
+                var trCulture = new System.Globalization.CultureInfo("tr-TR");
+                string qLower = userQuery.ToLower(trCulture);
+
+                bool trySql = qLower.Contains("kaç") || 
+                              qLower.Contains("listele") || 
+                              qLower.Contains("stok") ||
+                              qLower.Contains("fiyat") ||
+                              qLower.Contains("bakiye") ||
+                              qLower.Contains("toplam") ||
+                              qLower.Contains("telefon") ||
+                              qLower.Contains("mail") ||
+                              qLower.Contains("adres") ||
+                              qLower.Contains("borç") ||
+                              qLower.Contains("alacak") ||
+                              qLower.Contains("kim") ||
+                              qLower.Contains("nedir") ||
+                              qLower.Contains("bilgi");
 
                 if (trySql)
                 {
@@ -116,8 +128,9 @@ namespace operion.Presentation.Forms.Ai
                     // Get relevant context
                     var contexts = await _retrievalService.RetrieveContextAsync(userQuery);
                 
-                    // Prompt Building
-                    string prompt = _promptBuilder.BuildRagPrompt(userQuery, contexts);
+                    // Prompt Building - Include Screen Context
+                    string scopedQuery = $"[Aktif Ekran: {_currentContext}] " + userQuery;
+                    string prompt = _promptBuilder.BuildRagPrompt(scopedQuery, contexts);
                 
                     // Generation (LLM)
                     var response = await _aiService.SummarizeAsync(prompt);
@@ -152,12 +165,48 @@ namespace operion.Presentation.Forms.Ai
             return sb.ToString(); 
         }
 
+        private async Task<string> GetCurrencyRatesAsync()
+        {
+            try
+            {
+                // TCMB'den güncel kurları çek
+                string url = "https://www.tcmb.gov.tr/kurlar/today.xml";
+                var client = new System.Net.Http.HttpClient();
+                // XML olduğu için string olarak çekip parse edelim
+                var xmlStr = await client.GetStringAsync(url);
+                
+                var xmlDoc = new System.Xml.XmlDocument();
+                xmlDoc.LoadXml(xmlStr);
+
+                string dolar = xmlDoc.SelectSingleNode("Tarih_Date/Currency[@Kod='USD']/BanknoteSelling")?.InnerText ?? "Bilgi Yok";
+                string euro = xmlDoc.SelectSingleNode("Tarih_Date/Currency[@Kod='EUR']/BanknoteSelling")?.InnerText ?? "Bilgi Yok";
+
+                return $"Güncel Döviz Kurları (TCMB):\n\n🇺🇸 Dolar (USD): {dolar} TL\n🇪🇺 Euro (EUR): {euro} TL";
+            }
+            catch (Exception ex)
+            {
+                return $"Döviz bilgisi alınamadı: {ex.Message}";
+            }
+        }
+
          /// <summary>
         /// Basit selamlaşma ve soruları yerel olarak yanıtlar (API tasarrufu ve hız için)
         /// </summary>
-        private string? CheckLocalResponses(string query)
+        private async Task<string?> CheckLocalResponsesAsync(string query)
         {
             var q = query.ToLower(new System.Globalization.CultureInfo("tr-TR")).Trim();
+
+            // Döviz Kontrolü
+            if (q.Contains("dolar ne kadar") || q.Contains("euro ne kadar") || q.Contains("döviz") || q.Contains("kur kaç"))
+            {
+                return await GetCurrencyRatesAsync();
+            }
+
+            // Yetkinlik Soruları
+             if (q.Contains("hangi konuda") || q.Contains("neler biliyorsun") || q.Contains("ne biliyorsun"))
+            {
+                  return "Veritabanınızdaki **Stoklar**, **Müşteriler**, **Personeller** ve **Faturalar** hakkında bilgi sahibiyim.\n\nAyrıca:\n- 'Dolar ne kadar?' diyerek güncel kurları öğrenebilir,\n- 'En çok satan ürün hangisi?' diyerek analiz yaptırabilir,\n- 'Ahmet isimli müşterinin telefonu ne?' gibi nokta atışı sorular sorabilirsiniz.";
+            }
 
             // Sadece selamlaşma ise (örn. uzunluk < 30) cevap ver. 
             // Uzun cümleler içinde "merhaba" geçiyorsa muhtemelen bir soru cümlesidir.
@@ -176,12 +225,19 @@ namespace operion.Presentation.Forms.Ai
             if (q.Contains("iyi akşamlar") || q.Contains("iyi aksamlar"))
                 return "İyi akşamlar. Mesai bitse de ben buradayım.";
 
-            // "Teşekkür" kontrolü - Sadece teşekkür ediyorsa yakala
-            if (q.StartsWith("teşekkür") || q.StartsWith("tesekkur") || q.StartsWith("sağol") || q.StartsWith("sagol"))
+            // "Teşekkür" ve "İyiyim" kontrolü
+            // "Bende iyiyim teşekkürler" gibi cümleleri yakalamak için Contains kullanıyoruz.
+            // Ancak "Teşekkürler, stokları listele" gibi durumları engellemek için uzunluk kontrolü şart.
+            if (q.Contains("teşekkür") || q.Contains("tesekkur") || q.Contains("sağol") || q.Contains("sagol"))
             {
-                 // Eğer "Teşekkürler ama stoklar ne durumda?" giib bir şeyse null dön
-                 if (q.Length < 25)
-                     return "Rica ederim, her zaman yardımcı olmaktan mutluluk duyarım.";
+                 if (q.Length < 40)
+                     return "Rica ederim, her zaman yardımcı olmaktan mutluluk duyarım. Bugün size nasıl yardımcı olabilirim?";
+            }
+
+            if (q.Contains("iyiyim") || q.Contains("süperim") || q.Contains("harikayım"))
+            {
+                if (q.Length < 30)
+                     return "Bunu duyduğuma sevindim! Bugün size nasıl yardımcı olabilirim?";
             }
 
             if (q.Contains("kimsin") || q.Contains("adın ne") || q.Contains("sen kimsin"))
@@ -197,6 +253,15 @@ namespace operion.Presentation.Forms.Ai
             }
 
             return null;
+        }
+
+        private string _currentContext = "Genel Bakış";
+
+        public void SetContext(string contextName)
+        {
+            _currentContext = contextName;
+            // Opsiyonel: Kullanıcıya bilgi ver
+            // AppendMessage("Sistem", $"Bağlam değiştirildi: {_currentContext}", false); 
         }
 
         private async void FrmAiChat_Load(object sender, EventArgs e)

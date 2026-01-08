@@ -9,9 +9,9 @@
 - **Platform:** Windows 10/11 (x64 ve ARM64)
 
 ### Veritabanı
-- **SQLite:** Yerel veritabanı motoru
-- **Entity Framework Core 10.0:** ORM framework
-- **Microsoft.Data.Sqlite 10.0.0:** SQLite provider
+- **SQLite:** Yerel veritabanı motoru.
+- **Entity Framework Core 10.0:** Ana iş mantığı ve modeller için ORM.
+- **Microsoft.Data.Sqlite 10.0.0:** ADO.NET Provider. `IngestionService` ve `DatabaseService` gibi performans/uyumluluk odaklı alanlarda doğrudan kullanılır.
 
 ### AI ve RAG Stack
 - **Semantic Kernel:** AI Orchestration

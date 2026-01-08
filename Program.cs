@@ -20,7 +20,8 @@ namespace operion
             // Global TLS Ayari (TCMB ve AI servisleri icin)
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls13;
 
-            // ARM uyumluluk kontrol�
+            // ARM uyumluluk kontrolü (Pasif hale getirildi)
+            /*
             try
             {
                 ARMCompatibilityHelper.CheckSystemCompatibility();
@@ -28,9 +29,10 @@ namespace operion
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"ARM uyumluluk kontrol� hatasi: {ex.Message}", 
-                    "Uyari", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"ARM uyumluluk kontrolü hatası: {ex.Message}", 
+                    "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            */
 
             // SQLite veritabanini baslat
             try

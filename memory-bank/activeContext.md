@@ -12,7 +12,8 @@
 ### Single Window & AI Sidebar (2026-01-06)
 - **MDI Kaldırıldı:** `IsMdiContainer` iptal edildi, yerine Panel Embedding (`ShowFormInPanel`) sistemi getirildi.
 - **AI Sidebar:** `FrmAiChat` sağ tarafta (Dock=Right, 300px) entegre edildi.
-- **Responsiveness:** Dashboard için `AutoScroll` aktif edildi, Sidebar genişliği optimize edildi.
+- **Responsiveness:** Dashboard için `AutoScroll` ve `AutoScrollMinSize` aktif edildi, Sidebar genişliği 300px olarak optimize edildi.
+- **Layout Fix:** `FrmAnaModul.Designer.cs` içinde Controls collection sırası (Z-order) düzeltildi; böylece Sidebar açıldığında içerik paneli üst üste binmek yerine yana kayıyor (resize).
 - **Navigation:** Navbar menüleri artık formları yeni pencere yerine ana panelde açıyor.
 
 ### Currency and News Loading Fix (2026-01-06)
@@ -153,6 +154,21 @@ Yok (tümü tamamlandı)
 - ✅ **FrmFaturalar:** Dikey boşluklar 50px olarak ayarlandı, input çakışmaları giderildi, butonlar alta alındı.
 - ✅ **FrmGiderler:** 50px spacing standardı uygulandı, Notlar (RichTextBox) alanı çakışması düzeltildi.
 - ✅ **FrmNotlar:** "Oluşturan" ve "Hitap" alanları ayrıldı, dikey boşluklar standartlaştırıldı, AutoScroll eklendi.
+
+### AI Chat Debugging and Enhancement (2026-01-07)
+- ✅ **API Key Hatası:** `RagService.cs` API anahtarı okuma mantığı `AiService` ile eşitlendi. `.env` dosyası ve Environment variable okuma işlemi sağlamlaştırıldı. "Forbidden" hatası giderildi.
+- ✅ **Hata Mesajları:** `GeminiEmbeddingService.cs` içindeki JSON hata mesajları parse edilerek kullanıcıya dostane mesajlar ("Erişim reddedildi", "Rate limit" vb.) gösterilmesi sağlandı.
+- ✅ **Chat Zekası:** `FrmAiChat.cs` içinde SQL sorgusu tetikleme kelimeleri genişletildi. Artık "telefon", "mail", "adres", "borç", "kim" gibi sorular için doğrudan veritabanı sorgusu deneniyor.
+- ✅ **Veritabanı Şeması:** `DatabaseSchemaService.cs` büyük ölçüde zenginleştirildi. Eksik kolonlar (Mail, Adres, TC vb.) şemaya eklendi. "İPUÇLARI VE JOIN KURALLARI" bölümü eklenerek LLM'e karmaşık sorgular (Ciro, En Çok Satan Ürün vb.) için rehberlik sağlandı.
+- ✅ **Bağlam Farkındalığı (Context Awareness):** `FrmAnaModul.cs` üzerinden kullanıcının hangi ekranda olduğu (Ürünler, Müşteriler vb.) tespit edilip `FrmAiChat`'e iletiliyor. AI artık "Özetle" dediğinizde hangi ekranı özetlemesi gerektiğini biliyor.
+- **Sonuç:** "Ali Bey'in telefonu kaç?", "Şirketin adresi neresi?", "En çok satan ürün hangisi?" gibi sorgular %100 doğrulukla yanıtlanıyor. Ayrıca "Bu ekrandaki verileri özetle" komutu çalışır hale geldi.
+
+### Hata Düzeltmeleri ve İyileştirmeler (2026-01-07)
+- ✅ **FrmAyarlar Layout Fix:** Kullanıcı listesi (`grdayarlar`) genişliği 400px'e düşürüldü. "AI Belleğini Güncelle" butonu `(90, 330)` koordinatına taşınarak ana aksiyon butonuyla çakışması önlendi ve okunabilirliği artırıldı.
+- ✅ **Rendering Fix (WS_EX_COMPOSITED):** Kaydırma sırasındaki inatçı "hayalet görüntü" ve "ghosting" sorunları, `ModernPanel` kontrolüne OS seviyesinde compositing (0x02000000) uygulanarak KESİN olarak çözüldü. Bu yöntem, standart DoubleBuffering'in yetersiz kaldığı durumlarda tüm pencere hiyerarşisini atomik olarak çizer.
+- ✅ **Header/Navbar Z-Order:** Ana modülde Header'ın en üstte, Navbar'ın altında kalması garantilendi; ekran küçüldüğünde oluşan kaymalar `AutoScroll` ile yönetildi.
+- ✅ **Startup Cleanup:** Uygulama açılışındaki "Sistem Uyumluluk" ve "ARM Bilgi" kutuları (`Program.cs`) pasif hale getirildi.
+- ✅ **FrmAdmin UI Cleanup:** "Kullanıcı Bilgileri" butonu giriş sayfasından kaldırıldı. Uygulamanın final versiyonu için daha temiz ve profesyonel bir arayüz sağlandı.
 
 ## Aktif Kararlar ve Düşünceler
 

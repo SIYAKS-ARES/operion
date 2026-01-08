@@ -12,6 +12,7 @@ namespace operion.Presentation.Forms.Settings
         public FrmAyarlar()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
             
             // Tema sistemi
             ThemeManager.RegisterForm(this);
@@ -45,8 +46,61 @@ namespace operion.Presentation.Forms.Settings
         private void FrmAyarlar_Load(object sender, EventArgs e)
         {
             listele();
+            
+            // Dinamik 'AI Belleğini Güncelle' Butonu Ekleme
+            operion.Presentation.Controls.ModernButton btnRagSync = new operion.Presentation.Controls.ModernButton();
+            btnRagSync.Text = "🧠 AI Belleğini Güncelle";
+            btnRagSync.Size = new System.Drawing.Size(320, 44);
+            btnRagSync.Location = new System.Drawing.Point(90, 330); // Diğer kontrollerle hizalı, overlap önlendi
+            btnRagSync.ButtonStyle = operion.Presentation.Controls.ButtonStyle.Secondary; // Or Primary
+            btnRagSync.Click += async (s, args) => await BtnRagSync_Click(s, args);
+            
+            // Eğer varsa panel içine, yoksa form'a ekle. PnlAyarlar var.
+            bool addedToPanel = false;
+            foreach(Control c in this.Controls) {
+                if(c.Name == "pnlAyarlar") {
+                   c.Controls.Add(btnRagSync);
+                   btnRagSync.BringToFront();
+                   addedToPanel = true;
+                   break;
+                }
+            }
+            if(!addedToPanel) this.Controls.Add(btnRagSync);
+
             txtkullanicad.Text = "";
             txtsifre.Text = "";
+        }
+
+        private async Task BtnRagSync_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var btn = (operion.Presentation.Controls.ModernButton)sender;
+                btn.Enabled = false;
+                btn.Text = "Güncelleniyor...";
+
+                // Servisleri oluştur (Dependency Injection olmadığı için manuel)
+                var aiService = new operion.Application.Services.AiService();
+                var ragService = new operion.Application.Services.RagService(apiKey: null); 
+                await ragService.InitializeAsync(); 
+                
+                var ingestionService = new operion.Application.Services.IngestionService(ragService);
+
+                // İşlemi Başlat
+                string result = await ingestionService.IngestAllAsync();
+
+                MessageBox.Show(result, "Senkronizasyon Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                var btn = (operion.Presentation.Controls.ModernButton)sender;
+                btn.Text = "🧠 AI Belleğini Güncelle";
+                btn.Enabled = true;
+            }
         }
 
         private void grdayarlar_SelectionChanged(object sender, EventArgs e)
