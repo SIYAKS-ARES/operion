@@ -1,0 +1,276 @@
+<svg width="708pt" height="1117pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="overflow: hidden; "><g id="viewport-20260108060813858" class="svg-pan-zoom_viewport" transform="matrix(0.4188973642536513,0,0,0.4188973642536513,170.99665219542322,142.84985760539217)" style="transform: matrix(0.418897, 0, 0, 0.418897, 170.997, 142.85);">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(14.4 1102.2)">
+<title>Sales_Activity_Diagram</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-1102.2 693.15,-1102.2 693.15,14.4 -14.4,14.4"></polygon>
+<!-- Start -->
+<g id="node1" class="node">
+<title>Start</title>
+<ellipse fill="black" stroke="#343a40" stroke-width="1.2" cx="510.91" cy="-1077" rx="10.8" ry="10.8"></ellipse>
+</g>
+<!-- LoginCheck -->
+<g id="node3" class="node">
+<title>LoginCheck</title>
+<path fill="#e3f2fd" stroke="#343a40" stroke-width="1.2" d="M574.99,-1021.2C574.99,-1021.2 446.83,-1021.2 446.83,-1021.2 440.83,-1021.2 434.83,-1015.2 434.83,-1009.2 434.83,-1009.2 434.83,-997.2 434.83,-997.2 434.83,-991.2 440.83,-985.2 446.83,-985.2 446.83,-985.2 574.99,-985.2 574.99,-985.2 580.99,-985.2 586.99,-991.2 586.99,-997.2 586.99,-997.2 586.99,-1009.2 586.99,-1009.2 586.99,-1015.2 580.99,-1021.2 574.99,-1021.2"></path>
+<text text-anchor="middle" x="510.91" y="-1000.2" font-family="Arial" font-size="10.00">Kullanıcı Sisteme Giriş Yapar</text>
+</g>
+<!-- Start&#45;&gt;LoginCheck -->
+<g id="edge1" class="edge">
+<title>Start-&gt;LoginCheck</title>
+<path fill="none" stroke="#555555" d="M510.91,-1065.79C510.91,-1065.79 510.91,-1032.93 510.91,-1032.93"></path>
+<polygon fill="#555555" stroke="#555555" points="514.41,-1032.93 510.91,-1022.93 507.41,-1032.93 514.41,-1032.93"></polygon>
+</g>
+<!-- End -->
+<g id="node2" class="node">
+<title>End</title>
+<ellipse fill="black" stroke="#343a40" stroke-width="1.2" cx="76.91" cy="-14.8" rx="10.8" ry="10.8"></ellipse>
+<ellipse fill="none" stroke="#343a40" stroke-width="1.2" cx="76.91" cy="-14.8" rx="14.8" ry="14.8"></ellipse>
+</g>
+<!-- OpenInvoiceForm -->
+<g id="node4" class="node">
+<title>OpenInvoiceForm</title>
+<path fill="#e3f2fd" stroke="#343a40" stroke-width="1.2" d="M552.2,-940.2C552.2,-940.2 469.61,-940.2 469.61,-940.2 463.61,-940.2 457.61,-934.2 457.61,-928.2 457.61,-928.2 457.61,-916.2 457.61,-916.2 457.61,-910.2 463.61,-904.2 469.61,-904.2 469.61,-904.2 552.2,-904.2 552.2,-904.2 558.2,-904.2 564.2,-910.2 564.2,-916.2 564.2,-916.2 564.2,-928.2 564.2,-928.2 564.2,-934.2 558.2,-940.2 552.2,-940.2"></path>
+<text text-anchor="middle" x="510.91" y="-925.2" font-family="Arial" font-size="10.00">Fatura Modülünü Aç</text>
+<text text-anchor="middle" x="510.91" y="-913.2" font-family="Arial" font-size="10.00">(FrmFaturalar)</text>
+</g>
+<!-- LoginCheck&#45;&gt;OpenInvoiceForm -->
+<g id="edge2" class="edge">
+<title>LoginCheck-&gt;OpenInvoiceForm</title>
+<path fill="none" stroke="#555555" d="M510.91,-984.82C510.91,-984.82 510.91,-952.02 510.91,-952.02"></path>
+<polygon fill="#555555" stroke="#555555" points="514.41,-952.02 510.91,-942.02 507.41,-952.02 514.41,-952.02"></polygon>
+</g>
+<!-- NewInvoiceClick -->
+<g id="node5" class="node">
+<title>NewInvoiceClick</title>
+<path fill="#e3f2fd" stroke="#343a40" stroke-width="1.2" d="M571.07,-859.2C571.07,-859.2 450.74,-859.2 450.74,-859.2 444.74,-859.2 438.74,-853.2 438.74,-847.2 438.74,-847.2 438.74,-835.2 438.74,-835.2 438.74,-829.2 444.74,-823.2 450.74,-823.2 450.74,-823.2 571.07,-823.2 571.07,-823.2 577.07,-823.2 583.07,-829.2 583.07,-835.2 583.07,-835.2 583.07,-847.2 583.07,-847.2 583.07,-853.2 577.07,-859.2 571.07,-859.2"></path>
+<text text-anchor="middle" x="510.91" y="-838.2" font-family="Arial" font-size="10.00">'Yeni Fatura' Butonuna Tıkla</text>
+</g>
+<!-- OpenInvoiceForm&#45;&gt;NewInvoiceClick -->
+<g id="edge3" class="edge">
+<title>OpenInvoiceForm-&gt;NewInvoiceClick</title>
+<path fill="none" stroke="#555555" d="M510.91,-903.82C510.91,-903.82 510.91,-871.02 510.91,-871.02"></path>
+<polygon fill="#555555" stroke="#555555" points="514.41,-871.02 510.91,-861.02 507.41,-871.02 514.41,-871.02"></polygon>
+</g>
+<!-- EnterInvoiceInfo -->
+<g id="node6" class="node">
+<title>EnterInvoiceInfo</title>
+<path fill="#fff3cd" stroke="#343a40" stroke-width="1.2" d="M558.86,-778.2C558.86,-778.2 462.95,-778.2 462.95,-778.2 456.95,-778.2 450.95,-772.2 450.95,-766.2 450.95,-766.2 450.95,-754.2 450.95,-754.2 450.95,-748.2 456.95,-742.2 462.95,-742.2 462.95,-742.2 558.86,-742.2 558.86,-742.2 564.86,-742.2 570.86,-748.2 570.86,-754.2 570.86,-754.2 570.86,-766.2 570.86,-766.2 570.86,-772.2 564.86,-778.2 558.86,-778.2"></path>
+<text text-anchor="middle" x="510.91" y="-763.2" font-family="Arial" font-size="10.00">Fatura Üst Bilgilerini Gir</text>
+<text text-anchor="middle" x="510.91" y="-751.2" font-family="Arial" font-size="10.00">(Seri, Sıra No, Tarih)</text>
+</g>
+<!-- NewInvoiceClick&#45;&gt;EnterInvoiceInfo -->
+<g id="edge4" class="edge">
+<title>NewInvoiceClick-&gt;EnterInvoiceInfo</title>
+<path fill="none" stroke="#555555" d="M510.91,-822.82C510.91,-822.82 510.91,-790.02 510.91,-790.02"></path>
+<polygon fill="#555555" stroke="#555555" points="514.41,-790.02 510.91,-780.02 507.41,-790.02 514.41,-790.02"></polygon>
+</g>
+<!-- SelectCustomer -->
+<g id="node7" class="node">
+<title>SelectCustomer</title>
+<path fill="#fff3cd" stroke="#343a40" stroke-width="1.2" d="M564.42,-697.2C564.42,-697.2 457.4,-697.2 457.4,-697.2 451.4,-697.2 445.4,-691.2 445.4,-685.2 445.4,-685.2 445.4,-673.2 445.4,-673.2 445.4,-667.2 451.4,-661.2 457.4,-661.2 457.4,-661.2 564.42,-661.2 564.42,-661.2 570.42,-661.2 576.42,-667.2 576.42,-673.2 576.42,-673.2 576.42,-685.2 576.42,-685.2 576.42,-691.2 570.42,-697.2 564.42,-697.2"></path>
+<text text-anchor="middle" x="510.91" y="-676.2" font-family="Arial" font-size="10.00">Cari (Müşteri) Seçimi Yap</text>
+</g>
+<!-- EnterInvoiceInfo&#45;&gt;SelectCustomer -->
+<g id="edge5" class="edge">
+<title>EnterInvoiceInfo-&gt;SelectCustomer</title>
+<path fill="none" stroke="#555555" d="M510.91,-741.82C510.91,-741.82 510.91,-709.02 510.91,-709.02"></path>
+<polygon fill="#555555" stroke="#555555" points="514.41,-709.02 510.91,-699.02 507.41,-709.02 514.41,-709.02"></polygon>
+</g>
+<!-- AddProductStart -->
+<g id="node8" class="node">
+<title>AddProductStart</title>
+<path fill="#d1e7dd" stroke="#343a40" stroke-width="1.2" d="M499.04,-614.45C499.04,-614.45 400.94,-599.95 400.94,-599.95 395.01,-599.08 395.01,-597.32 400.94,-596.45 400.94,-596.45 499.04,-581.95 499.04,-581.95 504.97,-581.08 516.84,-581.08 522.78,-581.95 522.78,-581.95 620.87,-596.45 620.87,-596.45 626.81,-597.32 626.81,-599.08 620.87,-599.95 620.87,-599.95 522.78,-614.45 522.78,-614.45 516.84,-615.32 504.97,-615.32 499.04,-614.45"></path>
+<text text-anchor="middle" x="510.91" y="-595.2" font-family="Arial" font-size="10.00">Ürün Ekleme İşlemini Başlat</text>
+</g>
+<!-- SelectCustomer&#45;&gt;AddProductStart -->
+<g id="edge6" class="edge">
+<title>SelectCustomer-&gt;AddProductStart</title>
+<path fill="none" stroke="#555555" d="M510.91,-660.82C510.91,-660.82 510.91,-628.02 510.91,-628.02"></path>
+<polygon fill="#555555" stroke="#555555" points="514.41,-628.02 510.91,-618.02 507.41,-628.02 514.41,-628.02"></polygon>
+</g>
+<!-- SelectProduct -->
+<g id="node9" class="node">
+<title>SelectProduct</title>
+<path fill="#fff3cd" stroke="#343a40" stroke-width="1.2" d="M467.27,-525.4C467.27,-525.4 358.54,-525.4 358.54,-525.4 352.54,-525.4 346.54,-519.4 346.54,-513.4 346.54,-513.4 346.54,-501.4 346.54,-501.4 346.54,-495.4 352.54,-489.4 358.54,-489.4 358.54,-489.4 467.27,-489.4 467.27,-489.4 473.27,-489.4 479.27,-495.4 479.27,-501.4 479.27,-501.4 479.27,-513.4 479.27,-513.4 479.27,-519.4 473.27,-525.4 467.27,-525.4"></path>
+<text text-anchor="middle" x="412.91" y="-510.4" font-family="Arial" font-size="10.00">Stok Listesinden Ürün Seç</text>
+<text text-anchor="middle" x="412.91" y="-498.4" font-family="Arial" font-size="10.00">(FrmUrunler)</text>
+</g>
+<!-- AddProductStart&#45;&gt;SelectProduct -->
+<g id="edge7" class="edge">
+<title>AddProductStart-&gt;SelectProduct</title>
+<path fill="none" stroke="#555555" d="M434.17,-591.08C434.17,-591.08 434.17,-537.16 434.17,-537.16"></path>
+<polygon fill="#555555" stroke="#555555" points="437.67,-537.16 434.17,-527.16 430.67,-537.16 437.67,-537.16"></polygon>
+<text text-anchor="middle" x="470.16" y="-550.1" font-family="Arial" font-size="9.00"> &#160;Ürün Seç &#160;</text>
+</g>
+<!-- CheckStock -->
+<g id="node10" class="node">
+<title>CheckStock</title>
+<path fill="#ffe69c" stroke="#343a40" stroke-width="1.2" d="M370.08,-442.34C370.08,-442.34 290.33,-428.46 290.33,-428.46 284.42,-427.43 284.42,-425.37 290.33,-424.34 290.33,-424.34 370.08,-410.46 370.08,-410.46 376,-409.43 387.82,-409.43 393.73,-410.46 393.73,-410.46 473.48,-424.34 473.48,-424.34 479.39,-425.37 479.39,-427.43 473.48,-428.46 473.48,-428.46 393.73,-442.34 393.73,-442.34 387.82,-443.37 376,-443.37 370.08,-442.34"></path>
+<text text-anchor="middle" x="381.91" y="-423.4" font-family="Arial" font-size="10.00">Stok Miktarı Yeterli mi?</text>
+</g>
+<!-- SelectProduct&#45;&gt;CheckStock -->
+<g id="edge8" class="edge">
+<title>SelectProduct-&gt;CheckStock</title>
+<path fill="none" stroke="#555555" d="M412.91,-489.02C412.91,-489.02 412.91,-450.92 412.91,-450.92"></path>
+<polygon fill="#555555" stroke="#555555" points="416.41,-450.92 412.91,-440.92 409.41,-450.92 416.41,-450.92"></polygon>
+</g>
+<!-- StockError -->
+<g id="node11" class="node">
+<title>StockError</title>
+<path fill="#f8d7da" stroke="#dc3545" stroke-width="1.2" d="M666.75,-444.4C666.75,-444.4 583.06,-444.4 583.06,-444.4 577.06,-444.4 571.06,-438.4 571.06,-432.4 571.06,-432.4 571.06,-420.4 571.06,-420.4 571.06,-414.4 577.06,-408.4 583.06,-408.4 583.06,-408.4 666.75,-408.4 666.75,-408.4 672.75,-408.4 678.75,-414.4 678.75,-420.4 678.75,-420.4 678.75,-432.4 678.75,-432.4 678.75,-438.4 672.75,-444.4 666.75,-444.4"></path>
+<text text-anchor="middle" x="624.91" y="-429.4" font-family="Arial" font-size="10.00">Hata Mesajı Göster:</text>
+<text text-anchor="middle" x="624.91" y="-417.4" font-family="Arial" font-size="10.00">'Yetersiz Stok'</text>
+</g>
+<!-- CheckStock&#45;&gt;StockError -->
+<g id="edge9" class="edge">
+<title>CheckStock-&gt;StockError</title>
+<path fill="none" stroke="#555555" d="M485.66,-426C485.66,-426 559.21,-426 559.21,-426"></path>
+<polygon fill="#555555" stroke="#555555" points="559.21,-429.5 569.21,-426 559.21,-422.5 559.21,-429.5"></polygon>
+</g>
+<!-- EnterQuantity -->
+<g id="node12" class="node">
+<title>EnterQuantity</title>
+<path fill="#fff3cd" stroke="#343a40" stroke-width="1.2" d="M407.14,-353.6C407.14,-353.6 340.67,-353.6 340.67,-353.6 334.67,-353.6 328.67,-347.6 328.67,-341.6 328.67,-341.6 328.67,-329.6 328.67,-329.6 328.67,-323.6 334.67,-317.6 340.67,-317.6 340.67,-317.6 407.14,-317.6 407.14,-317.6 413.14,-317.6 419.14,-323.6 419.14,-329.6 419.14,-329.6 419.14,-341.6 419.14,-341.6 419.14,-347.6 413.14,-353.6 407.14,-353.6"></path>
+<text text-anchor="middle" x="373.91" y="-332.6" font-family="Arial" font-size="10.00">Adet ve Fiyat Gir</text>
+</g>
+<!-- CheckStock&#45;&gt;EnterQuantity -->
+<g id="edge11" class="edge">
+<title>CheckStock-&gt;EnterQuantity</title>
+<path fill="none" stroke="#555555" d="M373.91,-409.32C373.91,-409.32 373.91,-365.36 373.91,-365.36"></path>
+<polygon fill="#555555" stroke="#555555" points="377.41,-365.36 373.91,-355.36 370.41,-365.36 377.41,-365.36"></polygon>
+<text text-anchor="middle" x="392.91" y="-378.3" font-family="Arial" font-size="9.00" fill="green"> &#160;Evet &#160;</text>
+</g>
+<!-- StockError&#45;&gt;AddProductStart -->
+<g id="edge10" class="edge">
+<title>StockError-&gt;AddProductStart</title>
+<path fill="none" stroke="#555555" d="M601.9,-444.79C601.9,-444.79 601.9,-581.91 601.9,-581.91"></path>
+<polygon fill="#555555" stroke="#555555" points="598.4,-581.91 601.9,-591.91 605.4,-581.91 598.4,-581.91"></polygon>
+</g>
+<!-- CalculateRow -->
+<g id="node13" class="node">
+<title>CalculateRow</title>
+<path fill="#e2e3e5" stroke="#343a40" stroke-width="1.2" d="M398.98,-272.6C398.98,-272.6 300.83,-272.6 300.83,-272.6 294.83,-272.6 288.83,-266.6 288.83,-260.6 288.83,-260.6 288.83,-248.6 288.83,-248.6 288.83,-242.6 294.83,-236.6 300.83,-236.6 300.83,-236.6 398.98,-236.6 398.98,-236.6 404.98,-236.6 410.98,-242.6 410.98,-248.6 410.98,-248.6 410.98,-260.6 410.98,-260.6 410.98,-266.6 404.98,-272.6 398.98,-272.6"></path>
+<text text-anchor="middle" x="349.91" y="-257.6" font-family="Arial" font-size="10.00">Satır Tutarını Hesapla</text>
+<text text-anchor="middle" x="349.91" y="-245.6" font-family="Arial" font-size="10.00">(Adet * Fiyat)</text>
+</g>
+<!-- EnterQuantity&#45;&gt;CalculateRow -->
+<g id="edge12" class="edge">
+<title>EnterQuantity-&gt;CalculateRow</title>
+<path fill="none" stroke="#555555" d="M369.83,-317.22C369.83,-317.22 369.83,-284.42 369.83,-284.42"></path>
+<polygon fill="#555555" stroke="#555555" points="373.33,-284.42 369.83,-274.42 366.33,-284.42 373.33,-284.42"></polygon>
+</g>
+<!-- AddRowToGrid -->
+<g id="node14" class="node">
+<title>AddRowToGrid</title>
+<path fill="#e2e3e5" stroke="#343a40" stroke-width="1.2" d="M302.03,-191.6C302.03,-191.6 227.78,-191.6 227.78,-191.6 221.78,-191.6 215.78,-185.6 215.78,-179.6 215.78,-179.6 215.78,-167.6 215.78,-167.6 215.78,-161.6 221.78,-155.6 227.78,-155.6 227.78,-155.6 302.03,-155.6 302.03,-155.6 308.03,-155.6 314.03,-161.6 314.03,-167.6 314.03,-167.6 314.03,-179.6 314.03,-179.6 314.03,-185.6 308.03,-191.6 302.03,-191.6"></path>
+<text text-anchor="middle" x="264.91" y="-170.6" font-family="Arial" font-size="10.00">Ürünü Listeye Ekle</text>
+</g>
+<!-- CalculateRow&#45;&gt;AddRowToGrid -->
+<g id="edge13" class="edge">
+<title>CalculateRow-&gt;AddRowToGrid</title>
+<path fill="none" stroke="#555555" d="M301.43,-236.22C301.43,-236.22 301.43,-203.42 301.43,-203.42"></path>
+<polygon fill="#555555" stroke="#555555" points="304.93,-203.42 301.43,-193.42 297.93,-203.42 304.93,-203.42"></polygon>
+</g>
+<!-- MoreProducts -->
+<g id="node15" class="node">
+<title>MoreProducts</title>
+<path fill="#d1e7dd" stroke="#343a40" stroke-width="1.2" d="M177.05,-614.34C177.05,-614.34 86.01,-600.06 86.01,-600.06 80.08,-599.13 80.08,-597.27 86.01,-596.34 86.01,-596.34 177.05,-582.06 177.05,-582.06 182.98,-581.13 194.83,-581.13 200.76,-582.06 200.76,-582.06 291.81,-596.34 291.81,-596.34 297.73,-597.27 297.73,-599.13 291.81,-600.06 291.81,-600.06 200.76,-614.34 200.76,-614.34 194.83,-615.27 182.98,-615.27 177.05,-614.34"></path>
+<text text-anchor="middle" x="188.91" y="-595.2" font-family="Arial" font-size="10.00">Başka Ürün Eklenecek mi?</text>
+</g>
+<!-- AddRowToGrid&#45;&gt;MoreProducts -->
+<g id="edge14" class="edge">
+<title>AddRowToGrid-&gt;MoreProducts</title>
+<path fill="none" stroke="#555555" d="M247.14,-191.84C247.14,-191.84 247.14,-577.57 247.14,-577.57"></path>
+<polygon fill="#555555" stroke="#555555" points="243.64,-577.57 247.14,-587.57 250.64,-577.57 243.64,-577.57"></polygon>
+</g>
+<!-- MoreProducts&#45;&gt;AddProductStart -->
+<g id="edge15" class="edge">
+<title>MoreProducts-&gt;AddProductStart</title>
+<path fill="none" stroke="#555555" d="M305.61,-598C305.61,-598 375.76,-598 375.76,-598"></path>
+<polygon fill="#555555" stroke="#555555" points="375.76,-601.5 385.76,-598 375.76,-594.5 375.76,-601.5"></polygon>
+</g>
+<!-- CalculateTotal -->
+<g id="node16" class="node">
+<title>CalculateTotal</title>
+<path fill="#e2e3e5" stroke="#343a40" stroke-width="1.2" d="M136.82,-525.4C136.82,-525.4 36.99,-525.4 36.99,-525.4 30.99,-525.4 24.99,-519.4 24.99,-513.4 24.99,-513.4 24.99,-501.4 24.99,-501.4 24.99,-495.4 30.99,-489.4 36.99,-489.4 36.99,-489.4 136.82,-489.4 136.82,-489.4 142.82,-489.4 148.82,-495.4 148.82,-501.4 148.82,-501.4 148.82,-513.4 148.82,-513.4 148.82,-519.4 142.82,-525.4 136.82,-525.4"></path>
+<text text-anchor="middle" x="86.91" y="-504.4" font-family="Arial" font-size="10.00">Genel Toplamı Hesapla</text>
+</g>
+<!-- MoreProducts&#45;&gt;CalculateTotal -->
+<g id="edge16" class="edge">
+<title>MoreProducts-&gt;CalculateTotal</title>
+<path fill="none" stroke="#555555" d="M111.49,-591.96C111.49,-591.96 111.49,-537.25 111.49,-537.25"></path>
+<polygon fill="#555555" stroke="#555555" points="114.99,-537.25 111.49,-527.25 107.99,-537.25 114.99,-537.25"></polygon>
+<text text-anchor="middle" x="136.91" y="-550.1" font-family="Arial" font-size="9.00"> &#160;Hayır &#160;</text>
+</g>
+<!-- SaveClick -->
+<g id="node17" class="node">
+<title>SaveClick</title>
+<path fill="#e3f2fd" stroke="#343a40" stroke-width="1.2" d="M135.79,-444.4C135.79,-444.4 36.02,-444.4 36.02,-444.4 30.02,-444.4 24.02,-438.4 24.02,-432.4 24.02,-432.4 24.02,-420.4 24.02,-420.4 24.02,-414.4 30.02,-408.4 36.02,-408.4 36.02,-408.4 135.79,-408.4 135.79,-408.4 141.79,-408.4 147.79,-414.4 147.79,-420.4 147.79,-420.4 147.79,-432.4 147.79,-432.4 147.79,-438.4 141.79,-444.4 135.79,-444.4"></path>
+<text text-anchor="middle" x="85.91" y="-423.4" font-family="Arial" font-size="10.00">'Kaydet' Butonuna Tıkla</text>
+</g>
+<!-- CalculateTotal&#45;&gt;SaveClick -->
+<g id="edge17" class="edge">
+<title>CalculateTotal-&gt;SaveClick</title>
+<path fill="none" stroke="#555555" d="M86.39,-489.02C86.39,-489.02 86.39,-456.22 86.39,-456.22"></path>
+<polygon fill="#555555" stroke="#555555" points="89.89,-456.22 86.39,-446.22 82.89,-456.22 89.89,-456.22"></polygon>
+</g>
+<!-- DbTransaction -->
+<g id="node18" class="node">
+<title>DbTransaction</title>
+<polygon fill="#fff3cd" stroke="#343a40" stroke-width="1.2" points="130.76,-353.6 29.05,-353.6 29.05,-317.6 136.76,-317.6 136.76,-347.6 130.76,-353.6"></polygon>
+<polyline fill="none" stroke="#343a40" stroke-width="1.2" points="130.76,-353.6 130.76,-347.6"></polyline>
+<polyline fill="none" stroke="#343a40" stroke-width="1.2" points="136.76,-347.6 130.76,-347.6"></polyline>
+<text text-anchor="middle" x="82.91" y="-338.6" font-family="Arial" font-size="10.00">Veritabanı İşlemleri</text>
+<text text-anchor="middle" x="82.91" y="-326.6" font-family="Arial" font-size="10.00">(Transaction)</text>
+</g>
+<!-- SaveClick&#45;&gt;DbTransaction -->
+<g id="edge18" class="edge">
+<title>SaveClick-&gt;DbTransaction</title>
+<path fill="none" stroke="#555555" d="M82.91,-408.03C82.91,-408.03 82.91,-365.46 82.91,-365.46"></path>
+<polygon fill="#555555" stroke="#555555" points="86.41,-365.46 82.91,-355.46 79.41,-365.46 86.41,-365.46"></polygon>
+</g>
+<!-- SaveInvoice -->
+<g id="node20" class="node">
+<title>SaveInvoice</title>
+<path fill="#e2e3e5" stroke="#343a40" stroke-width="1.2" d="M136.55,-272.6C136.55,-272.6 17.27,-272.6 17.27,-272.6 11.27,-272.6 5.27,-266.6 5.27,-260.6 5.27,-260.6 5.27,-248.6 5.27,-248.6 5.27,-242.6 11.27,-236.6 17.27,-236.6 17.27,-236.6 136.55,-236.6 136.55,-236.6 142.55,-236.6 148.55,-242.6 148.55,-248.6 148.55,-248.6 148.55,-260.6 148.55,-260.6 148.55,-266.6 142.55,-272.6 136.55,-272.6"></path>
+<text text-anchor="middle" x="76.91" y="-257.6" font-family="Arial" font-size="10.00">Fatura ve Hareketleri Kaydet</text>
+<text text-anchor="middle" x="76.91" y="-245.6" font-family="Arial" font-size="10.00">(TblFaturaBilgi/Detay Insert)</text>
+</g>
+<!-- DbTransaction&#45;&gt;SaveInvoice -->
+<g id="edge19" class="edge">
+<title>DbTransaction-&gt;SaveInvoice</title>
+<path fill="none" stroke="#555555" d="M82.91,-317.22C82.91,-317.22 82.91,-284.42 82.91,-284.42"></path>
+<polygon fill="#555555" stroke="#555555" points="86.41,-284.42 82.91,-274.42 79.41,-284.42 86.41,-284.42"></polygon>
+</g>
+<!-- UpdateStock -->
+<g id="node19" class="node">
+<title>UpdateStock</title>
+<path fill="#e2e3e5" stroke="#343a40" stroke-width="1.2" d="M118.75,-191.6C118.75,-191.6 35.06,-191.6 35.06,-191.6 29.06,-191.6 23.06,-185.6 23.06,-179.6 23.06,-179.6 23.06,-167.6 23.06,-167.6 23.06,-161.6 29.06,-155.6 35.06,-155.6 35.06,-155.6 118.75,-155.6 118.75,-155.6 124.75,-155.6 130.75,-161.6 130.75,-167.6 130.75,-167.6 130.75,-179.6 130.75,-179.6 130.75,-185.6 124.75,-191.6 118.75,-191.6"></path>
+<text text-anchor="middle" x="76.91" y="-176.6" font-family="Arial" font-size="10.00">Ürün Stoklarını Düş</text>
+<text text-anchor="middle" x="76.91" y="-164.6" font-family="Arial" font-size="10.00">(TblUrunler Update)</text>
+</g>
+<!-- SuccessMsg -->
+<g id="node21" class="node">
+<title>SuccessMsg</title>
+<path fill="#d1e7dd" stroke="#343a40" stroke-width="1.2" d="M141.81,-110.6C141.81,-110.6 12,-110.6 12,-110.6 6,-110.6 0,-104.6 0,-98.6 0,-98.6 0,-86.6 0,-86.6 0,-80.6 6,-74.6 12,-74.6 12,-74.6 141.81,-74.6 141.81,-74.6 147.81,-74.6 153.81,-80.6 153.81,-86.6 153.81,-86.6 153.81,-98.6 153.81,-98.6 153.81,-104.6 147.81,-110.6 141.81,-110.6"></path>
+<text text-anchor="middle" x="76.91" y="-89.6" font-family="Arial" font-size="10.00">Başarılı İşlem Mesajı Göster</text>
+</g>
+<!-- UpdateStock&#45;&gt;SuccessMsg -->
+<g id="edge21" class="edge">
+<title>UpdateStock-&gt;SuccessMsg</title>
+<path fill="none" stroke="#555555" d="M76.91,-155.22C76.91,-155.22 76.91,-122.42 76.91,-122.42"></path>
+<polygon fill="#555555" stroke="#555555" points="80.41,-122.42 76.91,-112.42 73.41,-122.42 80.41,-122.42"></polygon>
+</g>
+<!-- SaveInvoice&#45;&gt;UpdateStock -->
+<g id="edge20" class="edge">
+<title>SaveInvoice-&gt;UpdateStock</title>
+<path fill="none" stroke="#555555" d="M76.91,-236.22C76.91,-236.22 76.91,-203.42 76.91,-203.42"></path>
+<polygon fill="#555555" stroke="#555555" points="80.41,-203.42 76.91,-193.42 73.41,-203.42 80.41,-203.42"></polygon>
+</g>
+<!-- SuccessMsg&#45;&gt;End -->
+<g id="edge22" class="edge">
+<title>SuccessMsg-&gt;End</title>
+<path fill="none" stroke="#555555" d="M76.91,-74.16C76.91,-74.16 76.91,-41.48 76.91,-41.48"></path>
+<polygon fill="#555555" stroke="#555555" points="80.41,-41.48 76.91,-31.48 73.41,-41.48 80.41,-41.48"></polygon>
+</g>
+</g>
+</g></svg>

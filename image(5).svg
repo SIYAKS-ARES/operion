@@ -1,0 +1,224 @@
+<svg width="533pt" height="1268pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="overflow: hidden; "><g id="viewport-20260108095159506" class="svg-pan-zoom_viewport" transform="matrix(0.4611449340837712,0,0,0.4611449340837712,158.87497590419255,18.566683360785227)" style="transform: matrix(0.461145, 0, 0, 0.461145, 158.875, 18.5667);">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(36 1232)">
+<title>ER_Diagram</title>
+<polygon fill="white" stroke="none" points="-36,36 -36,-1232 497.13,-1232 497.13,36 -36,36"></polygon>
+<!-- TBL_URUNLER -->
+<g id="node1" class="node">
+<title>TBL_URUNLER</title>
+<polygon fill="#343a40" stroke="none" points="19.1,-752 19.1,-774 116.9,-774 116.9,-752 19.1,-752"></polygon>
+<polygon fill="none" stroke="black" points="19.1,-752 19.1,-774 116.9,-774 116.9,-752 19.1,-752"></polygon>
+<text text-anchor="start" x="31.06" y="-761" font-family="Arial" font-weight="bold" font-size="10.00" fill="white">TBL_URUNLER</text>
+<polygon fill="none" stroke="black" points="19.1,-730 19.1,-752 116.9,-752 116.9,-730 19.1,-730"></polygon>
+<text text-anchor="start" x="24.1" y="-738" font-family="Arial" font-size="10.00">PK: ID (int)</text>
+<polygon fill="none" stroke="black" points="19.1,-708 19.1,-730 116.9,-730 116.9,-708 19.1,-708"></polygon>
+<text text-anchor="start" x="24.1" y="-716" font-family="Arial" font-size="10.00">UrunAd (text)</text>
+<polygon fill="none" stroke="black" points="19.1,-686 19.1,-708 116.9,-708 116.9,-686 19.1,-686"></polygon>
+<text text-anchor="start" x="24.1" y="-694" font-family="Arial" font-size="10.00">Marka (text)</text>
+<polygon fill="none" stroke="black" points="19.1,-664 19.1,-686 116.9,-686 116.9,-664 19.1,-664"></polygon>
+<text text-anchor="start" x="24.1" y="-672" font-family="Arial" font-size="10.00">Model (text)</text>
+<polygon fill="none" stroke="black" points="19.1,-642 19.1,-664 116.9,-664 116.9,-642 19.1,-642"></polygon>
+<text text-anchor="start" x="24.1" y="-650" font-family="Arial" font-size="10.00">Stok (short)</text>
+<polygon fill="none" stroke="black" points="19.1,-620 19.1,-642 116.9,-642 116.9,-620 19.1,-620"></polygon>
+<text text-anchor="start" x="24.1" y="-628" font-family="Arial" font-size="10.00">AlisFiyat (decimal)</text>
+<polygon fill="none" stroke="black" points="19.1,-598 19.1,-620 116.9,-620 116.9,-598 19.1,-598"></polygon>
+<text text-anchor="start" x="24.1" y="-606" font-family="Arial" font-size="10.00">SatisFiyat (decimal)</text>
+</g>
+<!-- TBL_FATURADETAY -->
+<g id="node6" class="node">
+<title>TBL_FATURADETAY</title>
+<polygon fill="#28a745" stroke="none" points="312,-775 312,-797 425.92,-797 425.92,-775 312,-775"></polygon>
+<polygon fill="none" stroke="black" points="312,-775 312,-797 425.92,-797 425.92,-775 312,-775"></polygon>
+<text text-anchor="start" x="318.97" y="-784" font-family="Arial" font-weight="bold" font-size="10.00" fill="white">TBL_FATURADETAY</text>
+<polygon fill="none" stroke="black" points="312,-753 312,-775 425.92,-775 425.92,-753 312,-753"></polygon>
+<text text-anchor="start" x="317" y="-761" font-family="Arial" font-size="10.00">PK: FaturaDetayID (int)</text>
+<polygon fill="none" stroke="black" points="312,-731 312,-753 425.92,-753 425.92,-731 312,-731"></polygon>
+<text text-anchor="start" x="317" y="-739" font-family="Arial" font-size="10.00">UrunAd (text)</text>
+<polygon fill="none" stroke="black" points="312,-709 312,-731 425.92,-731 425.92,-709 312,-709"></polygon>
+<text text-anchor="start" x="317" y="-717" font-family="Arial" font-size="10.00">Miktar (short)</text>
+<polygon fill="none" stroke="black" points="312,-687 312,-709 425.92,-709 425.92,-687 312,-687"></polygon>
+<text text-anchor="start" x="317" y="-695" font-family="Arial" font-size="10.00">Fiyat (decimal)</text>
+<polygon fill="none" stroke="black" points="312,-665 312,-687 425.92,-687 425.92,-665 312,-665"></polygon>
+<text text-anchor="start" x="317" y="-673" font-family="Arial" font-size="10.00">Tutar (decimal)</text>
+<polygon fill="none" stroke="black" points="312,-643 312,-665 425.92,-665 425.92,-643 312,-643"></polygon>
+<text text-anchor="start" x="317" y="-651" font-family="Arial" font-size="10.00">FK: FaturaID (int)</text>
+</g>
+<!-- TBL_URUNLER&#45;&gt;TBL_FATURADETAY -->
+<g id="edge7" class="edge">
+<title>TBL_URUNLER-&gt;TBL_FATURADETAY</title>
+<path fill="none" stroke="#999999" stroke-dasharray="1,5" d="M124.61,-708.5C124.61,-708.5 294.74,-708.5 294.74,-708.5"></path>
+<polygon fill="#999999" stroke="#999999" points="294.74,-711.3 302.74,-708.5 294.74,-705.7 294.74,-711.3"></polygon>
+<text text-anchor="middle" x="206.4" y="-706.2" font-family="Times,serif" font-size="14.00">içerir</text>
+</g>
+<!-- TBL_HAREKETLER -->
+<g id="node9" class="node">
+<title>TBL_HAREKETLER</title>
+<polygon fill="#17a2b8" stroke="none" points="284.8,-377 284.8,-399 453.13,-399 453.13,-377 284.8,-377"></polygon>
+<polygon fill="none" stroke="black" points="284.8,-377 284.8,-399 453.13,-399 453.13,-377 284.8,-377"></polygon>
+<text text-anchor="start" x="289.8" y="-386" font-family="Arial" font-weight="bold" font-size="10.00" fill="white">TBL_MUSTERI/FIRMA_HAREKET</text>
+<polygon fill="none" stroke="black" points="284.8,-355 284.8,-377 453.13,-377 453.13,-355 284.8,-355"></polygon>
+<text text-anchor="start" x="289.8" y="-363" font-family="Arial" font-size="10.00">PK: HareketID</text>
+<polygon fill="none" stroke="black" points="284.8,-333 284.8,-355 453.13,-355 453.13,-333 284.8,-333"></polygon>
+<text text-anchor="start" x="289.8" y="-341" font-family="Arial" font-size="10.00">FK: UrunID</text>
+<polygon fill="none" stroke="black" points="284.8,-311 284.8,-333 453.13,-333 453.13,-311 284.8,-311"></polygon>
+<text text-anchor="start" x="289.8" y="-319" font-family="Arial" font-size="10.00">FK: PersonelID</text>
+<polygon fill="none" stroke="black" points="284.8,-289 284.8,-311 453.13,-311 453.13,-289 284.8,-289"></polygon>
+<text text-anchor="start" x="289.8" y="-297" font-family="Arial" font-size="10.00">FK: Musteri/FirmaID</text>
+<polygon fill="none" stroke="black" points="284.8,-267 284.8,-289 453.13,-289 453.13,-267 284.8,-267"></polygon>
+<text text-anchor="start" x="289.8" y="-275" font-family="Arial" font-size="10.00">Adet, Fiyat, Toplam</text>
+</g>
+<!-- TBL_URUNLER&#45;&gt;TBL_HAREKETLER -->
+<g id="edge3" class="edge">
+<title>TBL_URUNLER-&gt;TBL_HAREKETLER</title>
+<path fill="none" stroke="#555555" stroke-dasharray="5,2" d="M133.17,-616.5C133.17,-616.5 295.13,-616.5 295.13,-616.5 295.13,-616.5 295.13,-486.66 295.13,-402.71"></path>
+<polygon fill="#555555" stroke="#555555" points="133.06,-616.5 125.06,-612.9 128.73,-616.5 125.4,-616.5 125.4,-616.5 125.4,-616.5 128.73,-616.5 125.06,-620.1 133.06,-616.5"></polygon>
+<text text-anchor="middle" x="206.4" y="-627.2" font-family="Times,serif" font-size="14.00">kayıt</text>
+</g>
+<!-- TBL_MUSTERILER -->
+<g id="node2" class="node">
+<title>TBL_MUSTERILER</title>
+<polygon fill="#007bff" stroke="none" points="18,-158 18,-180 118,-180 118,-158 18,-158"></polygon>
+<polygon fill="none" stroke="black" points="18,-158 18,-180 118,-180 118,-158 18,-158"></polygon>
+<text text-anchor="start" x="23" y="-167" font-family="Arial" font-weight="bold" font-size="10.00" fill="white">TBL_MUSTERILER</text>
+<polygon fill="none" stroke="black" points="18,-136 18,-158 118,-158 118,-136 18,-136"></polygon>
+<text text-anchor="start" x="23" y="-144" font-family="Arial" font-size="10.00">PK: ID (int)</text>
+<polygon fill="none" stroke="black" points="18,-114 18,-136 118,-136 118,-114 18,-114"></polygon>
+<text text-anchor="start" x="23" y="-122" font-family="Arial" font-size="10.00">Ad (text)</text>
+<polygon fill="none" stroke="black" points="18,-92 18,-114 118,-114 118,-92 18,-92"></polygon>
+<text text-anchor="start" x="23" y="-100" font-family="Arial" font-size="10.00">Soyad (text)</text>
+<polygon fill="none" stroke="black" points="18,-70 18,-92 118,-92 118,-70 18,-70"></polygon>
+<text text-anchor="start" x="23" y="-78" font-family="Arial" font-size="10.00">Telefon (text)</text>
+<polygon fill="none" stroke="black" points="18,-48 18,-70 118,-70 118,-48 18,-48"></polygon>
+<text text-anchor="start" x="23" y="-56" font-family="Arial" font-size="10.00">Mail (text)</text>
+<polygon fill="none" stroke="black" points="18,-26 18,-48 118,-48 118,-26 18,-26"></polygon>
+<text text-anchor="start" x="23" y="-34" font-family="Arial" font-size="10.00">Il (text)</text>
+<polygon fill="none" stroke="black" points="18,-4 18,-26 118,-26 118,-4 18,-4"></polygon>
+<text text-anchor="start" x="23" y="-12" font-family="Arial" font-size="10.00">Ilce (text)</text>
+</g>
+<!-- TBL_MUSTERILER&#45;&gt;TBL_HAREKETLER -->
+<g id="edge5" class="edge">
+<title>TBL_MUSTERILER-&gt;TBL_HAREKETLER</title>
+<path fill="none" stroke="#555555" stroke-dasharray="5,2" d="M134.15,-92C134.15,-92 369.13,-92 369.13,-92 369.13,-92 369.13,-192.12 369.13,-263.29"></path>
+<polygon fill="#555555" stroke="#555555" points="134.04,-92 126.04,-88.4 129.7,-92 126.37,-92 126.37,-92 126.37,-92 129.7,-92 126.04,-95.6 134.04,-92"></polygon>
+<text text-anchor="middle" x="206.4" y="-96.2" font-family="Times,serif" font-size="14.00">satın alan</text>
+</g>
+<!-- TBL_FIRMALAR -->
+<g id="node3" class="node">
+<title>TBL_FIRMALAR</title>
+<polygon fill="#007bff" stroke="none" points="16.59,-356 16.59,-378 119.41,-378 119.41,-356 16.59,-356"></polygon>
+<polygon fill="none" stroke="black" points="16.59,-356 16.59,-378 119.41,-378 119.41,-356 16.59,-356"></polygon>
+<text text-anchor="start" x="29.39" y="-365" font-family="Arial" font-weight="bold" font-size="10.00" fill="white">TBL_FIRMALAR</text>
+<polygon fill="none" stroke="black" points="16.59,-334 16.59,-356 119.41,-356 119.41,-334 16.59,-334"></polygon>
+<text text-anchor="start" x="21.59" y="-342" font-family="Arial" font-size="10.00">PK: ID (int)</text>
+<polygon fill="none" stroke="black" points="16.59,-312 16.59,-334 119.41,-334 119.41,-312 16.59,-312"></polygon>
+<text text-anchor="start" x="21.59" y="-320" font-family="Arial" font-size="10.00">Ad (text)</text>
+<polygon fill="none" stroke="black" points="16.59,-290 16.59,-312 119.41,-312 119.41,-290 16.59,-290"></polygon>
+<text text-anchor="start" x="21.59" y="-298" font-family="Arial" font-size="10.00">YetkiliAdSoyad (text)</text>
+<polygon fill="none" stroke="black" points="16.59,-268 16.59,-290 119.41,-290 119.41,-268 16.59,-268"></polygon>
+<text text-anchor="start" x="21.59" y="-276" font-family="Arial" font-size="10.00">Telefon (text)</text>
+<polygon fill="none" stroke="black" points="16.59,-246 16.59,-268 119.41,-268 119.41,-246 16.59,-246"></polygon>
+<text text-anchor="start" x="21.59" y="-254" font-family="Arial" font-size="10.00">Mail (text)</text>
+<polygon fill="none" stroke="black" points="16.59,-224 16.59,-246 119.41,-246 119.41,-224 16.59,-224"></polygon>
+<text text-anchor="start" x="21.59" y="-232" font-family="Arial" font-size="10.00">VergiDaire (text)</text>
+</g>
+<!-- TBL_BANKALAR -->
+<g id="node8" class="node">
+<title>TBL_BANKALAR</title>
+<polygon fill="#ffc107" stroke="none" points="323.13,-562 323.13,-584 414.79,-584 414.79,-562 323.13,-562"></polygon>
+<polygon fill="none" stroke="black" points="323.13,-562 323.13,-584 414.79,-584 414.79,-562 323.13,-562"></polygon>
+<text text-anchor="start" x="328.13" y="-571" font-family="Arial" font-weight="bold" font-size="10.00">TBL_BANKALAR</text>
+<polygon fill="none" stroke="black" points="323.13,-540 323.13,-562 414.79,-562 414.79,-540 323.13,-540"></polygon>
+<text text-anchor="start" x="328.13" y="-548" font-family="Arial" font-size="10.00">PK: BankaID (int)</text>
+<polygon fill="none" stroke="black" points="323.13,-518 323.13,-540 414.79,-540 414.79,-518 323.13,-518"></polygon>
+<text text-anchor="start" x="328.13" y="-526" font-family="Arial" font-size="10.00">BankaAdi (text)</text>
+<polygon fill="none" stroke="black" points="323.13,-496 323.13,-518 414.79,-518 414.79,-496 323.13,-496"></polygon>
+<text text-anchor="start" x="328.13" y="-504" font-family="Arial" font-size="10.00">IBAN (text)</text>
+<polygon fill="none" stroke="black" points="323.13,-474 323.13,-496 414.79,-496 414.79,-474 323.13,-474"></polygon>
+<text text-anchor="start" x="328.13" y="-482" font-family="Arial" font-size="10.00">FK: FirmaID (int)</text>
+</g>
+<!-- TBL_FIRMALAR&#45;&gt;TBL_BANKALAR -->
+<g id="edge2" class="edge">
+<title>TBL_FIRMALAR-&gt;TBL_BANKALAR</title>
+<path fill="none" stroke="#555555" d="M135.85,-342.33C135.85,-342.33 207.13,-342.33 207.13,-342.33 207.13,-342.33 207.13,-514 207.13,-514 207.13,-514 268.39,-514 315.53,-514"></path>
+<polygon fill="#555555" stroke="#555555" points="135.74,-342.33 127.74,-338.73 131.41,-342.33 128.08,-342.33 128.08,-342.33 128.08,-342.33 131.41,-342.33 127.74,-345.93 135.74,-342.33"></polygon>
+<text text-anchor="middle" x="206.4" y="-533.2" font-family="Times,serif" font-size="14.00">1..n</text>
+</g>
+<!-- TBL_FIRMALAR&#45;&gt;TBL_HAREKETLER -->
+<g id="edge6" class="edge">
+<title>TBL_FIRMALAR-&gt;TBL_HAREKETLER</title>
+<path fill="none" stroke="#555555" stroke-dasharray="5,2" d="M135.54,-302.67C135.54,-302.67 276.82,-302.67 276.82,-302.67"></path>
+<polygon fill="#555555" stroke="#555555" points="135.44,-302.67 127.44,-299.07 131.1,-302.67 127.77,-302.67 127.77,-302.67 127.77,-302.67 131.1,-302.67 127.44,-306.27 135.44,-302.67"></polygon>
+<text text-anchor="middle" x="206.4" y="-321.2" font-family="Times,serif" font-size="14.00">tedarik eden</text>
+</g>
+<!-- TBL_PERSONELLER -->
+<g id="node4" class="node">
+<title>TBL_PERSONELLER</title>
+<polygon fill="#6c757d" stroke="none" points="13,-532 13,-554 123,-554 123,-532 13,-532"></polygon>
+<polygon fill="none" stroke="black" points="13,-532 13,-554 123,-554 123,-532 13,-532"></polygon>
+<text text-anchor="start" x="18" y="-541" font-family="Arial" font-weight="bold" font-size="10.00" fill="white">TBL_PERSONELLER</text>
+<polygon fill="none" stroke="black" points="13,-510 13,-532 123,-532 123,-510 13,-510"></polygon>
+<text text-anchor="start" x="18" y="-518" font-family="Arial" font-size="10.00">PK: ID (int)</text>
+<polygon fill="none" stroke="black" points="13,-488 13,-510 123,-510 123,-488 13,-488"></polygon>
+<text text-anchor="start" x="18" y="-496" font-family="Arial" font-size="10.00">Ad (text)</text>
+<polygon fill="none" stroke="black" points="13,-466 13,-488 123,-488 123,-466 13,-466"></polygon>
+<text text-anchor="start" x="18" y="-474" font-family="Arial" font-size="10.00">Soyad (text)</text>
+<polygon fill="none" stroke="black" points="13,-444 13,-466 123,-466 123,-444 13,-444"></polygon>
+<text text-anchor="start" x="18" y="-452" font-family="Arial" font-size="10.00">Gorev (text)</text>
+<polygon fill="none" stroke="black" points="13,-422 13,-444 123,-444 123,-422 13,-422"></polygon>
+<text text-anchor="start" x="18" y="-430" font-family="Arial" font-size="10.00">FK: DepartmanID</text>
+</g>
+<!-- TBL_PERSONELLER&#45;&gt;TBL_HAREKETLER -->
+<g id="edge4" class="edge">
+<title>TBL_PERSONELLER-&gt;TBL_HAREKETLER</title>
+<path fill="none" stroke="#555555" stroke-dasharray="5,2" d="M139.24,-444C139.24,-444 286.13,-444 286.13,-444 286.13,-444 286.13,-425.15 286.13,-402.98"></path>
+<polygon fill="#555555" stroke="#555555" points="139.13,-444 131.13,-440.4 134.8,-444 131.47,-444 131.47,-444 131.47,-444 134.8,-444 131.13,-447.6 139.13,-444"></polygon>
+<text text-anchor="middle" x="206.4" y="-475.2" font-family="Times,serif" font-size="14.00">satış yapan</text>
+</g>
+<!-- TBL_FATURABILGI -->
+<g id="node5" class="node">
+<title>TBL_FATURABILGI</title>
+<polygon fill="#28a745" stroke="none" points="8,-950 8,-972 128,-972 128,-950 8,-950"></polygon>
+<polygon fill="none" stroke="black" points="8,-950 8,-972 128,-972 128,-950 8,-950"></polygon>
+<text text-anchor="start" x="21.62" y="-959" font-family="Arial" font-weight="bold" font-size="10.00" fill="white">TBL_FATURABILGI</text>
+<polygon fill="none" stroke="black" points="8,-928 8,-950 128,-950 128,-928 8,-928"></polygon>
+<text text-anchor="start" x="13" y="-936" font-family="Arial" font-size="10.00">PK: FaturaBilgiID (int)</text>
+<polygon fill="none" stroke="black" points="8,-906 8,-928 128,-928 128,-906 8,-906"></polygon>
+<text text-anchor="start" x="13" y="-914" font-family="Arial" font-size="10.00">Seri (text)</text>
+<polygon fill="none" stroke="black" points="8,-884 8,-906 128,-906 128,-884 8,-884"></polygon>
+<text text-anchor="start" x="13" y="-892" font-family="Arial" font-size="10.00">SiraNo (text)</text>
+<polygon fill="none" stroke="black" points="8,-862 8,-884 128,-884 128,-862 8,-862"></polygon>
+<text text-anchor="start" x="13" y="-870" font-family="Arial" font-size="10.00">Tarih (datetime)</text>
+<polygon fill="none" stroke="black" points="8,-840 8,-862 128,-862 128,-840 8,-840"></polygon>
+<text text-anchor="start" x="13" y="-848" font-family="Arial" font-size="10.00">VergiDaire (text)</text>
+<polygon fill="none" stroke="black" points="8,-818 8,-840 128,-840 128,-818 8,-818"></polygon>
+<text text-anchor="start" x="13" y="-826" font-family="Arial" font-size="10.00">CariTuru (Müşteri/Firma)</text>
+</g>
+<!-- TBL_FATURABILGI&#45;&gt;TBL_FATURADETAY -->
+<g id="edge1" class="edge">
+<title>TBL_FATURABILGI-&gt;TBL_FATURADETAY</title>
+<path fill="none" stroke="#555555" d="M68.13,-805.79C68.13,-805.79 68.13,-789.5 68.13,-789.5 68.13,-789.5 215.62,-789.5 304.06,-789.5"></path>
+<polygon fill="#555555" stroke="#555555" points="68.13,-805.9 64.53,-813.9 68.13,-810.24 68.13,-813.57 68.13,-813.57 68.13,-813.57 68.13,-810.24 71.73,-813.9 68.13,-805.9"></polygon>
+<text text-anchor="middle" x="206.4" y="-899.2" font-family="Times,serif" font-size="14.00">1..n</text>
+</g>
+<!-- TBL_GIDERLER -->
+<g id="node7" class="node">
+<title>TBL_GIDERLER</title>
+<polygon fill="#dc3545" stroke="none" points="19.93,-1170 19.93,-1192 116.07,-1192 116.07,-1170 19.93,-1170"></polygon>
+<polygon fill="none" stroke="black" points="19.93,-1170 19.93,-1192 116.07,-1192 116.07,-1170 19.93,-1170"></polygon>
+<text text-anchor="start" x="29.67" y="-1179" font-family="Arial" font-weight="bold" font-size="10.00" fill="white">TBL_GIDERLER</text>
+<polygon fill="none" stroke="black" points="19.93,-1148 19.93,-1170 116.07,-1170 116.07,-1148 19.93,-1148"></polygon>
+<text text-anchor="start" x="24.93" y="-1156" font-family="Arial" font-size="10.00">PK: GiderID (int)</text>
+<polygon fill="none" stroke="black" points="19.93,-1126 19.93,-1148 116.07,-1148 116.07,-1126 19.93,-1126"></polygon>
+<text text-anchor="start" x="24.93" y="-1134" font-family="Arial" font-size="10.00">Elektrik (decimal)</text>
+<polygon fill="none" stroke="black" points="19.93,-1104 19.93,-1126 116.07,-1126 116.07,-1104 19.93,-1104"></polygon>
+<text text-anchor="start" x="24.93" y="-1112" font-family="Arial" font-size="10.00">Su (decimal)</text>
+<polygon fill="none" stroke="black" points="19.93,-1082 19.93,-1104 116.07,-1104 116.07,-1082 19.93,-1082"></polygon>
+<text text-anchor="start" x="24.93" y="-1090" font-family="Arial" font-size="10.00">Dogalgaz (decimal)</text>
+<polygon fill="none" stroke="black" points="19.93,-1060 19.93,-1082 116.07,-1082 116.07,-1060 19.93,-1060"></polygon>
+<text text-anchor="start" x="24.93" y="-1068" font-family="Arial" font-size="10.00">Internet (decimal)</text>
+<polygon fill="none" stroke="black" points="19.93,-1038 19.93,-1060 116.07,-1060 116.07,-1038 19.93,-1038"></polygon>
+<text text-anchor="start" x="24.93" y="-1046" font-family="Arial" font-size="10.00">Maaslar (decimal)</text>
+<polygon fill="none" stroke="black" points="19.93,-1016 19.93,-1038 116.07,-1038 116.07,-1016 19.93,-1016"></polygon>
+<text text-anchor="start" x="24.93" y="-1024" font-family="Arial" font-size="10.00">Ekstra (decimal)</text>
+</g>
+</g>
+</g></svg>

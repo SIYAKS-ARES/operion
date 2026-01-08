@@ -1,0 +1,219 @@
+<svg width="1309pt" height="419pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="overflow: hidden; "><g id="viewport-20260108061713806" class="svg-pan-zoom_viewport" transform="matrix(0.48433919022154315,0,0,0.48433919022154315,0,266.9340718105424)" style="transform: matrix(0.484339, 0, 0, 0.484339, 0, 266.934);">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 415.4)">
+<title>Sequence_Diagram</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-415.4 1305,-415.4 1305,4 -4,4"></polygon>
+<!-- User -->
+<g id="node1" class="node">
+<title>User</title>
+<path fill="lightgrey" stroke="none" d="M97.33,-360C97.33,-360 10.67,-360 10.67,-360 5.33,-360 0,-354.67 0,-349.33 0,-349.33 0,-338.67 0,-338.67 0,-333.33 5.33,-328 10.67,-328 10.67,-328 97.33,-328 97.33,-328 102.67,-328 108,-333.33 108,-338.67 108,-338.67 108,-349.33 108,-349.33 108,-354.67 102.67,-360 97.33,-360"></path>
+<text text-anchor="middle" x="54" y="-347" font-family="Arial" font-size="10.00">👤</text>
+<text text-anchor="middle" x="54" y="-335" font-family="Arial" font-size="10.00">Kullanıcı</text>
+</g>
+<!-- UI -->
+<g id="node2" class="node">
+<title>UI</title>
+<path fill="#e3f2fd" stroke="black" d="M377.33,-360C377.33,-360 290.67,-360 290.67,-360 285.33,-360 280,-354.67 280,-349.33 280,-349.33 280,-338.67 280,-338.67 280,-333.33 285.33,-328 290.67,-328 290.67,-328 377.33,-328 377.33,-328 382.67,-328 388,-333.33 388,-338.67 388,-338.67 388,-349.33 388,-349.33 388,-354.67 382.67,-360 377.33,-360"></path>
+<text text-anchor="middle" x="334" y="-347" font-family="Arial" font-size="10.00">:FrmAiChat</text>
+<text text-anchor="middle" x="334" y="-335" font-family="Arial" font-size="10.00">(Arayüz)</text>
+</g>
+<!-- User&#45;&gt;UI -->
+<g id="edge1" class="edge">
+<title>User-&gt;UI</title>
+<path fill="none" stroke="#555555" d="M107.99,-338C107.99,-338 268.19,-338 268.19,-338"></path>
+<polygon fill="#555555" stroke="#555555" points="268.19,-341.5 278.19,-338 268.19,-334.5 268.19,-341.5"></polygon>
+</g>
+<!-- t1 -->
+<!-- User&#45;&gt;t1 -->
+<g id="edge16" class="edge">
+<title>User-&gt;t1</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M54,-328.24C54,-310.46 54,-284 54,-284 54,-284 329.64,-284 333.95,-284"></path>
+</g>
+<!-- UI&#45;&gt;User -->
+<g id="edge15" class="edge">
+<title>UI-&gt;User</title>
+<path fill="none" stroke="#555555" stroke-dasharray="5,2" d="M279.68,-349C279.68,-349 119.21,-349 119.21,-349"></path>
+<polygon fill="#555555" stroke="#555555" points="119.21,-345.5 109.21,-349 119.21,-352.5 119.21,-345.5"></polygon>
+</g>
+<!-- Service -->
+<g id="node3" class="node">
+<title>Service</title>
+<path fill="#fff3cd" stroke="black" d="M619.33,-360C619.33,-360 532.67,-360 532.67,-360 527.33,-360 522,-354.67 522,-349.33 522,-349.33 522,-338.67 522,-338.67 522,-333.33 527.33,-328 532.67,-328 532.67,-328 619.33,-328 619.33,-328 624.67,-328 630,-333.33 630,-338.67 630,-338.67 630,-349.33 630,-349.33 630,-354.67 624.67,-360 619.33,-360"></path>
+<text text-anchor="middle" x="576" y="-347" font-family="Arial" font-size="10.00">:AiService</text>
+<text text-anchor="middle" x="576" y="-335" font-family="Arial" font-size="10.00">(İş Katmanı)</text>
+</g>
+<!-- UI&#45;&gt;Service -->
+<g id="edge3" class="edge">
+<title>UI-&gt;Service</title>
+<path fill="none" stroke="#555555" d="M388.31,-338C388.31,-338 510.36,-338 510.36,-338"></path>
+<polygon fill="#555555" stroke="#555555" points="510.36,-341.5 520.36,-338 510.36,-334.5 510.36,-341.5"></polygon>
+</g>
+<!-- UI&#45;&gt;t1 -->
+<!-- UI&#45;&gt;t1 -->
+<g id="edge18" class="edge">
+<title>UI-&gt;t1</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M306.5,-327.6C306.5,-309.84 306.5,-284 306.5,-284 306.5,-284 332.31,-284 333.92,-284"></path>
+</g>
+<!-- Service&#45;&gt;UI -->
+<g id="edge14" class="edge">
+<title>Service-&gt;UI</title>
+<path fill="none" stroke="#555555" stroke-dasharray="5,2" d="M521.69,-349C521.69,-349 399.64,-349 399.64,-349"></path>
+<polygon fill="#555555" stroke="#555555" points="399.64,-345.5 389.64,-349 399.64,-352.5 399.64,-345.5"></polygon>
+</g>
+<!-- RAG -->
+<g id="node4" class="node">
+<title>RAG</title>
+<path fill="#d1e7dd" stroke="black" d="M848.33,-360C848.33,-360 761.67,-360 761.67,-360 756.33,-360 751,-354.67 751,-349.33 751,-349.33 751,-338.67 751,-338.67 751,-333.33 756.33,-328 761.67,-328 761.67,-328 848.33,-328 848.33,-328 853.67,-328 859,-333.33 859,-338.67 859,-338.67 859,-349.33 859,-349.33 859,-354.67 853.67,-360 848.33,-360"></path>
+<text text-anchor="middle" x="805" y="-347" font-family="Arial" font-size="10.00">:RagService</text>
+<text text-anchor="middle" x="805" y="-335" font-family="Arial" font-size="10.00">(Orchestrator)</text>
+</g>
+<!-- Service&#45;&gt;RAG -->
+<g id="edge5" class="edge">
+<title>Service-&gt;RAG</title>
+<path fill="none" stroke="#555555" d="M630.27,-344C630.27,-344 739.21,-344 739.21,-344"></path>
+<polygon fill="#555555" stroke="#555555" points="739.21,-347.5 749.21,-344 739.21,-340.5 739.21,-347.5"></polygon>
+</g>
+<!-- t2 -->
+<!-- Service&#45;&gt;t2 -->
+<!-- Service&#45;&gt;t2 -->
+<g id="edge21" class="edge">
+<title>Service-&gt;t2</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M576,-327.9C576,-301.07 576,-249.83 576,-246.65"></path>
+</g>
+<!-- RAG&#45;&gt;Service -->
+<g id="edge13" class="edge">
+<title>RAG-&gt;Service</title>
+<path fill="none" stroke="#555555" stroke-dasharray="5,2" d="M750.73,-352C750.73,-352 641.79,-352 641.79,-352"></path>
+<polygon fill="#555555" stroke="#555555" points="641.79,-348.5 631.79,-352 641.79,-355.5 641.79,-348.5"></polygon>
+</g>
+<!-- DB -->
+<g id="node5" class="node">
+<title>DB</title>
+<path fill="#e2e3e5" stroke="black" d="M1095,-362C1095,-364.21 1070.8,-366 1041,-366 1011.2,-366 987,-364.21 987,-362 987,-362 987,-326 987,-326 987,-323.79 1011.2,-322 1041,-322 1070.8,-322 1095,-323.79 1095,-326 1095,-326 1095,-362 1095,-362"></path>
+<path fill="none" stroke="black" d="M1095,-362C1095,-359.79 1070.8,-358 1041,-358 1011.2,-358 987,-359.79 987,-362"></path>
+<text text-anchor="middle" x="1041" y="-347" font-family="Arial" font-size="10.00">:Database</text>
+<text text-anchor="middle" x="1041" y="-335" font-family="Arial" font-size="10.00">(SQLite)</text>
+</g>
+<!-- RAG&#45;&gt;DB -->
+<g id="edge7" class="edge">
+<title>RAG-&gt;DB</title>
+<path fill="none" stroke="blue" d="M859.44,-352C859.44,-352 975.32,-352 975.32,-352"></path>
+<polygon fill="blue" stroke="blue" points="975.32,-355.5 985.32,-352 975.32,-348.5 975.32,-355.5"></polygon>
+</g>
+<!-- AI -->
+<g id="node6" class="node">
+<title>AI</title>
+<path fill="#f8d7da" stroke="black" d="M1290.33,-360C1290.33,-360 1203.67,-360 1203.67,-360 1198.33,-360 1193,-354.67 1193,-349.33 1193,-349.33 1193,-338.67 1193,-338.67 1193,-333.33 1198.33,-328 1203.67,-328 1203.67,-328 1290.33,-328 1290.33,-328 1295.67,-328 1301,-333.33 1301,-338.67 1301,-338.67 1301,-349.33 1301,-349.33 1301,-354.67 1295.67,-360 1290.33,-360"></path>
+<text text-anchor="middle" x="1247" y="-347" font-family="Arial" font-size="10.00">:GeminiAPI</text>
+<text text-anchor="middle" x="1247" y="-335" font-family="Arial" font-size="10.00">(LLM)</text>
+</g>
+<!-- RAG&#45;&gt;AI -->
+<g id="edge10" class="edge">
+<title>RAG-&gt;AI</title>
+<path fill="none" stroke="red" d="M829.5,-327.56C829.5,-314.01 829.5,-297 829.5,-297 829.5,-297 1247,-297 1247,-297 1247,-297 1247,-316.05 1247,-316.05"></path>
+<polygon fill="red" stroke="red" points="1243.5,-316.05 1247,-326.05 1250.5,-316.05 1243.5,-316.05"></polygon>
+<text text-anchor="middle" x="1086" y="-386.7" font-family="Arial" font-size="9.00">6: GenerateContent(Prompt + Data)</text>
+</g>
+<!-- t3 -->
+<!-- RAG&#45;&gt;t3 -->
+<!-- RAG&#45;&gt;t3 -->
+<g id="edge26" class="edge">
+<title>RAG-&gt;t3</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M774.5,-327.71C774.5,-287.91 774.5,-189 774.5,-189 774.5,-189 713.33,-189 713.33,-189 713.33,-189 713.33,-206.14 713.33,-208.28"></path>
+</g>
+<!-- t4 -->
+<!-- RAG&#45;&gt;t4 -->
+<!-- t5 -->
+<!-- RAG&#45;&gt;t5 -->
+<!-- DB&#45;&gt;RAG -->
+<g id="edge8" class="edge">
+<title>DB-&gt;RAG</title>
+<path fill="none" stroke="blue" stroke-dasharray="5,2" d="M986.56,-344C986.56,-344 870.68,-344 870.68,-344"></path>
+<polygon fill="blue" stroke="blue" points="870.68,-340.5 860.68,-344 870.68,-347.5 870.68,-340.5"></polygon>
+</g>
+<!-- DB&#45;&gt;t4 -->
+<g id="edge31" class="edge">
+<title>DB-&gt;t4</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M1041,-321.61C1041,-274.61 1041,-170 1041,-170 1041,-170 878.21,-170 873.12,-170"></path>
+</g>
+<!-- AI&#45;&gt;RAG -->
+<g id="edge11" class="edge">
+<title>AI-&gt;RAG</title>
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M1220,-327.73C1220,-318.59 1220,-309 1220,-309 1220,-309 844.25,-309 844.25,-309 844.25,-309 844.25,-316.22 844.25,-316.22"></path>
+<polygon fill="red" stroke="red" points="840.75,-316.22 844.25,-326.22 847.75,-316.22 840.75,-316.22"></polygon>
+<text text-anchor="middle" x="952" y="-386.7" font-family="Arial" font-size="9.00">7: Return ('Stokta 15 adet...')</text>
+</g>
+<!-- AI&#45;&gt;t5 -->
+<g id="edge33" class="edge">
+<title>AI-&gt;t5</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M1274,-327.72C1274,-278.07 1274,-132 1274,-132 1274,-132 806.39,-132 799.09,-132"></path>
+</g>
+<!-- t1&#45;&gt;t2 -->
+<g id="edge19" class="edge">
+<title>t1-&gt;t2</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M334,-284.07C334,-279.84 334,-246 334,-246 334,-246 572.23,-246 575.96,-246"></path>
+</g>
+<!-- t8 -->
+<!-- t1&#45;&gt;t8 -->
+<g id="edge17" class="edge">
+<title>t1-&gt;t8</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M334.07,-284C340.16,-284 730,-284 730,-284 730,-284 730,-19 730,-19 730,-19 709.79,-19 707.26,-19"></path>
+</g>
+<!-- t2&#45;&gt;t3 -->
+<g id="edge22" class="edge">
+<title>t2-&gt;t3</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M576.1,-246C580.25,-246 713,-246 713,-246 713,-246 713,-213.04 713,-208.92"></path>
+</g>
+<!-- t2&#45;&gt;t8 -->
+<g id="edge20" class="edge">
+<title>t2-&gt;t8</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M576,-246.34C576,-239.45 576,-19 576,-19 576,-19 698.94,-19 706.62,-19"></path>
+</g>
+<!-- t3&#45;&gt;t4 -->
+<g id="edge27" class="edge">
+<title>t3-&gt;t4</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M712.67,-208.34C712.67,-204.96 712.67,-151 712.67,-151 712.67,-151 873.33,-151 873.33,-151 873.33,-151 873.33,-168.14 873.33,-170.28"></path>
+</g>
+<!-- t6 -->
+<!-- t3&#45;&gt;t6 -->
+<g id="edge23" class="edge">
+<title>t3-&gt;t6</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M713.15,-208C714.57,-208 726,-208 726,-208 726,-208 726,-94 726,-94 726,-94 721.61,-94 721.06,-94"></path>
+</g>
+<!-- t4&#45;&gt;t5 -->
+<g id="edge28" class="edge">
+<title>t4-&gt;t5</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M872.95,-170C870.71,-170 799,-170 799,-170 799,-170 799,-137.04 799,-132.92"></path>
+</g>
+<!-- t4&#45;&gt;t8 -->
+<g id="edge32" class="edge">
+<title>t4-&gt;t8</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M872.67,-170.4C872.67,-166.36 872.67,-37 872.67,-37 872.67,-37 668,-37 668,-37 668,-37 668,-19 668,-19 668,-19 702.28,-19 706.56,-19"></path>
+</g>
+<!-- t5&#45;&gt;t6 -->
+<g id="edge29" class="edge">
+<title>t5-&gt;t6</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M798.94,-132C796.58,-132 721,-132 721,-132 721,-132 721,-99.04 721,-94.92"></path>
+</g>
+<!-- t5&#45;&gt;t8 -->
+<g id="edge34" class="edge">
+<title>t5-&gt;t8</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M799,-132.12C799,-124.35 799,0 799,0 799,0 707,0 707,0 707,0 707,-15.6 707,-18.53"></path>
+</g>
+<!-- t7 -->
+<!-- t6&#45;&gt;t7 -->
+<g id="edge24" class="edge">
+<title>t6-&gt;t7</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M721,-94.07C721,-89.84 721,-56 721,-56 721,-56 733.3,-56 734.84,-56"></path>
+</g>
+<!-- t6&#45;&gt;t8 -->
+<g id="edge30" class="edge">
+<title>t6-&gt;t8</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M720.85,-94C719.35,-94 707.33,-94 707.33,-94 707.33,-94 707.33,-23.61 707.33,-19.22"></path>
+</g>
+<!-- t7&#45;&gt;t8 -->
+<g id="edge25" class="edge">
+<title>t7-&gt;t8</title>
+<path fill="none" stroke="#cccccc" stroke-dasharray="1,5" d="M735,-56.08C735,-51.96 735,-19 735,-19 735,-19 710.39,-19 707.31,-19"></path>
+</g>
+</g>
+</g></svg>

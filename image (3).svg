@@ -1,0 +1,188 @@
+<svg width="607pt" height="437pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="overflow: hidden; "><g id="viewport-20260108061309334" class="svg-pan-zoom_viewport" transform="matrix(1.0448425320127228,0,0,1.0448425320127228,0,140.30639100842134)" style="transform: matrix(1.04484, 0, 0, 1.04484, 0, 140.306);">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(14.4 422.4)">
+<title>Use_Case_Diagram</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-422.4 592.39,-422.4 592.39,14.4 -14.4,14.4"></polygon>
+<g id="clust1" class="cluster">
+<title>cluster_System</title>
+<path fill="#f8f9fa" stroke="black" d="M131.69,-8C131.69,-8 456.29,-8 456.29,-8 462.29,-8 468.29,-14 468.29,-20 468.29,-20 468.29,-388 468.29,-388 468.29,-394 462.29,-400 456.29,-400 456.29,-400 131.69,-400 131.69,-400 125.69,-400 119.69,-394 119.69,-388 119.69,-388 119.69,-20 119.69,-20 119.69,-14 125.69,-8 131.69,-8"></path>
+<text text-anchor="middle" x="293.99" y="-385.2" font-family="Arial" font-size="12.00" fill="#555555">operion Otomasyon Sistemi</text>
+</g>
+<!-- Admin -->
+<g id="node1" class="node">
+<title>Admin</title>
+<polygon fill="none" stroke="black" stroke-width="2" points="68.34,-294 14.34,-294 14.34,-258 68.34,-258 68.34,-294"></polygon>
+<text text-anchor="middle" x="41.34" y="-279" font-family="Arial" font-size="10.00">Yönetici</text>
+<text text-anchor="middle" x="41.34" y="-267" font-family="Arial" font-size="10.00">(Admin)</text>
+</g>
+<!-- UC_Login -->
+<g id="node4" class="node">
+<title>UC_Login</title>
+<ellipse fill="white" stroke="black" cx="194.48" cy="-188" rx="58.08" ry="18"></ellipse>
+<text text-anchor="middle" x="194.48" y="-185" font-family="Arial" font-size="10.00">Sisteme Giriş Yap</text>
+</g>
+<!-- Admin&#45;&gt;UC_Login -->
+<g id="edge1" class="edge">
+<title>Admin-&gt;UC_Login</title>
+<path fill="none" stroke="black" d="M62.4,-257.25C77.31,-244.07 98.64,-226.76 119.69,-215 126.49,-211.2 133.93,-207.76 141.38,-204.69"></path>
+<polygon fill="black" stroke="black" points="142.39,-208.05 150.45,-201.17 139.86,-201.53 142.39,-208.05"></polygon>
+</g>
+<!-- UC_ManageStock -->
+<g id="node5" class="node">
+<title>UC_ManageStock</title>
+<ellipse fill="white" stroke="black" cx="194.48" cy="-360" rx="68.44" ry="18"></ellipse>
+<text text-anchor="middle" x="194.48" y="-357" font-family="Arial" font-size="10.00">Ürün ve Stok Yönetimi</text>
+</g>
+<!-- Admin&#45;&gt;UC_ManageStock -->
+<g id="edge3" class="edge">
+<title>Admin-&gt;UC_ManageStock</title>
+<path fill="none" stroke="black" d="M64.22,-294.76C79.13,-306.85 99.7,-322.26 119.69,-333 125.76,-336.26 132.31,-339.29 138.92,-342.04"></path>
+<polygon fill="black" stroke="black" points="137.28,-345.16 147.87,-345.59 139.86,-338.65 137.28,-345.16"></polygon>
+</g>
+<!-- UC_ViewReports -->
+<g id="node8" class="node">
+<title>UC_ViewReports</title>
+<ellipse fill="white" stroke="black" cx="194.48" cy="-306" rx="64.09" ry="18"></ellipse>
+<text text-anchor="middle" x="194.48" y="-303" font-family="Arial" font-size="10.00">Raporları Görüntüle</text>
+</g>
+<!-- Admin&#45;&gt;UC_ViewReports -->
+<g id="edge4" class="edge">
+<title>Admin-&gt;UC_ViewReports</title>
+<path fill="none" stroke="black" d="M69.02,-281.29C85.98,-284.66 108.69,-289.17 130.07,-293.41"></path>
+<polygon fill="black" stroke="black" points="129.12,-296.79 139.61,-295.31 130.48,-289.93 129.12,-296.79"></polygon>
+</g>
+<!-- UC_ChatData -->
+<g id="node9" class="node">
+<title>UC_ChatData</title>
+<ellipse fill="#d1e7dd" stroke="black" cx="194.48" cy="-247" rx="65.95" ry="22.63"></ellipse>
+<text text-anchor="middle" x="194.48" y="-250" font-family="Arial" font-size="10.00">Veriyle Sohbet Et</text>
+<text text-anchor="middle" x="194.48" y="-238" font-family="Arial" font-size="10.00">(Text-to-SQL)</text>
+</g>
+<!-- Admin&#45;&gt;UC_ChatData -->
+<g id="edge5" class="edge">
+<title>Admin-&gt;UC_ChatData</title>
+<path fill="none" stroke="black" d="M69.02,-270.88C84.6,-267.89 105.05,-263.97 124.86,-260.17"></path>
+<polygon fill="black" stroke="black" points="125.44,-263.62 134.6,-258.3 124.12,-256.75 125.44,-263.62"></polygon>
+</g>
+<!-- Personel -->
+<g id="node2" class="node">
+<title>Personel</title>
+<polygon fill="none" stroke="black" stroke-width="2" points="82.69,-122 0,-122 0,-86 82.69,-86 82.69,-122"></polygon>
+<text text-anchor="middle" x="41.34" y="-107" font-family="Arial" font-size="10.00">Personel</text>
+<text text-anchor="middle" x="41.34" y="-95" font-family="Arial" font-size="10.00">(Kasiyer/Depo)</text>
+</g>
+<!-- Personel&#45;&gt;UC_Login -->
+<g id="edge2" class="edge">
+<title>Personel-&gt;UC_Login</title>
+<path fill="none" stroke="black" d="M64.22,-122.76C79.13,-134.85 99.7,-150.26 119.69,-161 126.63,-164.73 134.2,-168.15 141.76,-171.21"></path>
+<polygon fill="black" stroke="black" points="140.36,-174.43 150.95,-174.75 142.88,-167.89 140.36,-174.43"></polygon>
+</g>
+<!-- UC_CreateInvoice -->
+<g id="node6" class="node">
+<title>UC_CreateInvoice</title>
+<ellipse fill="white" stroke="black" cx="194.48" cy="-134" rx="65.77" ry="18"></ellipse>
+<text text-anchor="middle" x="194.48" y="-131" font-family="Arial" font-size="10.00">Fatura/Satış Oluştur</text>
+</g>
+<!-- Personel&#45;&gt;UC_CreateInvoice -->
+<g id="edge6" class="edge">
+<title>Personel-&gt;UC_CreateInvoice</title>
+<path fill="none" stroke="black" d="M83.64,-112.2C97.71,-114.99 113.78,-118.18 129.22,-121.24"></path>
+<polygon fill="black" stroke="black" points="128.33,-124.64 138.82,-123.15 129.69,-117.77 128.33,-124.64"></polygon>
+</g>
+<!-- UC_ManageCustomer -->
+<g id="node7" class="node">
+<title>UC_ManageCustomer</title>
+<ellipse fill="white" stroke="black" cx="194.48" cy="-80" rx="71.43" ry="18"></ellipse>
+<text text-anchor="middle" x="194.48" y="-77" font-family="Arial" font-size="10.00">Cari (Müşteri) Yönetimi</text>
+</g>
+<!-- Personel&#45;&gt;UC_ManageCustomer -->
+<g id="edge7" class="edge">
+<title>Personel-&gt;UC_ManageCustomer</title>
+<path fill="none" stroke="black" d="M83.64,-97.44C95.59,-95.54 108.99,-93.42 122.21,-91.32"></path>
+<polygon fill="black" stroke="black" points="122.42,-94.83 131.75,-89.8 121.33,-87.91 122.42,-94.83"></polygon>
+</g>
+<!-- UC_GenEmail -->
+<g id="node11" class="node">
+<title>UC_GenEmail</title>
+<ellipse fill="#d1e7dd" stroke="black" cx="194.48" cy="-26" rx="74.79" ry="18"></ellipse>
+<text text-anchor="middle" x="194.48" y="-23" font-family="Arial" font-size="10.00">E-posta Taslağı Oluştur</text>
+</g>
+<!-- Personel&#45;&gt;UC_GenEmail -->
+<g id="edge8" class="edge">
+<title>Personel-&gt;UC_GenEmail</title>
+<path fill="none" stroke="black" d="M67.57,-85.2C82.27,-74.82 101.45,-62.19 119.69,-53 125.54,-50.05 131.8,-47.26 138.1,-44.66"></path>
+<polygon fill="black" stroke="black" points="139.25,-47.97 147.27,-41.05 136.68,-41.46 139.25,-47.97"></polygon>
+</g>
+<!-- AIAssistant -->
+<g id="node3" class="node">
+<title>AIAssistant</title>
+<polygon fill="#e2e3e5" stroke="black" points="577.99,-109 509.29,-109 505.29,-105 505.29,-65 573.99,-65 577.99,-69 577.99,-109"></polygon>
+<polyline fill="none" stroke="black" points="573.99,-105 505.29,-105"></polyline>
+<polyline fill="none" stroke="black" points="573.99,-105 573.99,-65"></polyline>
+<polyline fill="none" stroke="black" points="573.99,-105 577.99,-109"></polyline>
+<text text-anchor="middle" x="541.64" y="-96" font-family="Arial" font-size="10.00">&lt;&lt;System&gt;&gt;</text>
+<text text-anchor="middle" x="541.64" y="-84" font-family="Arial" font-size="10.00">AI Asistanı</text>
+<text text-anchor="middle" x="541.64" y="-72" font-family="Arial" font-size="10.00">(Gemini)</text>
+</g>
+<!-- UC_Auth -->
+<g id="node13" class="node">
+<title>UC_Auth</title>
+<ellipse fill="white" stroke="black" cx="411.55" cy="-188" rx="56.74" ry="18"></ellipse>
+<text text-anchor="middle" x="411.55" y="-185" font-family="Arial" font-size="10.00">Kimlik Doğrulama</text>
+</g>
+<!-- UC_Login&#45;&gt;UC_Auth -->
+<g id="edge9" class="edge">
+<title>UC_Login-&gt;UC_Auth</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M252.83,-188C280.63,-188 314.18,-188 343.19,-188"></path>
+<polygon fill="black" stroke="black" points="342.96,-191.5 352.96,-188 342.96,-184.5 342.96,-191.5"></polygon>
+<text text-anchor="middle" x="312.04" y="-190.7" font-family="Arial" font-size="9.00">&lt;&lt;include&gt;&gt;</text>
+</g>
+<!-- UC_CheckStock -->
+<g id="node12" class="node">
+<title>UC_CheckStock</title>
+<ellipse fill="white" stroke="black" cx="411.55" cy="-134" rx="45.72" ry="18"></ellipse>
+<text text-anchor="middle" x="411.55" y="-131" font-family="Arial" font-size="10.00">Stok Kontrolü</text>
+</g>
+<!-- UC_CreateInvoice&#45;&gt;UC_CheckStock -->
+<g id="edge10" class="edge">
+<title>UC_CreateInvoice-&gt;UC_CheckStock</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M260.59,-134C290.37,-134 325.31,-134 353.97,-134"></path>
+<polygon fill="black" stroke="black" points="353.91,-137.5 363.91,-134 353.91,-130.5 353.91,-137.5"></polygon>
+<text text-anchor="middle" x="312.04" y="-136.7" font-family="Arial" font-size="9.00">&lt;&lt;include&gt;&gt;</text>
+</g>
+<!-- UC_Summarize -->
+<g id="node10" class="node">
+<title>UC_Summarize</title>
+<ellipse fill="#d1e7dd" stroke="black" cx="411.55" cy="-274" rx="43.71" ry="18"></ellipse>
+<text text-anchor="middle" x="411.55" y="-271" font-family="Arial" font-size="10.00">Rapor Özetle</text>
+</g>
+<!-- UC_ViewReports&#45;&gt;UC_Summarize -->
+<g id="edge14" class="edge">
+<title>UC_ViewReports-&gt;UC_Summarize</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M263.13,-295.93C298.24,-290.71 339.96,-284.5 370.04,-280.03"></path>
+<polygon fill="black" stroke="black" points="262.86,-292.44 253.48,-297.37 263.89,-299.36 262.86,-292.44"></polygon>
+<text text-anchor="middle" x="312.04" y="-293.7" font-family="Arial" font-size="9.00">&lt;&lt;extend&gt;&gt;</text>
+</g>
+<!-- UC_ChatData&#45;&gt;AIAssistant -->
+<g id="edge11" class="edge">
+<title>UC_ChatData-&gt;AIAssistant</title>
+<path fill="none" stroke="black" d="M256.17,-226.83C261.07,-223.46 265.56,-219.55 269.27,-215 293.71,-185.1 263.66,-160.56 287.27,-130 307.79,-103.43 322.35,-104.72 354.82,-96.2 400.96,-84.08 455.73,-82.89 493.8,-84.04"></path>
+<polygon fill="black" stroke="black" points="254.44,-223.79 247.62,-231.89 258.01,-229.81 254.44,-223.79"></polygon>
+<polygon fill="black" stroke="black" points="493.41,-87.53 503.53,-84.41 493.67,-80.54 493.41,-87.53"></polygon>
+<text text-anchor="middle" x="411.55" y="-98.7" font-family="Arial" font-size="9.00">Sorgu/Yanıt</text>
+</g>
+<!-- UC_Summarize&#45;&gt;AIAssistant -->
+<g id="edge12" class="edge">
+<title>UC_Summarize-&gt;AIAssistant</title>
+<path fill="none" stroke="black" d="M438.33,-249.42C448.29,-239.26 459.4,-227.05 468.29,-215 490.9,-184.36 511.73,-145.95 525.17,-119.25"></path>
+<polygon fill="black" stroke="black" points="435.98,-246.81 431.38,-256.36 440.93,-251.77 435.98,-246.81"></polygon>
+<polygon fill="black" stroke="black" points="528.14,-121.14 529.45,-110.63 521.87,-118.03 528.14,-121.14"></polygon>
+</g>
+<!-- UC_GenEmail&#45;&gt;AIAssistant -->
+<g id="edge13" class="edge">
+<title>UC_GenEmail-&gt;AIAssistant</title>
+<path fill="none" stroke="black" d="M275.48,-34.17C330.16,-40.55 404.08,-50.74 468.29,-65 476.66,-66.86 485.48,-69.21 493.96,-71.67"></path>
+<polygon fill="black" stroke="black" points="275.95,-30.7 265.62,-33.04 275.15,-37.65 275.95,-30.7"></polygon>
+<polygon fill="black" stroke="black" points="492.83,-74.98 503.41,-74.5 494.84,-68.27 492.83,-74.98"></polygon>
+</g>
+</g>
+</g></svg>

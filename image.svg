@@ -1,0 +1,208 @@
+<svg width="1169pt" height="343pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="overflow: hidden; "><g id="viewport-20260108055701683" class="svg-pan-zoom_viewport" transform="matrix(0.5421166491376583,0,0,0.5421166491376583,0,275.5812063378054)" style="transform: matrix(0.542117, 0, 0, 0.542117, 0, 275.581);">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 338.8)">
+<title>UML_Class_Diagram</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-338.8 1165.49,-338.8 1165.49,4 -4,4"></polygon>
+<!-- TblUrunler -->
+<g id="node1" class="node">
+<title>TblUrunler</title>
+<polygon fill="#f8f9fa" stroke="#343a40" points="895.22,-0.5 895.22,-144.5 1027.67,-144.5 1027.67,-0.5 895.22,-0.5"></polygon>
+<text text-anchor="middle" x="961.45" y="-131.5" font-family="Arial" font-size="10.00">TblUrunler</text>
+<polyline fill="none" stroke="#343a40" points="895.22,-124.5 1027.67,-124.5"></polyline>
+<text text-anchor="start" x="903.22" y="-111.5" font-family="Arial" font-size="10.00">+ ID : int</text>
+<text text-anchor="start" x="903.22" y="-99.5" font-family="Arial" font-size="10.00">+ UrunAd : string</text>
+<text text-anchor="start" x="903.22" y="-87.5" font-family="Arial" font-size="10.00">+ Marka : string</text>
+<text text-anchor="start" x="903.22" y="-75.5" font-family="Arial" font-size="10.00">+ Model : string</text>
+<text text-anchor="start" x="903.22" y="-63.5" font-family="Arial" font-size="10.00">+ AlisFiyat : decimal</text>
+<text text-anchor="start" x="903.22" y="-51.5" font-family="Arial" font-size="10.00">+ SatisFiyat : decimal</text>
+<text text-anchor="start" x="903.22" y="-39.5" font-family="Arial" font-size="10.00">+ Stok : short</text>
+<text text-anchor="start" x="903.22" y="-27.5" font-family="Arial" font-size="10.00">+ Durum : bool</text>
+<polyline fill="none" stroke="#343a40" points="895.22,-20.5 1027.67,-20.5"></polyline>
+<text text-anchor="start" x="903.22" y="-7.5" font-family="Arial" font-size="10.00">+ Kategori : TblKategoriler</text>
+</g>
+<!-- TblKategoriler -->
+<g id="node2" class="node">
+<title>TblKategoriler</title>
+<polygon fill="#f8f9fa" stroke="#343a40" points="701.32,-46.5 701.32,-98.5 779.57,-98.5 779.57,-46.5 701.32,-46.5"></polygon>
+<text text-anchor="middle" x="740.45" y="-85.5" font-family="Arial" font-size="10.00">TblKategoriler</text>
+<polyline fill="none" stroke="#343a40" points="701.32,-78.5 779.57,-78.5"></polyline>
+<text text-anchor="start" x="709.32" y="-65.5" font-family="Arial" font-size="10.00">+ ID : int</text>
+<text text-anchor="start" x="709.32" y="-53.5" font-family="Arial" font-size="10.00">+ Ad : string</text>
+<polyline fill="none" stroke="#343a40" points="701.32,-46.5 779.57,-46.5"></polyline>
+</g>
+<!-- TblKategoriler&#45;&gt;TblUrunler -->
+<g id="edge2" class="edge">
+<title>TblKategoriler-&gt;TblUrunler</title>
+<path fill="none" stroke="#6c757d" d="M793.01,-72C793.01,-72 894.98,-72 894.98,-72"></path>
+<polygon fill="none" stroke="#6c757d" points="792.86,-72 786.86,-76 780.86,-72 786.86,-68 792.86,-72"></polygon>
+</g>
+<!-- TblPersoneller -->
+<g id="node3" class="node">
+<title>TblPersoneller</title>
+<polygon fill="#f8f9fa" stroke="#343a40" points="0,-6.5 0,-138.5 156.89,-138.5 156.89,-6.5 0,-6.5"></polygon>
+<text text-anchor="middle" x="78.45" y="-125.5" font-family="Arial" font-size="10.00">TblPersoneller</text>
+<polyline fill="none" stroke="#343a40" points="0,-118.5 156.89,-118.5"></polyline>
+<text text-anchor="start" x="8" y="-105.5" font-family="Arial" font-size="10.00">+ ID : int</text>
+<text text-anchor="start" x="8" y="-93.5" font-family="Arial" font-size="10.00">+ Ad : string</text>
+<text text-anchor="start" x="8" y="-81.5" font-family="Arial" font-size="10.00">+ Soyad : string</text>
+<text text-anchor="start" x="8" y="-69.5" font-family="Arial" font-size="10.00">+ Telefon : string</text>
+<text text-anchor="start" x="8" y="-57.5" font-family="Arial" font-size="10.00">+ TC : string</text>
+<text text-anchor="start" x="8" y="-45.5" font-family="Arial" font-size="10.00">+ Mail : string</text>
+<text text-anchor="start" x="8" y="-33.5" font-family="Arial" font-size="10.00">+ Gorev : string</text>
+<polyline fill="none" stroke="#343a40" points="0,-26.5 156.89,-26.5"></polyline>
+<text text-anchor="start" x="8" y="-13.5" font-family="Arial" font-size="10.00">+ Departman : TblDepartmanlar</text>
+</g>
+<!-- TblDepartmanlar -->
+<g id="node4" class="node">
+<title>TblDepartmanlar</title>
+<polygon fill="#f8f9fa" stroke="#343a40" points="363.46,-40.5 363.46,-104.5 461.43,-104.5 461.43,-40.5 363.46,-40.5"></polygon>
+<text text-anchor="middle" x="412.45" y="-91.5" font-family="Arial" font-size="10.00">TblDepartmanlar</text>
+<polyline fill="none" stroke="#343a40" points="363.46,-84.5 461.43,-84.5"></polyline>
+<text text-anchor="start" x="371.46" y="-71.5" font-family="Arial" font-size="10.00">+ ID : int</text>
+<text text-anchor="start" x="371.46" y="-59.5" font-family="Arial" font-size="10.00">+ Ad : string</text>
+<text text-anchor="start" x="371.46" y="-47.5" font-family="Arial" font-size="10.00">+ Aciklama : string</text>
+<polyline fill="none" stroke="#343a40" points="363.46,-40.5 461.43,-40.5"></polyline>
+</g>
+<!-- TblDepartmanlar&#45;&gt;TblPersoneller -->
+<g id="edge3" class="edge">
+<title>TblDepartmanlar-&gt;TblPersoneller</title>
+<path fill="none" stroke="#6c757d" d="M373.9,-117.8C373.9,-117.8 373.9,-179 373.9,-179 373.9,-179 104.6,-179 104.6,-179 104.6,-179 104.6,-160.39 104.6,-138.74"></path>
+<polygon fill="none" stroke="#6c757d" points="373.9,-117.64 369.9,-111.64 373.9,-105.64 377.9,-111.64 373.9,-117.64"></polygon>
+<text text-anchor="middle" x="299.45" y="-176.7" font-family="Arial" font-size="9.00">1..*</text>
+</g>
+<!-- TblMusteriler -->
+<g id="node5" class="node">
+<title>TblMusteriler</title>
+<polygon fill="#f8f9fa" stroke="#343a40" points="215.07,-10.5 215.07,-134.5 305.83,-134.5 305.83,-10.5 215.07,-10.5"></polygon>
+<text text-anchor="middle" x="260.45" y="-121.5" font-family="Arial" font-size="10.00">TblMusteriler</text>
+<polyline fill="none" stroke="#343a40" points="215.07,-114.5 305.83,-114.5"></polyline>
+<text text-anchor="start" x="223.07" y="-101.5" font-family="Arial" font-size="10.00">+ ID : int</text>
+<text text-anchor="start" x="223.07" y="-89.5" font-family="Arial" font-size="10.00">+ Ad : string</text>
+<text text-anchor="start" x="223.07" y="-77.5" font-family="Arial" font-size="10.00">+ Soyad : string</text>
+<text text-anchor="start" x="223.07" y="-65.5" font-family="Arial" font-size="10.00">+ Telefon : string</text>
+<text text-anchor="start" x="223.07" y="-53.5" font-family="Arial" font-size="10.00">+ Mail : string</text>
+<text text-anchor="start" x="223.07" y="-41.5" font-family="Arial" font-size="10.00">+ Il : string</text>
+<text text-anchor="start" x="223.07" y="-29.5" font-family="Arial" font-size="10.00">+ Ilce : string</text>
+<text text-anchor="start" x="223.07" y="-17.5" font-family="Arial" font-size="10.00">+ Adres : string</text>
+<polyline fill="none" stroke="#343a40" points="215.07,-10.5 305.83,-10.5"></polyline>
+</g>
+<!-- TblFirmalar -->
+<g id="node6" class="node">
+<title>TblFirmalar</title>
+<polygon fill="#f8f9fa" stroke="#343a40" points="519.11,-10.5 519.11,-134.5 643.78,-134.5 643.78,-10.5 519.11,-10.5"></polygon>
+<text text-anchor="middle" x="581.45" y="-121.5" font-family="Arial" font-size="10.00">TblFirmalar</text>
+<polyline fill="none" stroke="#343a40" points="519.11,-114.5 643.78,-114.5"></polyline>
+<text text-anchor="start" x="527.11" y="-101.5" font-family="Arial" font-size="10.00">+ ID : int</text>
+<text text-anchor="start" x="527.11" y="-89.5" font-family="Arial" font-size="10.00">+ Ad : string</text>
+<text text-anchor="start" x="527.11" y="-77.5" font-family="Arial" font-size="10.00">+ YetkiliStatu : string</text>
+<text text-anchor="start" x="527.11" y="-65.5" font-family="Arial" font-size="10.00">+ YetkiliAdSoyad : string</text>
+<text text-anchor="start" x="527.11" y="-53.5" font-family="Arial" font-size="10.00">+ Telefon : string</text>
+<text text-anchor="start" x="527.11" y="-41.5" font-family="Arial" font-size="10.00">+ Mail : string</text>
+<text text-anchor="start" x="527.11" y="-29.5" font-family="Arial" font-size="10.00">+ Il : string</text>
+<text text-anchor="start" x="527.11" y="-17.5" font-family="Arial" font-size="10.00">+ Ilce : string</text>
+<polyline fill="none" stroke="#343a40" points="519.11,-10.5 643.78,-10.5"></polyline>
+</g>
+<!-- TblFaturaBilgi -->
+<g id="node7" class="node">
+<title>TblFaturaBilgi</title>
+<polygon fill="#f8f9fa" stroke="#343a40" points="290.12,-224.3 290.12,-324.3 394.77,-324.3 394.77,-224.3 290.12,-224.3"></polygon>
+<text text-anchor="middle" x="342.45" y="-311.3" font-family="Arial" font-size="10.00">TblFaturaBilgi</text>
+<polyline fill="none" stroke="#343a40" points="290.12,-304.3 394.77,-304.3"></polyline>
+<text text-anchor="start" x="298.12" y="-291.3" font-family="Arial" font-size="10.00">+ ID : int</text>
+<text text-anchor="start" x="298.12" y="-279.3" font-family="Arial" font-size="10.00">+ Seri : string</text>
+<text text-anchor="start" x="298.12" y="-267.3" font-family="Arial" font-size="10.00">+ SiraNo : string</text>
+<text text-anchor="start" x="298.12" y="-255.3" font-family="Arial" font-size="10.00">+ Tarih : datetime</text>
+<text text-anchor="start" x="298.12" y="-243.3" font-family="Arial" font-size="10.00">+ Saat : string</text>
+<text text-anchor="start" x="298.12" y="-231.3" font-family="Arial" font-size="10.00">+ VergiDaire : string</text>
+<polyline fill="none" stroke="#343a40" points="290.12,-224.3 394.77,-224.3"></polyline>
+</g>
+<!-- TblFaturaBilgi&#45;&gt;TblPersoneller -->
+<g id="edge6" class="edge">
+<title>TblFaturaBilgi-&gt;TblPersoneller</title>
+<path fill="none" stroke="#6c757d" stroke-dasharray="5,2" d="M289.9,-274C206.29,-274 52.3,-274 52.3,-274 52.3,-274 52.3,-150.27 52.3,-150.27"></path>
+<polygon fill="#6c757d" stroke="#6c757d" points="55.8,-150.27 52.3,-140.27 48.8,-150.27 55.8,-150.27"></polygon>
+<text text-anchor="middle" x="136.46" y="-176.7" font-family="Arial" font-size="9.00">düzenleyen</text>
+</g>
+<!-- TblFaturaBilgi&#45;&gt;TblMusteriler -->
+<g id="edge7" class="edge">
+<title>TblFaturaBilgi-&gt;TblMusteriler</title>
+<path fill="none" stroke="#6c757d" stroke-dasharray="5,2" d="M297.98,-223.9C297.98,-223.9 297.98,-146.4 297.98,-146.4"></path>
+<polygon fill="#6c757d" stroke="#6c757d" points="301.48,-146.4 297.98,-136.4 294.48,-146.4 301.48,-146.4"></polygon>
+<text text-anchor="middle" x="272.45" y="-176.7" font-family="Arial" font-size="9.00">müşteri</text>
+</g>
+<!-- TblFaturaBilgi&#45;&gt;TblFirmalar -->
+<g id="edge5" class="edge">
+<title>TblFaturaBilgi-&gt;TblFirmalar</title>
+<path fill="none" stroke="#6c757d" stroke-dasharray="5,2" d="M384.33,-224.2C384.33,-179.15 384.33,-120 384.33,-120 384.33,-120 507.29,-120 507.29,-120"></path>
+<polygon fill="#6c757d" stroke="#6c757d" points="507.29,-123.5 517.29,-120 507.29,-116.5 507.29,-123.5"></polygon>
+<text text-anchor="middle" x="592.95" y="-176.7" font-family="Arial" font-size="9.00">kesilir</text>
+</g>
+<!-- TblFaturaDetay -->
+<g id="node8" class="node">
+<title>TblFaturaDetay</title>
+<polygon fill="#f8f9fa" stroke="#343a40" points="553.23,-226.3 553.23,-322.3 695.67,-322.3 695.67,-226.3 553.23,-226.3"></polygon>
+<text text-anchor="middle" x="624.45" y="-309.3" font-family="Arial" font-size="10.00">TblFaturaDetay</text>
+<polyline fill="none" stroke="#343a40" points="553.23,-302.3 695.67,-302.3"></polyline>
+<text text-anchor="start" x="561.23" y="-289.3" font-family="Arial" font-size="10.00">+ ID : int</text>
+<text text-anchor="start" x="561.23" y="-277.3" font-family="Arial" font-size="10.00">+ Miktar : short</text>
+<text text-anchor="start" x="561.23" y="-265.3" font-family="Arial" font-size="10.00">+ Fiyat : decimal</text>
+<text text-anchor="start" x="561.23" y="-253.3" font-family="Arial" font-size="10.00">+ Tutar : decimal</text>
+<polyline fill="none" stroke="#343a40" points="553.23,-246.3 695.67,-246.3"></polyline>
+<text text-anchor="start" x="561.23" y="-233.3" font-family="Arial" font-size="10.00">+ FaturaBilgi : TblFaturaBilgi</text>
+</g>
+<!-- TblFaturaBilgi&#45;&gt;TblFaturaDetay -->
+<g id="edge1" class="edge">
+<title>TblFaturaBilgi-&gt;TblFaturaDetay</title>
+<path fill="none" stroke="#6c757d" d="M408.21,-274C408.21,-274 552.84,-274 552.84,-274"></path>
+<polygon fill="#6c757d" stroke="#6c757d" points="408.06,-274 402.06,-278 396.06,-274 402.06,-270 408.06,-274"></polygon>
+</g>
+<!-- TblFaturaDetay&#45;&gt;TblUrunler -->
+<g id="edge4" class="edge">
+<title>TblFaturaDetay-&gt;TblUrunler</title>
+<path fill="none" stroke="#6c757d" stroke-dasharray="5,2" d="M669.72,-225.82C669.72,-179.6 669.72,-117 669.72,-117 669.72,-117 883.37,-117 883.37,-117"></path>
+<polygon fill="#6c757d" stroke="#6c757d" points="883.37,-120.5 893.37,-117 883.37,-113.5 883.37,-120.5"></polygon>
+<text text-anchor="middle" x="824.45" y="-176.7" font-family="Arial" font-size="9.00">içerir</text>
+</g>
+<!-- TblGiderler -->
+<g id="node9" class="node">
+<title>TblGiderler</title>
+<polygon fill="#f8f9fa" stroke="#343a40" points="753.46,-226.3 753.46,-322.3 851.43,-322.3 851.43,-226.3 753.46,-226.3"></polygon>
+<text text-anchor="middle" x="802.45" y="-309.3" font-family="Arial" font-size="10.00">TblGiderler</text>
+<polyline fill="none" stroke="#343a40" points="753.46,-302.3 851.43,-302.3"></polyline>
+<text text-anchor="start" x="761.46" y="-289.3" font-family="Arial" font-size="10.00">+ ID : int</text>
+<text text-anchor="start" x="761.46" y="-277.3" font-family="Arial" font-size="10.00">+ Aciklama : string</text>
+<text text-anchor="start" x="761.46" y="-265.3" font-family="Arial" font-size="10.00">+ Tarih : datetime</text>
+<text text-anchor="start" x="761.46" y="-253.3" font-family="Arial" font-size="10.00">+ Tutar : decimal</text>
+<polyline fill="none" stroke="#343a40" points="753.46,-246.3 851.43,-246.3"></polyline>
+<text text-anchor="middle" x="802.45" y="-233.3" font-family="Arial" font-size="10.00"> </text>
+</g>
+<!-- TblBankalar -->
+<g id="node10" class="node">
+<title>TblBankalar</title>
+<polygon fill="#f8f9fa" stroke="#343a40" points="909.34,-214.3 909.34,-334.3 1009.55,-334.3 1009.55,-214.3 909.34,-214.3"></polygon>
+<text text-anchor="middle" x="959.45" y="-321.3" font-family="Arial" font-size="10.00">TblBankalar</text>
+<polyline fill="none" stroke="#343a40" points="909.34,-314.3 1009.55,-314.3"></polyline>
+<text text-anchor="start" x="917.34" y="-301.3" font-family="Arial" font-size="10.00">+ ID : int</text>
+<text text-anchor="start" x="917.34" y="-289.3" font-family="Arial" font-size="10.00">+ BankaAdi : string</text>
+<text text-anchor="start" x="917.34" y="-277.3" font-family="Arial" font-size="10.00">+ Sube : string</text>
+<text text-anchor="start" x="917.34" y="-265.3" font-family="Arial" font-size="10.00">+ IBAN : string</text>
+<text text-anchor="start" x="917.34" y="-253.3" font-family="Arial" font-size="10.00">+ HesapNo : string</text>
+<text text-anchor="start" x="917.34" y="-241.3" font-family="Arial" font-size="10.00">+ Yetkili : string</text>
+<polyline fill="none" stroke="#343a40" points="909.34,-234.3 1009.55,-234.3"></polyline>
+<text text-anchor="middle" x="959.45" y="-221.3" font-family="Arial" font-size="10.00"> </text>
+</g>
+<!-- TblNotlar -->
+<g id="node11" class="node">
+<title>TblNotlar</title>
+<polygon fill="#f8f9fa" stroke="#343a40" points="1067.4,-220.3 1067.4,-328.3 1161.49,-328.3 1161.49,-220.3 1067.4,-220.3"></polygon>
+<text text-anchor="middle" x="1114.45" y="-315.3" font-family="Arial" font-size="10.00">TblNotlar</text>
+<polyline fill="none" stroke="#343a40" points="1067.4,-308.3 1161.49,-308.3"></polyline>
+<text text-anchor="start" x="1075.4" y="-295.3" font-family="Arial" font-size="10.00">+ ID : int</text>
+<text text-anchor="start" x="1075.4" y="-283.3" font-family="Arial" font-size="10.00">+ Baslik : string</text>
+<text text-anchor="start" x="1075.4" y="-271.3" font-family="Arial" font-size="10.00">+ Icerik : string</text>
+<text text-anchor="start" x="1075.4" y="-259.3" font-family="Arial" font-size="10.00">+ Tarih : datetime</text>
+<text text-anchor="start" x="1075.4" y="-247.3" font-family="Arial" font-size="10.00">+ Durum : bool</text>
+<polyline fill="none" stroke="#343a40" points="1067.4,-240.3 1161.49,-240.3"></polyline>
+<text text-anchor="middle" x="1114.45" y="-227.3" font-family="Arial" font-size="10.00"> </text>
+</g>
+</g>
+</g></svg>
