@@ -66,6 +66,7 @@ Yok (tümü tamamlandı)
 - **Sürüm:** 1.0.0+3 yayınlandı. (Release 1.0.0+3)
 - **Login Feedback:** Hatalı girişlerde kullanıcıya uyarı mesajı (MessageBox) gösterilmesi sağlandı.
 - **Root Cleanup:** Kök dizindeki exe ve sql dosyaları `Releases/` ve `DB_Backups/` klasörlerine taşındı.
+- **Ek Temizlik:** Kök dizindeki ekran görüntüleri `docs/media/` klasörüne, rapor dosyası `docs/` klasörüne taşındı.
 - **README:** Baştan sona modernize edildi, emojilerden arındırıldı ve detaylandırıldı.
 - **Master Doc:** Versiyon ve klasör yapısı güncellendi.
 

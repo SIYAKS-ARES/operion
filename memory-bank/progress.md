@@ -125,6 +125,7 @@
 - ✅ **Release 1.0.0+3** - Yayınlandı (2026-01-08)
 - ✅ **Login Feedback** - FrmAdmin giriş hatası uyarısı eklendi (2026-01-08)
 - ✅ **Root Cleanup** - Klasör yapısı düzenlendi (2026-01-08)
+- ✅ **Ek Temizlik** - Ekran görüntüleri ve rapor dosyaları klasörlendi (2026-01-08)
 - ✅ **Dokümantasyon** - README ve Master Doc güncellendi (2026-01-08)
 
 

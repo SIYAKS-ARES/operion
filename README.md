@@ -126,6 +126,7 @@ operion/
 │   ├── Controls/   # Özel UI Bileşenleri (ModernButton, vb.)
 │   └── Forms/      # Uygulama Ekranları
 ├── docs/           # Proje Dokümantasyonu
+│   └── media/      # Ekran görüntüleri ve görseller
 ├── memory-bank/    # Proje Hafızası ve Bağlam Dosyaları
 ├── Releases/       # Derlenmiş sürüm dosyaları (.exe)
 └── DB_Backups/     # Veritabanı yedekleri ve SQL scriptleri
