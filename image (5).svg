@@ -1,0 +1,127 @@
+<svg width="597pt" height="586pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="overflow: hidden; "><g id="viewport-20260108061920529" class="svg-pan-zoom_viewport" transform="matrix(1.0891038084276707,0,0,1.0891038084276707,-15.683094841358411,41.659947090856065)" style="transform: matrix(1.0891, 0, 0, 1.0891, -15.6831, 41.6599);">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(18.4 567.4)">
+<title>Sequence_Diagram_Vertical</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-553 563.73,-553 563.73,4 -4,4"></polygon>
+<!-- User -->
+<g id="node1" class="node">
+<title>User</title>
+<path fill="lightgrey" stroke="none" d="M293.93,-549C293.93,-549 113.67,-549 113.67,-549 108.33,-549 103,-543.67 103,-538.33 103,-538.33 103,-527.67 103,-527.67 103,-522.33 108.33,-517 113.67,-517 113.67,-517 293.93,-517 293.93,-517 299.27,-517 304.6,-522.33 304.6,-527.67 304.6,-527.67 304.6,-538.33 304.6,-538.33 304.6,-543.67 299.27,-549 293.93,-549"></path>
+<text text-anchor="middle" x="203.8" y="-536" font-family="Arial" font-size="10.00">👤</text>
+<text text-anchor="middle" x="203.8" y="-524" font-family="Arial" font-size="10.00">Kullanıcı</text>
+</g>
+<!-- UI -->
+<g id="node2" class="node">
+<title>UI</title>
+<path fill="#e3f2fd" stroke="black" d="M293.93,-437.4C293.93,-437.4 113.67,-437.4 113.67,-437.4 108.33,-437.4 103,-432.07 103,-426.73 103,-426.73 103,-416.07 103,-416.07 103,-410.73 108.33,-405.4 113.67,-405.4 113.67,-405.4 293.93,-405.4 293.93,-405.4 299.27,-405.4 304.6,-410.73 304.6,-416.07 304.6,-416.07 304.6,-426.73 304.6,-426.73 304.6,-432.07 299.27,-437.4 293.93,-437.4"></path>
+<text text-anchor="middle" x="203.8" y="-424.4" font-family="Arial" font-size="10.00">:FrmAiChat</text>
+<text text-anchor="middle" x="203.8" y="-412.4" font-family="Arial" font-size="10.00">(Arayüz)</text>
+</g>
+<!-- User&#45;&gt;UI -->
+<!-- User&#45;&gt;UI -->
+<g id="edge6" class="edge">
+<title>User-&gt;UI</title>
+<path fill="none" stroke="#555555" d="M153.4,-517.01C153.4,-517.01 153.4,-449.24 153.4,-449.24"></path>
+<polygon fill="#555555" stroke="#555555" points="156.9,-449.24 153.4,-439.24 149.9,-449.24 156.9,-449.24"></polygon>
+<text text-anchor="middle" x="246.27" y="-479.9" font-family="Arial" font-size="9.00">1: Soru Sor</text>
+<text text-anchor="middle" x="246.27" y="-469.1" font-family="Arial" font-size="9.00">"Stok durumu nedir?"</text>
+</g>
+<!-- UI&#45;&gt;User -->
+<g id="edge15" class="edge">
+<title>UI-&gt;User</title>
+<path fill="none" stroke="#555555" stroke-dasharray="5,2" d="M254.2,-437.87C254.2,-437.87 254.2,-505.67 254.2,-505.67"></path>
+<polygon fill="#555555" stroke="#555555" points="250.7,-505.67 254.2,-515.67 257.7,-505.67 250.7,-505.67"></polygon>
+<text text-anchor="middle" x="374.57" y="-474.5" font-family="Arial" font-size="9.00">10: Cevabı Göster</text>
+</g>
+<!-- Service -->
+<g id="node3" class="node">
+<title>Service</title>
+<path fill="#fff3cd" stroke="black" d="M293.93,-336.6C293.93,-336.6 113.67,-336.6 113.67,-336.6 108.33,-336.6 103,-331.27 103,-325.93 103,-325.93 103,-315.27 103,-315.27 103,-309.93 108.33,-304.6 113.67,-304.6 113.67,-304.6 293.93,-304.6 293.93,-304.6 299.27,-304.6 304.6,-309.93 304.6,-315.27 304.6,-315.27 304.6,-325.93 304.6,-325.93 304.6,-331.27 299.27,-336.6 293.93,-336.6"></path>
+<text text-anchor="middle" x="203.8" y="-323.6" font-family="Arial" font-size="10.00">:AiService</text>
+<text text-anchor="middle" x="203.8" y="-311.6" font-family="Arial" font-size="10.00">(İş Katmanı)</text>
+</g>
+<!-- UI&#45;&gt;Service -->
+<!-- UI&#45;&gt;Service -->
+<g id="edge7" class="edge">
+<title>UI-&gt;Service</title>
+<path fill="none" stroke="#555555" d="M153.4,-405.2C153.4,-405.2 153.4,-348.6 153.4,-348.6"></path>
+<polygon fill="#555555" stroke="#555555" points="156.9,-348.6 153.4,-338.6 149.9,-348.6 156.9,-348.6"></polygon>
+<text text-anchor="middle" x="252.82" y="-368.3" font-family="Arial" font-size="9.00">2: SendMessageAsync()</text>
+</g>
+<!-- Service&#45;&gt;UI -->
+<g id="edge14" class="edge">
+<title>Service-&gt;UI</title>
+<path fill="none" stroke="#555555" stroke-dasharray="5,2" d="M254.2,-336.8C254.2,-336.8 254.2,-393.4 254.2,-393.4"></path>
+<polygon fill="#555555" stroke="#555555" points="250.7,-393.4 254.2,-403.4 257.7,-393.4 250.7,-393.4"></polygon>
+<text text-anchor="middle" x="390.81" y="-368.3" font-family="Arial" font-size="9.00">9: DisplayMessage()</text>
+</g>
+<!-- RAG -->
+<g id="node4" class="node">
+<title>RAG</title>
+<path fill="#d1e7dd" stroke="black" d="M293.93,-235.8C293.93,-235.8 113.67,-235.8 113.67,-235.8 108.33,-235.8 103,-230.47 103,-225.13 103,-225.13 103,-214.47 103,-214.47 103,-209.13 108.33,-203.8 113.67,-203.8 113.67,-203.8 293.93,-203.8 293.93,-203.8 299.27,-203.8 304.6,-209.13 304.6,-214.47 304.6,-214.47 304.6,-225.13 304.6,-225.13 304.6,-230.47 299.27,-235.8 293.93,-235.8"></path>
+<text text-anchor="middle" x="203.8" y="-222.8" font-family="Arial" font-size="10.00">:RagService</text>
+<text text-anchor="middle" x="203.8" y="-210.8" font-family="Arial" font-size="10.00">(Orchestrator)</text>
+</g>
+<!-- Service&#45;&gt;RAG -->
+<!-- Service&#45;&gt;RAG -->
+<g id="edge8" class="edge">
+<title>Service-&gt;RAG</title>
+<path fill="none" stroke="#555555" d="M203.8,-304.4C203.8,-304.4 203.8,-247.8 203.8,-247.8"></path>
+<polygon fill="#555555" stroke="#555555" points="207.3,-247.8 203.8,-237.8 200.3,-247.8 207.3,-247.8"></polygon>
+<text text-anchor="middle" x="246.31" y="-267.5" font-family="Arial" font-size="9.00">3: GetAnswerAsync()</text>
+</g>
+<!-- RAG&#45;&gt;Service -->
+<g id="edge13" class="edge">
+<title>RAG-&gt;Service</title>
+<path fill="none" stroke="#555555" stroke-dasharray="5,2" d="M153.4,-236C153.4,-236 153.4,-292.6 153.4,-292.6"></path>
+<polygon fill="#555555" stroke="#555555" points="149.9,-292.6 153.4,-302.6 156.9,-292.6 149.9,-292.6"></polygon>
+<text text-anchor="middle" x="389.08" y="-267.5" font-family="Arial" font-size="9.00">8: Return ResponseModel</text>
+</g>
+<!-- DB -->
+<g id="node5" class="node">
+<title>DB</title>
+<path fill="#e2e3e5" stroke="black" d="M201.6,-131C201.6,-133.21 156.42,-135 100.8,-135 45.18,-135 0,-133.21 0,-131 0,-131 0,-95 0,-95 0,-92.79 45.18,-91 100.8,-91 156.42,-91 201.6,-92.79 201.6,-95 201.6,-95 201.6,-131 201.6,-131"></path>
+<path fill="none" stroke="black" d="M201.6,-131C201.6,-128.79 156.42,-127 100.8,-127 45.18,-127 0,-128.79 0,-131"></path>
+<text text-anchor="middle" x="100.8" y="-116" font-family="Arial" font-size="10.00">:Database</text>
+<text text-anchor="middle" x="100.8" y="-104" font-family="Arial" font-size="10.00">(SQLite)</text>
+</g>
+<!-- RAG&#45;&gt;DB -->
+<!-- RAG&#45;&gt;DB -->
+<g id="edge9" class="edge">
+<title>RAG-&gt;DB</title>
+<path fill="none" stroke="blue" d="M152.3,-203.58C152.3,-203.58 152.3,-146.85 152.3,-146.85"></path>
+<polygon fill="blue" stroke="blue" points="155.8,-146.85 152.3,-136.85 148.8,-146.85 155.8,-146.85"></polygon>
+<text text-anchor="middle" x="110.31" y="-166.7" font-family="Arial" font-size="9.00">4: SearchSimilarData()</text>
+</g>
+<!-- AI -->
+<g id="node6" class="node">
+<title>AI</title>
+<path fill="#f8d7da" stroke="black" d="M412.93,-32C412.93,-32 232.67,-32 232.67,-32 227.33,-32 222,-26.67 222,-21.33 222,-21.33 222,-10.67 222,-10.67 222,-5.33 227.33,0 232.67,0 232.67,0 412.93,0 412.93,0 418.27,0 423.6,-5.33 423.6,-10.67 423.6,-10.67 423.6,-21.33 423.6,-21.33 423.6,-26.67 418.27,-32 412.93,-32"></path>
+<text text-anchor="middle" x="322.8" y="-19" font-family="Arial" font-size="10.00">:GeminiAPI</text>
+<text text-anchor="middle" x="322.8" y="-7" font-family="Arial" font-size="10.00">(LLM)</text>
+</g>
+<!-- RAG&#45;&gt;AI -->
+<g id="edge11" class="edge">
+<title>RAG-&gt;AI</title>
+<path fill="none" stroke="red" d="M263.3,-203.47C263.3,-203.47 263.3,-43.92 263.3,-43.92"></path>
+<polygon fill="red" stroke="red" points="266.8,-43.92 263.3,-33.92 259.8,-43.92 266.8,-43.92"></polygon>
+<text text-anchor="middle" x="362.33" y="-115.7" font-family="Arial" font-size="9.00">6: GenerateContent</text>
+<text text-anchor="middle" x="362.33" y="-104.9" font-family="Arial" font-size="9.00">(Prompt + Data)</text>
+</g>
+<!-- DB&#45;&gt;RAG -->
+<g id="edge10" class="edge">
+<title>DB-&gt;RAG</title>
+<path fill="none" stroke="blue" stroke-dasharray="5,2" d="M176.95,-134.61C176.95,-134.61 176.95,-191.94 176.95,-191.94"></path>
+<polygon fill="blue" stroke="blue" points="173.45,-191.94 176.95,-201.94 180.45,-191.94 173.45,-191.94"></polygon>
+<text text-anchor="middle" x="249.56" y="-166.7" font-family="Arial" font-size="9.00">5: Return (Ürün Listesi)</text>
+</g>
+<!-- DB&#45;&gt;AI -->
+<!-- AI&#45;&gt;RAG -->
+<g id="edge12" class="edge">
+<title>AI-&gt;RAG</title>
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M283.95,-32.33C283.95,-32.33 283.95,-191.88 283.95,-191.88"></path>
+<polygon fill="red" stroke="red" points="280.45,-191.88 283.95,-201.88 287.45,-191.88 280.45,-191.88"></polygon>
+<text text-anchor="middle" x="523.77" y="-115.7" font-family="Arial" font-size="9.00">7: Return</text>
+<text text-anchor="middle" x="523.77" y="-104.9" font-family="Arial" font-size="9.00">"Stokta 15 adet..."</text>
+</g>
+</g>
+</g></svg>
